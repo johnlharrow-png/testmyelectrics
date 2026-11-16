@@ -9,11 +9,14 @@ window.TME_CONFIG = {
     email: 'bookings@testmyelectrics.com',  // TODO: confirm mailbox exists
   },
 
-  /* BASE: the booking app's permanent address (brief section 01).
+  /* BASE: the booking app's address (brief section 01).
      Every "Book" button, the postcode boxes and "My account" are built from this one value.
-     Never put the temporary railway.app address here. */
+     TEMPORARY: book.testmyelectrics.com doesn't exist yet (Wayne needs to add it as a custom
+     domain on the booking app in Railway, then a CNAME in GoDaddy). Until then this points at
+     the app's Railway address so the buttons work. Switch it back to
+     'https://book.testmyelectrics.com' as soon as that address loads. */
   booking: {
-    base: 'https://book.testmyelectrics.com',   // TODO: Wayne adds this domain in Railway; CNAME at GoDaddy
+    base: 'https://eicr-web-production.up.railway.app',
   },
 
   /* "Request a callback" form (more than one board, several properties, business)
