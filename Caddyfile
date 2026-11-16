@@ -1,0 +1,17 @@
+# Railway sets $PORT; Railway terminates HTTPS in front of this.
+:{$PORT:8080} {
+	root * /srv
+	encode zstd gzip
+
+	# Assets carry ?v= version numbers in index.html, so they can be cached; the page itself can't.
+	header /assets/* Cache-Control "public, max-age=604800"
+	header / Cache-Control "no-cache"
+
+	header {
+		X-Content-Type-Options nosniff
+		Referrer-Policy strict-origin-when-cross-origin
+		-Server
+	}
+
+	file_server
+}

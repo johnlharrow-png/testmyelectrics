@@ -1,0 +1,5 @@
+# testmyelectrics.com — static site served by Caddy on Railway
+FROM caddy:2-alpine
+COPY Caddyfile /etc/caddy/Caddyfile
+COPY index.html /srv/index.html
+COPY assets /srv/assets
