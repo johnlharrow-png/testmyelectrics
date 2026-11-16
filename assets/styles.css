@@ -232,9 +232,10 @@ a.tp-badge[href]:hover .tp-score { text-decoration: underline; }
 }
 
 /* Hero photo + sample certificate */
-.hero-visual { position: relative; max-width: 580px; justify-self: end; width: 100%; }
+/* Portrait frame (4:5) to match hero-panel.jpg, so the sleeve logo clears the float card */
+.hero-visual { position: relative; max-width: 470px; justify-self: end; width: 100%; }
 .hero-photo {
-  position: relative; margin: 0; aspect-ratio: 4 / 3; border-radius: 26px; overflow: hidden; background: var(--ink-2);
+  position: relative; margin: 0; aspect-ratio: 4 / 5; border-radius: 26px; overflow: hidden; background: var(--ink-2);
   box-shadow: 0 40px 90px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .08);
 }
 .hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
@@ -670,7 +671,7 @@ a.tp-badge[href]:hover .tp-score { text-decoration: underline; }
   .grid-4, .price-grid, .how-grid { grid-template-columns: repeat(2, 1fr); }
   .price-grid { row-gap: 28px; }
   .hero-inner { grid-template-columns: 1fr; gap: 72px; }
-  .hero-visual { justify-self: center; max-width: 440px; }
+  .hero-visual { justify-self: center; max-width: 420px; }
   .book-grid { grid-template-columns: 1fr; }
   .areas-grid { grid-template-columns: 1fr 1fr; }
   .checker { grid-column: 1 / -1; }
@@ -701,7 +702,7 @@ a.tp-badge[href]:hover .tp-score { text-decoration: underline; }
   .hero { padding: 48px 0 76px; }
   .lead { font-size: 17px; }
   .quick-book, .book-start { grid-template-columns: 1fr; }
-  .hero-visual { max-width: 420px; margin-bottom: 0; }
+  .hero-visual { max-width: 360px; margin-bottom: 0; }
   .cert { position: relative; left: auto; right: auto; bottom: auto; width: calc(100% - 28px); margin: -84px auto 0; padding: 14px; transform: none; }
   .cert-rows li:nth-child(2), .cert-rows li:nth-child(3) { display: none; }
   .proof-inner { flex-direction: column; align-items: flex-start; gap: 16px; padding: 26px 0; }
