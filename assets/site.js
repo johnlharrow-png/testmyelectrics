@@ -59,11 +59,16 @@
   $$('[data-email]').forEach((el) => { el.textContent = CFG.business.email; });
   $$('[data-email-link]').forEach((a) => { a.href = 'mailto:' + CFG.business.email; });
   $$('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
-  const TP = CFG.trustpilot || {};
-  $$('[data-tp-score]').forEach((el) => { if (TP.score) el.textContent = TP.score; });
-  $$('[data-trustpilot]').forEach((a) => {
-    if (TP.score) a.setAttribute('aria-label', `Rated ${TP.score} out of 5 on Trustpilot`);
-    if (TP.url) { a.href = TP.url; a.target = '_blank'; a.rel = 'noopener'; }
+  const RV = CFG.reviews || {};
+  $$('[data-rv-score]').forEach((el) => { if (RV.score) el.textContent = RV.score; });
+  $$('[data-reviews]').forEach((a) => {
+    const score = parseFloat(RV.score);
+    if (score) {
+      a.setAttribute('aria-label', `Rated ${RV.score} out of 5 on Google`);
+      const stars = a.querySelector('.rv-stars');
+      if (stars) stars.style.setProperty('--rv', `${Math.min(100, score * 20)}%`);
+    }
+    if (RV.url) { a.href = RV.url; a.target = '_blank'; a.rel = 'noopener'; }
   });
   $$('[data-price]').forEach((el) => {
     let v = CFG.pricing;

@@ -23,9 +23,9 @@ window.TME_CONFIG = {
     endpoint: '/api/lead',
   },
 
-  /* Trustpilot badge at the top of /book-online. Paste the profile link into url
-     (e.g. 'https://uk.trustpilot.com/review/…') and the badge becomes a link to it. */
-  trustpilot: {
+  /* Google reviews badge at the top of /book-online. Paste the link to your Google reviews
+     into url (from your Google Business Profile) and the badge becomes a link to it. */
+  reviews: {
     score: '4.7',
     url: '',
   },
