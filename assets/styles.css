@@ -206,15 +206,15 @@ section[id] { scroll-margin-top: 76px; }
 .hero-trust .icon { width: 16px; height: 16px; color: var(--volt); stroke-width: 2.5; }
 
 /* Hero photo + sample certificate */
-.hero-visual { position: relative; max-width: 500px; justify-self: end; width: 100%; }
+.hero-visual { position: relative; max-width: 580px; justify-self: end; width: 100%; }
 .hero-photo {
-  position: relative; margin: 0; aspect-ratio: 4 / 5; border-radius: 26px; overflow: hidden; background: var(--ink-2);
+  position: relative; margin: 0; aspect-ratio: 4 / 3; border-radius: 26px; overflow: hidden; background: var(--ink-2);
   box-shadow: 0 40px 90px rgba(0, 0, 0, .45), 0 0 0 1px rgba(255, 255, 255, .08);
 }
-.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.hero-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
 .hero-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(12, 24, 64, .45)); pointer-events: none; }
 .cert {
-  position: absolute; z-index: 2; right: -56px; bottom: -40px; width: 300px;
+  position: absolute; z-index: 2; left: -48px; bottom: -110px; width: 280px;
   background: #fff; color: var(--text); border-radius: 18px; padding: 16px;
   box-shadow: 0 30px 70px rgba(0, 0, 0, .4); transform: rotate(-1.6deg);
 }
@@ -248,7 +248,9 @@ section[id] { scroll-margin-top: 76px; }
 .float-card span { color: var(--muted); }
 .fc-icon { width: 38px; height: 38px; border-radius: 11px; background: var(--ink); color: var(--volt); display: grid; place-items: center; flex: none; }
 .fc-icon .icon { width: 18px; height: 18px; }
-.float-1 { right: -40px; top: 36px; }
+.float-1 { right: -36px; top: -26px; }
+.float-2 { left: -40px; bottom: -28px; animation-delay: -3.5s; }
+.fc-icon.fc-pass { background: var(--pass); color: #fff; }
 
 /* Wide photo bands (doorstep, team) */
 .photo-band { position: relative; margin: 0 0 16px; border-radius: 24px; overflow: hidden; aspect-ratio: 1376 / 372; background: var(--line); }
@@ -673,14 +675,15 @@ section[id] { scroll-margin-top: 76px; }
   .hero { padding: 48px 0 76px; }
   .lead { font-size: 17px; }
   .quick-book, .book-start { grid-template-columns: 1fr; }
-  .hero-visual { max-width: 380px; }
+  .hero-visual { max-width: 420px; margin-bottom: 0; }
   .cert { position: relative; left: auto; right: auto; bottom: auto; width: calc(100% - 28px); margin: -84px auto 0; padding: 14px; transform: none; }
   .cert-rows li:nth-child(2), .cert-rows li:nth-child(3) { display: none; }
   .proof-inner { flex-direction: column; align-items: flex-start; gap: 16px; padding: 26px 0; }
   .proof-items { flex-direction: column; gap: 14px; }
   .proof-inner .proof-logos { width: 100%; gap: 16px 20px; }
   .proof-logos img { height: 28px; }
-  .float-1 { right: -8px; top: 16px; }
+  .float-1 { right: -8px; top: -20px; left: auto; }
+  .float-2 { left: -8px; bottom: -22px; }
   .float-card { padding: 10px 12px 10px 10px; }
   .fc-icon { width: 32px; height: 32px; }
   .grid-4, .price-grid, .how-grid, .client-grid, .accred-grid, .areas-grid { grid-template-columns: 1fr; }
