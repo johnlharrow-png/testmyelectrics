@@ -253,6 +253,8 @@ section[id] { scroll-margin-top: 76px; }
 /* Wide photo bands (doorstep, team) */
 .photo-band { position: relative; margin: 0 0 16px; border-radius: 24px; overflow: hidden; aspect-ratio: 1376 / 372; background: var(--line); }
 .photo-band img { width: 100%; height: 100%; object-fit: cover; }
+.photo-band.team-band { aspect-ratio: 21 / 9; }
+.photo-band.team-band img { object-position: 50% 45%; }
 .photo-band figcaption {
   position: absolute; left: 18px; bottom: 16px; display: inline-flex; gap: 8px; align-items: center;
   background: rgba(12, 24, 64, .8); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
@@ -696,6 +698,7 @@ section[id] { scroll-margin-top: 76px; }
   .clients-cta { padding: 24px; }
   .photo-band { aspect-ratio: 16 / 10; border-radius: 18px; }
   .photo-band.focus-left img { object-position: 38% 50%; }
+  .photo-band.team-band { aspect-ratio: 4 / 3; }
   .book-main, .callback { padding: 22px; border-radius: 22px; }
   .svc-link { grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px 14px; padding: 14px; }
   .svc-go { display: none; }
