@@ -583,6 +583,27 @@ section[id] { scroll-margin-top: 76px; }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: .001ms !important; }
 }
 
+/* ---------- Ad landing page (/book-online) ---------- */
+.lp-section { padding: 72px 0; }
+.lp-section.alt { background: var(--surface); border-block: 1px solid var(--line); }
+.lp-head { text-align: center; max-width: 660px; margin: 0 auto 32px; }
+.lp-head .eyebrow { justify-content: center; }
+.lp-head h2 { font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -.03em; margin-top: 12px; }
+.lp-head p { color: var(--muted); margin-top: 12px; font-size: 16.5px; }
+.logo-wall.on-light li { border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(12, 24, 64, .04); }
+.logo-wall.cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.logo-wall.cols-5 li { height: 100px; padding: 14px 18px; }
+.logo-wall.cols-5 img { height: 64px; }
+.lp-insured { display: grid !important; grid-auto-flow: row; justify-items: center; align-content: center; gap: 6px; text-align: center; font: 700 14px/1.2 var(--font-display); color: var(--text); }
+.lp-insured .icon { width: 26px; height: 26px; color: var(--brand); }
+.lp .pricing { border-bottom: 0; }
+.lp-footer { background: var(--ink); color: rgba(255, 255, 255, .6); padding: 28px 0; font-size: 13.5px; }
+.lp-footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px 32px; flex-wrap: wrap; }
+.lp-footer p { max-width: 640px; }
+.lp-footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
+.lp-footer a { color: rgba(255, 255, 255, .85); text-decoration: none; }
+.lp-footer a:hover, .lp-footer .link-like:hover { color: #fff; }
+
 /* ---------- Legal pages (terms, privacy, complaints) ---------- */
 .legal { padding: 64px 0 104px; }
 .legal-wrap { width: min(820px, 100% - 40px); margin-inline: auto; }
@@ -632,6 +653,7 @@ section[id] { scroll-margin-top: 76px; }
   .cb-wrap { grid-template-columns: 1fr; gap: 36px; }
   .cb-intro { position: static; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
+  .logo-wall.cols-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 760px) {
@@ -661,6 +683,8 @@ section[id] { scroll-margin-top: 76px; }
   .grid-4, .price-grid, .how-grid, .client-grid, .accred-grid, .areas-grid { grid-template-columns: 1fr; }
   .client-card { padding: 30px; min-height: 0; }
   .logo-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .logo-wall.cols-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .lp-section { padding: 56px 0; }
   .logo-wall li { height: 76px; padding: 14px 16px; }
   .logo-wall img { height: 40px; }
   .client-logos { padding: 20px; }

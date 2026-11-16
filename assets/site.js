@@ -79,14 +79,17 @@
   const toggle = $('[data-nav-toggle]');
   const mnav = $('[data-mobile-nav]');
   const setNav = (open) => {
+    if (!toggle || !mnav) return;   // pages without a menu (e.g. the ad landing page)
     toggle.setAttribute('aria-expanded', String(open));
     toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     mnav.hidden = !open;
   };
-  toggle.addEventListener('click', () => setNav(mnav.hidden));
-  mnav.addEventListener('click', (e) => { if (e.target.closest('a')) setNav(false); });
-  window.matchMedia('(min-width: 1121px)').addEventListener('change', (e) => { if (e.matches) setNav(false); });
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setNav(false); });
+  if (toggle && mnav) {
+    toggle.addEventListener('click', () => setNav(mnav.hidden));
+    mnav.addEventListener('click', (e) => { if (e.target.closest('a')) setNav(false); });
+    window.matchMedia('(min-width: 1121px)').addEventListener('change', (e) => { if (e.matches) setNav(false); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setNav(false); });
+  }
 
   /* ---------- Callback form: more than one board / several properties / business ---------- */
   // Sends to BASE/api/public/lead (brief §05). Needs callback.enabled in config.js, which in turn
@@ -96,6 +99,7 @@
   const callbackOn = !!(cbForm && CFG.callback && CFG.callback.enabled && BASE);
 
   function goToCallback(postcode) {
+    if (!$('#callback')) { window.location.href = '/#callback'; return; }   // pages without the callback section
     if (cbForm && postcode && !cbForm.elements.postcode.value) cbForm.elements.postcode.value = postcode;
     $('#callback').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
     history.replaceState(null, '', '#callback');
