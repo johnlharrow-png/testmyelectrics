@@ -188,9 +188,10 @@ section[id] { scroll-margin-top: 76px; }
 .qb-select::after { content: ""; position: absolute; right: 14px; top: 50%; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: translateY(-30%) rotate(45deg); pointer-events: none; }
 .quick-book .btn { height: 58px; border-radius: 12px; padding: 0 24px; }
 .qb-addons { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; padding: 6px 6px 2px; font-size: 13.5px; color: rgba(255, 255, 255, .78); }
-.qb-addons-label { font-weight: 600; margin-right: 4px; }
+/* Label on its own line so the two add-on chips always sit side by side */
+.qb-addons-label { flex-basis: 100%; font-weight: 600; }
 .muted-inline { font-weight: 500; opacity: .7; }
-.qb-addon { display: inline-flex; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .22); cursor: pointer; user-select: none; transition: border-color .15s, background-color .15s; }
+.qb-addon { display: inline-flex; white-space: nowrap; align-items: center; gap: 8px; padding: 7px 12px; border-radius: 999px; border: 1px solid rgba(255, 255, 255, .22); cursor: pointer; user-select: none; transition: border-color .15s, background-color .15s; }
 .qb-addon:hover { border-color: rgba(255, 255, 255, .45); }
 .qb-addon input { width: 16px; height: 16px; margin: 0; accent-color: var(--volt); cursor: pointer; }
 .qb-addon em { font-style: normal; font-weight: 700; color: var(--volt); }
@@ -204,6 +205,31 @@ section[id] { scroll-margin-top: 76px; }
 .hero-trust { list-style: none; padding: 0; margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px 24px; font-size: 14px; color: rgba(255, 255, 255, .72); }
 .hero-trust li { display: inline-flex; align-items: center; gap: 8px; }
 .hero-trust .icon { width: 16px; height: 16px; color: var(--volt); stroke-width: 2.5; }
+
+/* Trustpilot rating badge (top of /book-online). Link comes from config.trustpilot.url */
+.tp-badge { display: flex; width: fit-content; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-bottom: 20px; color: #fff; font-size: 14.5px; text-decoration: none; }
+a.tp-badge[href]:hover .tp-score { text-decoration: underline; }
+.tp-label { font-weight: 700; }
+.tp-stars { display: inline-flex; gap: 2px; }
+.tp-stars i { display: grid; place-items: center; width: 22px; height: 22px; background: #00b67a; }
+.tp-stars i.half { background: linear-gradient(90deg, #00b67a 50%, #dcdce6 50%); }
+.tp-stars svg { width: 16px; height: 16px; fill: #fff; }
+.tp-score { color: rgba(255, 255, 255, .78); }
+.tp-score strong { color: #fff; }
+.tp-logo { display: inline-flex; align-items: center; gap: 3px; font-weight: 700; font-size: 17px; letter-spacing: -.02em; }
+.tp-logo svg { width: 21px; height: 21px; fill: #00b67a; margin-top: -2px; }
+
+/* Phones: keep both add-on chips side by side (two equal columns, price under the name)
+   and keep the Trustpilot badge on one line */
+@media (max-width: 760px) {
+  .qb-addons { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; }
+  .qb-addons-label { grid-column: 1 / -1; }
+  .qb-addon { white-space: normal; align-items: flex-start; border-radius: 14px; line-height: 1.35; padding: 9px 11px; }
+  .qb-addon input { flex: none; margin-top: 1px; }
+  .qb-addon em { display: block; }
+  .tp-badge { gap: 8px; }
+  .tp-of { display: none; }
+}
 
 /* Hero photo + sample certificate */
 .hero-visual { position: relative; max-width: 580px; justify-self: end; width: 100%; }

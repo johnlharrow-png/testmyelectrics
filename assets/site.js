@@ -59,6 +59,12 @@
   $$('[data-email]').forEach((el) => { el.textContent = CFG.business.email; });
   $$('[data-email-link]').forEach((a) => { a.href = 'mailto:' + CFG.business.email; });
   $$('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
+  const TP = CFG.trustpilot || {};
+  $$('[data-tp-score]').forEach((el) => { if (TP.score) el.textContent = TP.score; });
+  $$('[data-trustpilot]').forEach((a) => {
+    if (TP.score) a.setAttribute('aria-label', `Rated ${TP.score} out of 5 on Trustpilot`);
+    if (TP.url) { a.href = TP.url; a.target = '_blank'; a.rel = 'noopener'; }
+  });
   $$('[data-price]').forEach((el) => {
     let v = CFG.pricing;
     for (const key of el.dataset.price.split('.')) v = v == null ? v : v[key];

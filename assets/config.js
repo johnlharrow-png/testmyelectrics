@@ -23,6 +23,13 @@ window.TME_CONFIG = {
     endpoint: '/api/lead',
   },
 
+  /* Trustpilot badge at the top of /book-online. Paste the profile link into url
+     (e.g. 'https://uk.trustpilot.com/review/…') and the badge becomes a link to it. */
+  trustpilot: {
+    score: '4.7',
+    url: '',
+  },
+
   /* Google tags (brief section 04). Use the SAME IDs Wayne enters in
      Back office > Settings > Marketing. Empty = no tags and no cookie banner. */
   analytics: {
