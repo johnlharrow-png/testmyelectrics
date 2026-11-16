@@ -179,13 +179,21 @@
 
   /* ---------- Postcode boxes: straight into the booking app ---------- */
   $$('[data-quick-book]').forEach((form) => {
+    // EICR add-ons (alarm check, PAT). Sent as ?service=EICR_DOM,FIRE,PAT. The booking app needs a one-line
+    // change to read the list (see INTEGRATION.md); until then it just pre-selects the EICR.
+    const addons = $('[data-addons]', form);
+    const syncAddons = () => { if (addons) addons.hidden = form.elements.service.value !== 'EICR_DOM'; };
+    form.elements.service.addEventListener('change', syncAddons);
+    syncAddons();
+
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const service = form.elements.service.value;
+      const extras = form.elements.service.value === 'EICR_DOM' ? $$('input[name="addons"]:checked', form).map((i) => i.value) : [];
+      const service = [form.elements.service.value, ...extras].join(',');
       const raw = form.elements.postcode.value.trim();
       const pc = parsePostcode(raw);
       const postcode = pc ? pc.formatted : raw.toUpperCase();
-      if (service === 'business') { goToCallback(postcode); return; }
+      if (service.startsWith('business')) { goToCallback(postcode); return; }
       window.location.href = bookUrl(service, postcode);
     });
   });
