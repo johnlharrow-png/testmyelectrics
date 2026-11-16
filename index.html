@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=8">
+  <link rel="stylesheet" href="assets/styles.css?v=10">
   <link rel="preload" as="image" href="assets/img/engineer-testing.jpg">
 
   <!-- Prices must match the back office -->
@@ -30,6 +30,7 @@
     "name": "TestMyElectrics",
     "url": "https://www.testmyelectrics.com/",
     "image": "https://www.testmyelectrics.com/assets/img/engineer-testing.jpg",
+    "logo": "https://www.testmyelectrics.com/assets/img/logo.png",
     "priceRange": "££",
     "address": {
       "@type": "PostalAddress",
@@ -91,7 +92,7 @@
   <header class="site-header" data-header>
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="testmyelectrics.com home">
-        <span class="logo" aria-hidden="true">test<span class="logo-my">m<svg class="logo-tick"><use href="#i-logo-tick"/></svg></span>electrics<span class="logo-tld">.com</span></span>
+        <img class="brand-logo" src="assets/img/logo.png" alt="testmyelectrics.com" width="1047" height="152">
       </a>
       <nav class="nav" aria-label="Main">
         <a href="#services">Services</a>
@@ -468,11 +469,10 @@
           <figcaption><svg class="icon"><use href="#i-users"/></svg>The team behind testmyelectrics.com</figcaption>
         </figure>
 
-        <!-- TODO: replace the text marks with the official scheme logos (members are supplied artwork by each scheme) -->
         <!-- 5 cards: 3 on the first row, 2 wider ones on the second (see .accred-grid in styles.css) -->
         <div class="accred-grid">
           <article class="accred">
-            <span class="accred-mark">NAPIT</span>
+            <span class="accred-logo"><img src="assets/img/accreditations/napit.png" alt="NAPIT" loading="lazy"></span>
             <div>
               <h3>NAPIT registered</h3>
               <p>Registered with NAPIT, a government-approved scheme for electrical work in homes and businesses.</p>
@@ -480,7 +480,7 @@
             </div>
           </article>
           <article class="accred">
-            <span class="accred-mark">Trust<br>Mark</span>
+            <span class="accred-logo"><img src="assets/img/accreditations/trustmark.png" alt="TrustMark, Government Endorsed Quality" loading="lazy"></span>
             <div>
               <h3>TrustMark approved</h3>
               <p>The government-endorsed quality scheme for work in and around the home.</p>
@@ -488,21 +488,21 @@
             </div>
           </article>
           <article class="accred">
-            <span class="accred-mark">CL<br>Gold</span>
+            <span class="accred-logo"><img src="assets/img/accreditations/constructionline-gold.png" alt="Constructionline Gold Member" loading="lazy"></span>
             <div>
               <h3>Constructionline Gold</h3>
               <p>Pre-qualified for public sector and commercial contracts, including schools.</p>
             </div>
           </article>
           <article class="accred">
-            <span class="accred-mark is-ink"><svg class="icon"><use href="#i-shield"/></svg></span>
+            <span class="accred-logo is-ink"><svg class="icon"><use href="#i-shield"/></svg></span>
             <div>
               <h3>£5m public liability</h3>
               <p>Fully insured for domestic and commercial work, with certificates available on request.</p>
             </div>
           </article>
           <article class="accred">
-            <span class="accred-mark">MCS</span>
+            <span class="accred-logo"><img src="assets/img/accreditations/mcs.png" alt="MCS certified" loading="lazy"></span>
             <div>
               <h3>MCS certified</h3>
               <p>Certified for solar PV and battery installation, so we know renewable systems inside out.</p>
@@ -751,7 +751,7 @@
           <details>
             <summary>How long does a test take, and will the power be off?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
             <div class="faq-a">
-              <p>An EICR on a typical two or three-bed home takes around 2–4 hours. The power will be off for short periods while circuits are tested, so it's worth saving any work and resetting clocks afterwards.</p>
+              <p>Times can vary, but an EICR takes no longer than 2–3 hours. The power will be off for short periods while circuits are tested, so it's worth saving any work and resetting clocks afterwards.</p>
             </div>
           </details>
           <details>
@@ -809,7 +809,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="brand" href="#top" aria-label="testmyelectrics.com home">
-            <span class="logo" aria-hidden="true">test<span class="logo-my">m<svg class="logo-tick"><use href="#i-logo-tick"/></svg></span>electrics<span class="logo-tld">.com</span></span>
+            <img class="brand-logo" src="assets/img/logo-white.png" alt="testmyelectrics.com" width="1047" height="152" loading="lazy">
             <span class="logo-tag" aria-hidden="true">Electrical testing &amp; safety</span>
           </a>
           <p>Electrical testing for homes, rentals, schools and businesses across Essex and East London, and commercial sites nationwide.</p>
@@ -856,9 +856,9 @@
     <a class="btn btn-volt" href="#book" data-book="">Book a test <svg class="icon"><use href="#i-arrow"/></svg></a>
   </div>
 
-  <script src="assets/config.js?v=8"></script>
-  <script src="assets/consent.js?v=8"></script>
-  <script src="assets/site.js?v=8"></script>
+  <script src="assets/config.js?v=10"></script>
+  <script src="assets/consent.js?v=10"></script>
+  <script src="assets/site.js?v=10"></script>
 
   <!-- Booking-app tracking (integration brief, section 03). Pasted as supplied.
        Keep it last, after site.js has built the booking links. -->
