@@ -280,7 +280,7 @@ a.tp-badge[href]:hover .tp-score { text-decoration: underline; }
 .fc-icon.fc-pass { background: var(--pass); color: #fff; }
 
 /* Wide photo bands (doorstep, team) */
-.photo-band { position: relative; margin: 0 0 16px; border-radius: 24px; overflow: hidden; aspect-ratio: 1376 / 372; background: var(--line); }
+.photo-band { position: relative; margin: 0 0 16px; border-radius: 24px; overflow: hidden; aspect-ratio: 2000 / 496; background: var(--line); }
 .photo-band img { width: 100%; height: 100%; object-fit: cover; }
 .photo-band.team-band { aspect-ratio: 4 / 3; max-width: 960px; margin-inline: auto; }
 .photo-band.team-band img { object-position: 50% 50%; }
@@ -725,7 +725,7 @@ a.tp-badge[href]:hover .tp-score { text-decoration: underline; }
   .client-logos { padding: 20px; }
   .clients-cta { padding: 24px; }
   .photo-band { aspect-ratio: 16 / 10; border-radius: 18px; }
-  .photo-band.focus-left img { object-position: 38% 50%; }
+  .photo-band.focus-left img { object-position: 22% 50%; }
   .photo-band.team-band { aspect-ratio: 4 / 3; }
   .book-main, .callback { padding: 22px; border-radius: 22px; }
   .svc-link { grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px 14px; padding: 14px; }
