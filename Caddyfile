@@ -5,7 +5,8 @@
 
 	# Assets carry ?v= version numbers in index.html, so they can be cached; the page itself can't.
 	header /assets/* Cache-Control "public, max-age=604800"
-	header / Cache-Control "no-cache"
+	@pages not path /assets/*
+	header @pages Cache-Control "no-cache"
 
 	header {
 		X-Content-Type-Options nosniff
@@ -13,5 +14,7 @@
 		-Server
 	}
 
+	# /terms, /privacy, /complaints -> terms.html etc.
+	try_files {path} {path}.html {path}/index.html
 	file_server
 }

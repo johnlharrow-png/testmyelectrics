@@ -201,7 +201,7 @@
   /* ---------- Coverage checker ---------- */
   const cov = $('[data-coverage-check]');
   const out = $('[data-coverage-result]');
-  cov.addEventListener('submit', (e) => {
+  if (cov) cov.addEventListener('submit', (e) => {
     e.preventDefault();
     const pc = parsePostcode(cov.elements.postcode.value);
     if (!pc) {
