@@ -591,11 +591,9 @@ section[id] { scroll-margin-top: 76px; }
 .lp-head h2 { font-size: clamp(26px, 3.4vw, 38px); letter-spacing: -.03em; margin-top: 12px; }
 .lp-head p { color: var(--muted); margin-top: 12px; font-size: 16.5px; }
 .logo-wall.on-light li { border: 1px solid var(--line); box-shadow: 0 1px 2px rgba(12, 24, 64, .04); }
-.logo-wall.cols-5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-.logo-wall.cols-5 li { height: 100px; padding: 14px 18px; }
-.logo-wall.cols-5 img { height: 64px; }
-.lp-insured { display: grid !important; grid-auto-flow: row; justify-items: center; align-content: center; gap: 6px; text-align: center; font: 700 14px/1.2 var(--font-display); color: var(--text); }
-.lp-insured .icon { width: 26px; height: 26px; color: var(--brand); }
+.logo-wall.accred-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.logo-wall.accred-strip li { height: 100px; padding: 14px 18px; }
+.logo-wall.accred-strip img { height: 64px; }
 .lp .pricing { border-bottom: 0; }
 .lp .header-link.lp-callback-link { display: inline-flex; font-weight: 600; }
 .lp-footer { background: var(--ink); color: rgba(255, 255, 255, .6); padding: 28px 0; font-size: 13.5px; }
@@ -654,7 +652,6 @@ section[id] { scroll-margin-top: 76px; }
   .cb-wrap { grid-template-columns: 1fr; gap: 36px; }
   .cb-intro { position: static; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
-  .logo-wall.cols-5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 @media (max-width: 760px) {
@@ -684,7 +681,7 @@ section[id] { scroll-margin-top: 76px; }
   .grid-4, .price-grid, .how-grid, .client-grid, .accred-grid, .areas-grid { grid-template-columns: 1fr; }
   .client-card { padding: 30px; min-height: 0; }
   .logo-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .logo-wall.cols-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .logo-wall.accred-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .lp-section { padding: 56px 0; }
   .lp .header-actions > .btn { display: inline-flex; }
   .lp .header-link.lp-callback-link { display: none; }
