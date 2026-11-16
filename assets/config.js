@@ -19,12 +19,12 @@ window.TME_CONFIG = {
     base: 'https://eicr-web-production.up.railway.app',
   },
 
-  /* "Request a callback" form (more than one board, several properties, business)
-     -> POST BASE/api/public/lead (brief section 05).
-     Leave false until Wayne has added https://testmyelectrics.com to the app's CORS list
-     AND BASE is live; until then browsers block the request, so the form asks people to email. */
+  /* "Request a callback" form (more than one board, several properties, business).
+     Posts to /api/lead on this website; Caddy (Caddyfile) forwards it server-side to the
+     booking app's /api/public/lead, so it works without the app allowing this domain (CORS). */
   callback: {
-    enabled: false,
+    enabled: true,
+    endpoint: '/api/lead',
   },
 
   /* Google tags (brief section 04). Use the SAME IDs Wayne enters in

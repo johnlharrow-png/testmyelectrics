@@ -96,7 +96,8 @@
   // needs Wayne to allow this website's domain (CORS) on the booking app.
   const cbForm = $('[data-callback-form]');
   const cbStatus = cbForm && $('[data-cb-status]', cbForm);
-  const callbackOn = !!(cbForm && CFG.callback && CFG.callback.enabled && BASE);
+  const LEAD_URL = (CFG.callback && CFG.callback.endpoint) || (BASE ? BASE + '/api/public/lead' : '');
+  const callbackOn = !!(cbForm && CFG.callback && CFG.callback.enabled && LEAD_URL);
 
   function goToCallback(postcode) {
     if (!$('#callback')) { window.location.href = '/#callback'; return; }   // pages without the callback section
@@ -158,7 +159,7 @@
       btn.disabled = true;
       setStatus('info', 'Sending…');
       try {
-        const res = await fetch(BASE + '/api/public/lead', {
+        const res = await fetch(LEAD_URL, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ kind: 'callback', name, phone, email, postcode: pc ? pc.formatted : v('postcode'), message, services }),

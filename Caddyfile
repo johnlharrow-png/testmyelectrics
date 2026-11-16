@@ -14,7 +14,22 @@
 		-Server
 	}
 
-	# /terms, /privacy, /complaints -> terms.html etc.
-	try_files {path} {path}.html {path}/index.html
-	file_server
+	# Callback form: the browser posts to /api/lead on this site and Caddy forwards it to the
+	# booking app's public lead endpoint (brief section 05: "call them from the website's server").
+	# Change the upstream to https://book.testmyelectrics.com once that address is live.
+	handle /api/lead {
+		request_body {
+			max_size 32KB
+		}
+		rewrite * /api/public/lead
+		reverse_proxy https://eicr-web-production.up.railway.app {
+			header_up Host {upstream_hostport}
+		}
+	}
+
+	handle {
+		# /terms, /privacy, /complaints -> terms.html etc.
+		try_files {path} {path}.html {path}/index.html
+		file_server
+	}
 }

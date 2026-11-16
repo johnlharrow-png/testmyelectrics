@@ -13,7 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles.css?v=13">
+  <link rel="stylesheet" href="/assets/styles.css?v=15">
   <link rel="preload" as="image" href="/assets/img/engineer-testing.jpg">
 </head>
 <body class="lp">
@@ -52,6 +52,7 @@
         <img class="brand-logo" src="/assets/img/logo.png" alt="testmyelectrics.com" width="1047" height="152">
       </a>
       <div class="header-actions">
+        <a class="header-link lp-callback-link" href="#callback">Request a callback</a>
         <a class="btn btn-volt btn-sm" href="/#book" data-book="">Book a test</a>
       </div>
     </div>
@@ -253,7 +254,7 @@
               <li><svg class="icon"><use href="#i-check"/></svg>Nationwide coverage</li>
               <li><svg class="icon"><use href="#i-check"/></svg>Larger sites quoted individually</li>
             </ul>
-            <a class="btn btn-ghost" href="/#callback">Request a quote</a>
+            <a class="btn btn-ghost" href="#callback">Request a quote</a>
           </article>
         </div>
 
@@ -262,6 +263,77 @@
           <span><svg class="icon"><use href="#i-check"/></svg>Pay securely online when you book</span>
           <span><svg class="icon"><use href="#i-check"/></svg>Free rescheduling up to 24 hours before</span>
           <span><svg class="icon"><use href="#i-check"/></svg>Remedial work only with your approval</span>
+        </div>
+      </div>
+    </section>
+    <!-- ================= CALLBACK: more than one board / several properties / business ================= -->
+    <!-- Sends to BASE/api/public/lead (brief §05). Needs callback.enabled in config.js — see INTEGRATION.md. -->
+    <section class="section callback-section" id="callback">
+      <div class="container cb-wrap">
+        <div class="cb-intro">
+          <p class="eyebrow">Request a callback</p>
+          <h2>More than one board, or a whole portfolio?</h2>
+          <p>Our online prices are for one fuse board in one property. Tell us what you've got and we'll call you back with a price for everything, then book the visits for you.</p>
+          <ul class="ticks">
+            <li><svg class="icon"><use href="#i-check"/></svg>Homes with two or more fuse boards</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>Landlords and letting agents with several properties</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>Schools, restaurants, offices and multi-site businesses</li>
+          </ul>
+          <ol class="cb-steps">
+            <li><strong>Tell us about your properties</strong><span>It takes a minute and there's no obligation.</span></li>
+            <li><strong>We call you back</strong><span>We talk it through and give you a price for the lot.</span></li>
+            <li><strong>We book it all in</strong><span>Visits scheduled around you and your tenants.</span></li>
+          </ol>
+        </div>
+
+        <div class="callback cb-card">
+          <form class="cb-form" data-callback-form novalidate aria-label="Request a callback">
+            <fieldset class="cb-needs">
+              <legend>I'm a…</legend>
+              <input type="radio" id="cbw-ll" name="who" value="Landlord" checked><label for="cbw-ll">Landlord</label>
+              <input type="radio" id="cbw-ag" name="who" value="Letting agent"><label for="cbw-ag">Letting agent</label>
+              <input type="radio" id="cbw-ho" name="who" value="Homeowner"><label for="cbw-ho">Homeowner</label>
+              <input type="radio" id="cbw-bz" name="who" value="Business / school"><label for="cbw-bz">Business or school</label>
+            </fieldset>
+            <div class="cb-row">
+              <fieldset class="cb-needs">
+                <legend>Number of properties</legend>
+                <input type="radio" id="cbp-1" name="properties" value="1"><label for="cbp-1">1</label>
+                <input type="radio" id="cbp-2" name="properties" value="2–5"><label for="cbp-2">2–5</label>
+                <input type="radio" id="cbp-6" name="properties" value="6–20"><label for="cbp-6">6–20</label>
+                <input type="radio" id="cbp-20" name="properties" value="20+"><label for="cbp-20">20+</label>
+              </fieldset>
+              <fieldset class="cb-needs">
+                <legend>Fuse boards per property</legend>
+                <input type="radio" id="cbb-1" name="boards" value="1"><label for="cbb-1">1</label>
+                <input type="radio" id="cbb-2" name="boards" value="2"><label for="cbb-2">2</label>
+                <input type="radio" id="cbb-3" name="boards" value="3+"><label for="cbb-3">3+</label>
+                <input type="radio" id="cbb-ns" name="boards" value="Not sure"><label for="cbb-ns">Not sure</label>
+              </fieldset>
+            </div>
+            <fieldset class="cb-needs">
+              <legend>What do you need?</legend>
+              <input type="checkbox" id="cbn-eicr" name="needs" value="EICR_DOM" data-label="EICR" checked><label for="cbn-eicr">EICR</label>
+              <input type="checkbox" id="cbn-pat" name="needs" value="PAT" data-label="PAT testing"><label for="cbn-pat">PAT testing</label>
+              <input type="checkbox" id="cbn-fire" name="needs" value="FIRE" data-label="Smoke, heat &amp; CO alarms"><label for="cbn-fire">Smoke &amp; CO alarms</label>
+              <input type="checkbox" id="cbn-com" name="needs" value="" data-label="Commercial fixed wire testing"><label for="cbn-com">Commercial EICR</label>
+              <input type="checkbox" id="cbn-el" name="needs" value="" data-label="Emergency lighting"><label for="cbn-el">Emergency lighting</label>
+            </fieldset>
+            <div class="cb-row">
+              <label class="cb-field"><span>Name</span><input name="name" autocomplete="name" required></label>
+              <label class="cb-field"><span>Company <em>optional</em></span><input name="organisation" autocomplete="organization"></label>
+            </div>
+            <div class="cb-row">
+              <label class="cb-field"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel"></label>
+              <label class="cb-field"><span>Email</span><input name="email" type="email" autocomplete="email"></label>
+            </div>
+            <label class="cb-field"><span>Postcode <em>main property</em></span><input name="postcode" autocomplete="postal-code"></label>
+            <label class="cb-field"><span>Anything else? <em>optional</em></span><textarea name="message" rows="3" placeholder="Property addresses, preferred dates, how to get in…"></textarea></label>
+            <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+            <p class="cb-status" data-cb-status role="status" hidden></p>
+            <button class="btn btn-volt btn-lg" type="submit">Request a callback <svg class="icon"><use href="#i-arrow"/></svg></button>
+            <p class="cb-small">We'll only use your details to reply to this request.</p>
+          </form>
         </div>
       </div>
     </section>
@@ -279,9 +351,9 @@
     </div>
   </footer>
 
-  <script src="/assets/config.js?v=13"></script>
-  <script src="/assets/consent.js?v=13"></script>
-  <script src="/assets/site.js?v=13"></script>
+  <script src="/assets/config.js?v=15"></script>
+  <script src="/assets/consent.js?v=15"></script>
+  <script src="/assets/site.js?v=15"></script>
 
   <!-- Booking-app tracking (integration brief, section 03). Pasted as supplied.
        Keep it last, after site.js has built the booking links. -->

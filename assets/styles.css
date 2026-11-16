@@ -597,6 +597,7 @@ section[id] { scroll-margin-top: 76px; }
 .lp-insured { display: grid !important; grid-auto-flow: row; justify-items: center; align-content: center; gap: 6px; text-align: center; font: 700 14px/1.2 var(--font-display); color: var(--text); }
 .lp-insured .icon { width: 26px; height: 26px; color: var(--brand); }
 .lp .pricing { border-bottom: 0; }
+.lp .header-link.lp-callback-link { display: inline-flex; font-weight: 600; }
 .lp-footer { background: var(--ink); color: rgba(255, 255, 255, .6); padding: 28px 0; font-size: 13.5px; }
 .lp-footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px 32px; flex-wrap: wrap; }
 .lp-footer p { max-width: 640px; }
@@ -685,6 +686,8 @@ section[id] { scroll-margin-top: 76px; }
   .logo-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .logo-wall.cols-5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .lp-section { padding: 56px 0; }
+  .lp .header-actions > .btn { display: inline-flex; }
+  .lp .header-link.lp-callback-link { display: none; }
   .logo-wall li { height: 76px; padding: 14px 16px; }
   .logo-wall img { height: 40px; }
   .client-logos { padding: 20px; }
