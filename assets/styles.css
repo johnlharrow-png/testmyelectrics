@@ -333,6 +333,8 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
 .price small { font-size: 14px; color: var(--muted); font-weight: 500; }
 .price strong { font: 700 46px/1 var(--font-display); letter-spacing: -.035em; }
 .price-note { font-size: 13px; color: var(--muted); }
+.addon-note { display: flex; align-items: center; gap: 6px; width: fit-content; margin: 8px 0 6px; padding: 4px 10px; border-radius: 999px; background: rgba(244, 123, 32, .12); color: #B4540C; font-size: 13px; font-weight: 600; }
+.addon-note .icon { width: 14px; height: 14px; flex: none; }
 .price-card .ticks { margin: 22px 0 28px; flex: 1; align-content: start; }
 .featured .ticks .icon { color: var(--volt); }
 .price-card .btn { width: 100%; }

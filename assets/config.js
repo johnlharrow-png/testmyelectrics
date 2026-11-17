@@ -48,8 +48,9 @@ window.TME_CONFIG = {
     EICR_DOM:   { studio: 79, bed1: 90, bed2: 100, bed3: 110, bed4: 120, bed5: 130, bed6: 140, included: 8, extra: 15 },
     // Homebuyer's report = EICR + written report. Booked online as service HOMEBUYER (same prices in Back office > Settings > Prices).
     HOMEBUYER:  { studio: 149, bed1: 159, bed2: 169, bed3: 189, bed4: 209, bed5: 229, bed6: 249, included: 8, extra: 15 },
-    PAT:        { upTo10: 59.95, extra: 1.5 },   // back office: £71.94 inc VAT for 10 items, £1.80 inc VAT each extra
-    FIRE:       { price: 50, included: 6, extra: 8.33 },
+    // PAT testing and the alarm check are add-ons only: booked with a Domestic EICR or homebuyer's report
+    PAT:        { upTo10: 40, extra: 1.5 },   // back office: £48 inc VAT for 10 items, £1.80 inc VAT each extra
+    FIRE:       { price: 40, included: 6, extra: 8.33 },
     COMMERCIAL: { price: 169, included: 10, extra: 10 },
     EMERGENCY:  { monthly: 80, annual: 199 },
   },

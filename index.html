@@ -22,7 +22,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=33">
+  <link rel="stylesheet" href="assets/styles.css?v=34">
   <link rel="preload" as="image" href="assets/img/hero-panel.jpg">
 
   <!-- Prices must match the back office -->
@@ -53,8 +53,8 @@
       "itemListElement": [
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Domestic EICR (up to 8 circuits)" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "79", "maxPrice": "140", "priceCurrency": "GBP", "valueAddedTaxIncluded": false } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Homebuyer's electrical report (EICR + written report, up to 8 circuits)" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "149", "maxPrice": "249", "priceCurrency": "GBP", "valueAddedTaxIncluded": false } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PAT testing (up to 10 items)" }, "priceSpecification": { "@type": "PriceSpecification", "price": "59.95", "priceCurrency": "GBP", "valueAddedTaxIncluded": false } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Smoke, heat & CO alarm check (up to 6 alarms)" }, "priceSpecification": { "@type": "PriceSpecification", "price": "50", "priceCurrency": "GBP", "valueAddedTaxIncluded": false } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PAT testing (up to 10 items), add-on to an EICR" }, "priceSpecification": { "@type": "PriceSpecification", "price": "40", "priceCurrency": "GBP", "valueAddedTaxIncluded": false } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Smoke, heat & CO alarm check (up to 6 alarms), add-on to an EICR" }, "priceSpecification": { "@type": "PriceSpecification", "price": "40", "priceCurrency": "GBP", "valueAddedTaxIncluded": false } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial fixed wire testing (up to 10 circuits)" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "169", "priceCurrency": "GBP", "valueAddedTaxIncluded": false } }
       ]
     }
@@ -143,8 +143,6 @@
               <span>What do you need?</span>
               <select name="service" aria-label="Service">
                 <option value="EICR_DOM">Domestic EICR</option>
-                <option value="PAT">PAT testing</option>
-                <option value="FIRE">Smoke, heat &amp; CO alarm check</option>
                 <option value="HOMEBUYER">Homebuyer's electrical report</option>
                 <option value="business">More than one board or property</option>
               </select>
@@ -156,8 +154,8 @@
             <button class="btn btn-volt" type="submit">Check availability <svg class="icon"><use href="#i-arrow"/></svg></button>
               <div class="qb-addons" data-addons>
                 <span class="qb-addons-label">Add to your EICR <span class="muted-inline">(+VAT)</span></span>
-                <label class="qb-addon"><input type="checkbox" name="addons" value="FIRE"><span>Smoke &amp; CO alarm check <em>+<span data-price="FIRE.price">£50</span></em></span></label>
-                <label class="qb-addon"><input type="checkbox" name="addons" value="PAT"><span>PAT testing <em>+<span data-price="PAT.upTo10">£59.95</span></em></span></label>
+                <label class="qb-addon"><input type="checkbox" name="addons" value="FIRE"><span>Smoke &amp; CO alarm check <em>+<span data-price="FIRE.price">£40</span></em></span></label>
+                <label class="qb-addon"><input type="checkbox" name="addons" value="PAT"><span>PAT testing <em>+<span data-price="PAT.upTo10">£40</span></em></span></label>
               </div>
           </form>
 
@@ -329,11 +327,12 @@
 
           <article class="price-card">
             <h3>PAT testing</h3>
-            <p class="price-for">Rentals, offices, shops &amp; schools</p>
-            <p class="price"><small>from</small><strong data-price="PAT.upTo10">£59.95</strong><small>+VAT</small></p>
+            <p class="price-for">Portable appliances in rentals &amp; homes</p>
+            <p class="price"><small>from</small><strong data-price="PAT.upTo10">£40</strong><small>+VAT</small></p>
+            <p class="addon-note"><svg class="icon"><use href="#i-plus"/></svg>Add-on only: booked with an EICR or homebuyer's report</p>
             <p class="price-note">Up to 10 appliances</p>
             <div class="tiers">
-              <div><span>Up to 10 items</span><span class="mono" data-price="PAT.upTo10">£59.95</span></div>
+              <div><span>Up to 10 items</span><span class="mono" data-price="PAT.upTo10">£40</span></div>
               <div><span>Each extra item</span><span class="mono" data-price="PAT.extra">£1.50</span></div>
             </div>
             <ul class="ticks">
@@ -341,16 +340,17 @@
               <li><svg class="icon"><use href="#i-check"/></svg>Failed items clearly flagged</li>
               <li><svg class="icon"><use href="#i-check"/></svg>Digital register for your records</li>
             </ul>
-            <a class="btn btn-ghost" href="#book" data-book="PAT">Book PAT testing</a>
+            <a class="btn btn-ghost" href="#book" data-book="EICR_DOM,PAT">Add to an EICR</a>
           </article>
 
           <article class="price-card">
             <h3>Smoke, heat &amp; CO alarms</h3>
             <p class="price-for">Test, interlink &amp; battery check</p>
-            <p class="price"><strong data-price="FIRE.price">£50</strong><small>+VAT</small></p>
+            <p class="price"><strong data-price="FIRE.price">£40</strong><small>+VAT</small></p>
+            <p class="addon-note"><svg class="icon"><use href="#i-plus"/></svg>Add-on only: booked with an EICR or homebuyer's report</p>
             <p class="price-note">Up to <span data-cfg="pricing.FIRE.included">6</span> alarms</p>
             <div class="tiers">
-              <div><span>Up to 6 alarms</span><span class="mono" data-price="FIRE.price">£50</span></div>
+              <div><span>Up to 6 alarms</span><span class="mono" data-price="FIRE.price">£40</span></div>
               <div><span>Each extra alarm</span><span class="mono" data-price="FIRE.extra">£8.33</span></div>
             </div>
             <ul class="ticks">
@@ -358,7 +358,7 @@
               <li><svg class="icon"><use href="#i-check"/></svg>Interlinked alarms tested together</li>
               <li><svg class="icon"><use href="#i-check"/></svg>Ideal at the start of a tenancy</li>
             </ul>
-            <a class="btn btn-ghost" href="#book" data-book="FIRE">Book an alarm check</a>
+            <a class="btn btn-ghost" href="#book" data-book="EICR_DOM,FIRE">Add to an EICR</a>
           </article>
 
           <article class="price-card">
@@ -593,8 +593,6 @@
                 <span>What do you need?</span>
                 <select name="service" aria-label="Service">
                   <option value="EICR_DOM">Domestic EICR</option>
-                  <option value="PAT">PAT testing</option>
-                  <option value="FIRE">Smoke, heat &amp; CO alarm check</option>
                   <option value="HOMEBUYER">Homebuyer's electrical report</option>
                   <option value="business">More than one board or property</option>
                 </select>
@@ -606,8 +604,8 @@
               <button class="btn btn-volt" type="submit">Check availability <svg class="icon"><use href="#i-arrow"/></svg></button>
               <div class="qb-addons" data-addons>
                 <span class="qb-addons-label">Add to your EICR <span class="muted-inline">(+VAT)</span></span>
-                <label class="qb-addon"><input type="checkbox" name="addons" value="FIRE"><span>Smoke &amp; CO alarm check <em>+<span data-price="FIRE.price">£50</span></em></span></label>
-                <label class="qb-addon"><input type="checkbox" name="addons" value="PAT"><span>PAT testing <em>+<span data-price="PAT.upTo10">£59.95</span></em></span></label>
+                <label class="qb-addon"><input type="checkbox" name="addons" value="FIRE"><span>Smoke &amp; CO alarm check <em>+<span data-price="FIRE.price">£40</span></em></span></label>
+                <label class="qb-addon"><input type="checkbox" name="addons" value="PAT"><span>PAT testing <em>+<span data-price="PAT.upTo10">£40</span></em></span></label>
               </div>
             </form>
 
@@ -625,16 +623,16 @@
                 <span class="svc-cost"><small>from</small><strong data-price="HOMEBUYER.studio">£149</strong><small>+VAT</small></span>
                 <span class="svc-go"><svg class="icon"><use href="#i-arrow"/></svg></span>
               </a>
-              <a class="svc-link" href="#book" data-book="PAT">
+              <a class="svc-link" href="#book" data-book="EICR_DOM,PAT">
                 <span class="svc-icon"><svg class="icon"><use href="#i-plug"/></svg></span>
-                <span><span class="svc-name">PAT testing</span><span class="svc-desc">Up to 10 items, then <span data-price="PAT.extra">£1.50</span> per extra item</span></span>
-                <span class="svc-cost"><small>from</small><strong data-price="PAT.upTo10">£59.95</strong><small>+VAT</small></span>
+                <span><span class="svc-name">PAT testing</span><span class="svc-desc">Add-on to an EICR or homebuyer's report. Up to 10 items, then <span data-price="PAT.extra">£1.50</span> per extra item</span></span>
+                <span class="svc-cost"><small>from</small><strong data-price="PAT.upTo10">£40</strong><small>+VAT</small></span>
                 <span class="svc-go"><svg class="icon"><use href="#i-arrow"/></svg></span>
               </a>
-              <a class="svc-link" href="#book" data-book="FIRE">
+              <a class="svc-link" href="#book" data-book="EICR_DOM,FIRE">
                 <span class="svc-icon"><svg class="icon"><use href="#i-alarm"/></svg></span>
-                <span><span class="svc-name">Smoke, heat &amp; CO alarm check</span><span class="svc-desc">Up to <span data-cfg="pricing.FIRE.included">6</span> alarms. <span data-price="FIRE.extra">£8.33</span> per extra alarm</span></span>
-                <span class="svc-cost"><strong data-price="FIRE.price">£50</strong><small>+VAT</small></span>
+                <span><span class="svc-name">Smoke, heat &amp; CO alarm check</span><span class="svc-desc">Add-on to an EICR or homebuyer's report. Up to <span data-cfg="pricing.FIRE.included">6</span> alarms, <span data-price="FIRE.extra">£8.33</span> per extra alarm</span></span>
+                <span class="svc-cost"><strong data-price="FIRE.price">£40</strong><small>+VAT</small></span>
                 <span class="svc-go"><svg class="icon"><use href="#i-arrow"/></svg></span>
               </a>
             </div>
@@ -683,7 +681,7 @@
         </div>
 
         <div class="callback cb-card">
-          <form class="cb-form" data-callback-form novalidate aria-label="Request a callback">
+          <form class="cb-form" data-callback-form novalidate aria-label="Request a callback" data-clarity-mask="true">
             <fieldset class="cb-needs">
               <legend>I'm a…</legend>
               <input type="radio" id="cbw-ll" name="who" value="Landlord" checked><label for="cbw-ll">Landlord</label>
@@ -766,7 +764,7 @@
           <details>
             <summary>How much does it cost?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
             <div class="faq-a">
-              <p>All prices exclude VAT. A <strong>domestic EICR</strong> covers up to 8 circuits and costs £79 for a studio, rising to £140 for a six-bedroom home, plus £15 for each extra circuit. Parking and congestion charges are added to the final bill if they apply. <strong>PAT testing</strong> is £59.95 for up to 10 items, then £1.50 per extra item. A <strong>smoke, heat and CO alarm check</strong> is £50 for up to 6 alarms.</p>
+              <p>All prices exclude VAT. A <strong>domestic EICR</strong> covers up to 8 circuits and costs £79 for a studio, rising to £140 for a six-bedroom home, plus £15 for each extra circuit. Parking and congestion charges are added to the final bill if they apply. <strong>PAT testing</strong> (up to 10 items, then £1.50 per extra item) and a <strong>smoke, heat and CO alarm check</strong> (up to 6 alarms) are £40 each as add-ons to an EICR or homebuyer's report.</p>
               <p><strong>Commercial fixed wire testing</strong> starts at £169 for up to 10 circuits, plus £10 per extra circuit, and <strong>emergency lighting</strong> tests start at £80. Larger sites are quoted, and remedial work is only ever done with your approval.</p>
             </div>
           </details>
@@ -847,8 +845,8 @@
           <h4>Services</h4>
           <ul>
             <li><a href="#book" data-book="EICR_DOM">Domestic EICR</a></li>
-            <li><a href="#book" data-book="PAT">PAT testing</a></li>
-            <li><a href="#book" data-book="FIRE">Smoke &amp; CO alarm checks</a></li>
+            <li><a href="#book" data-book="EICR_DOM,PAT">PAT testing</a></li>
+            <li><a href="#book" data-book="EICR_DOM,FIRE">Smoke &amp; CO alarm checks</a></li>
             <li><a href="#callback">Commercial testing</a></li>
             <li><a href="#book" data-portal>My account</a></li>
           </ul>
@@ -885,9 +883,9 @@
     <a class="btn btn-volt" href="#book" data-book="">Book a test <svg class="icon"><use href="#i-arrow"/></svg></a>
   </div>
 
-  <script src="assets/config.js?v=33"></script>
-  <script src="assets/consent.js?v=33"></script>
-  <script src="assets/site.js?v=33"></script>
+  <script src="assets/config.js?v=34"></script>
+  <script src="assets/consent.js?v=34"></script>
+  <script src="assets/site.js?v=34"></script>
 
   <!-- Booking-app tracking (integration brief, section 03). Pasted as supplied.
        Keep it last, after site.js has built the booking links. -->
