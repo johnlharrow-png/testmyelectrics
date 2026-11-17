@@ -38,7 +38,7 @@ window.TME_CONFIG = {
   analytics: {
     ga4Id: 'G-RZZKMYENGW',     // same property as the booking app (Back office > Settings > Marketing)
     adsId: 'AW-18579487106',
-    clarityId: '',             // e.g. 'abcd1234ef' (Clarity > Settings > Overview > Project ID)
+    clarityId: 'zf2uvj0rgx',   // same Clarity project as the booking app (linked to Analytics)
   },
 
   /* Prices shown on the site, EXCLUDING VAT (appointments are Monday to Friday only).
