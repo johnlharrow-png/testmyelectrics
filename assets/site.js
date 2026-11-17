@@ -207,19 +207,19 @@
     // EICR add-ons (alarm check, PAT). Sent as ?service=EICR_DOM,FIRE,PAT. The booking app needs a one-line
     // change to read the list (see INTEGRATION.md); until then it just pre-selects the EICR.
     const addons = $('[data-addons]', form);
-    const syncAddons = () => { if (addons) addons.hidden = form.elements.service.value !== 'EICR_DOM'; };
+    const takesAddons = (v) => v === 'EICR_DOM' || v === 'HOMEBUYER';   // the homebuyer's report includes an EICR
+    const syncAddons = () => { if (addons) addons.hidden = !takesAddons(form.elements.service.value); };
     form.elements.service.addEventListener('change', syncAddons);
     syncAddons();
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const extras = form.elements.service.value === 'EICR_DOM' ? $$('input[name="addons"]:checked', form).map((i) => i.value) : [];
+      const extras = takesAddons(form.elements.service.value) ? $$('input[name="addons"]:checked', form).map((i) => i.value) : [];
       const service = [form.elements.service.value, ...extras].join(',');
       const raw = form.elements.postcode.value.trim();
       const pc = parsePostcode(raw);
       const postcode = pc ? pc.formatted : raw.toUpperCase();
       if (service.startsWith('business')) { goToCallback(postcode); return; }
-      if (service.startsWith('homebuyer')) { goToCallback(postcode, 'homebuyer'); return; }
       window.location.href = bookUrl(service, postcode);
     });
   });

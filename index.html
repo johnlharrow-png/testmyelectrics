@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=31">
+  <link rel="stylesheet" href="assets/styles.css?v=32">
   <link rel="preload" as="image" href="assets/img/hero-panel.jpg">
 
   <!-- Prices must match the back office -->
@@ -142,7 +142,7 @@
                 <option value="EICR_DOM">Domestic EICR</option>
                 <option value="PAT">PAT testing</option>
                 <option value="FIRE">Smoke, heat &amp; CO alarm check</option>
-                <option value="homebuyer">Homebuyer's electrical report</option>
+                <option value="HOMEBUYER">Homebuyer's electrical report</option>
                 <option value="business">More than one board or property</option>
               </select>
             </label>
@@ -321,7 +321,7 @@
               <li><svg class="icon"><use href="#i-check"/></svg>Repairs and upgrades priced, to help you negotiate</li>
               <li><svg class="icon"><use href="#i-check"/></svg>Easy to share with your solicitor or lender</li>
             </ul>
-            <a class="btn btn-ghost" href="#callback" data-callback-need="homebuyer">Request a homebuyer report</a>
+            <a class="btn btn-ghost" href="#book" data-book="HOMEBUYER">Book a homebuyer report</a>
           </article>
 
           <article class="price-card">
@@ -592,7 +592,7 @@
                   <option value="EICR_DOM">Domestic EICR</option>
                   <option value="PAT">PAT testing</option>
                   <option value="FIRE">Smoke, heat &amp; CO alarm check</option>
-                  <option value="homebuyer">Homebuyer's electrical report</option>
+                  <option value="HOMEBUYER">Homebuyer's electrical report</option>
                   <option value="business">More than one board or property</option>
                 </select>
               </label>
@@ -616,9 +616,9 @@
                 <span class="svc-cost"><small>from</small><strong data-price="EICR_DOM.studio">£79</strong><small>+VAT</small></span>
                 <span class="svc-go"><svg class="icon"><use href="#i-arrow"/></svg></span>
               </a>
-              <a class="svc-link" href="#callback" data-callback-need="homebuyer">
+              <a class="svc-link" href="#book" data-book="HOMEBUYER">
                 <span class="svc-icon"><svg class="icon"><use href="#i-key"/></svg></span>
-                <span><span class="svc-name">Homebuyer's electrical report</span><span class="svc-desc">A full EICR plus a written report for buyers. Studio to 6 bedrooms, up to <span data-cfg="pricing.HOMEBUYER.included">8</span> circuits. We'll call you to arrange it</span></span>
+                <span><span class="svc-name">Homebuyer's electrical report</span><span class="svc-desc">A full EICR plus a written report for buyers. Studio to 6 bedrooms, up to <span data-cfg="pricing.HOMEBUYER.included">8</span> circuits. <span data-price="HOMEBUYER.extra">£15</span> per extra circuit</span></span>
                 <span class="svc-cost"><small>from</small><strong data-price="HOMEBUYER.studio">£149</strong><small>+VAT</small></span>
                 <span class="svc-go"><svg class="icon"><use href="#i-arrow"/></svg></span>
               </a>
@@ -882,9 +882,9 @@
     <a class="btn btn-volt" href="#book" data-book="">Book a test <svg class="icon"><use href="#i-arrow"/></svg></a>
   </div>
 
-  <script src="assets/config.js?v=31"></script>
-  <script src="assets/consent.js?v=31"></script>
-  <script src="assets/site.js?v=31"></script>
+  <script src="assets/config.js?v=32"></script>
+  <script src="assets/consent.js?v=32"></script>
+  <script src="assets/site.js?v=32"></script>
 
   <!-- Booking-app tracking (integration brief, section 03). Pasted as supplied.
        Keep it last, after site.js has built the booking links. -->
