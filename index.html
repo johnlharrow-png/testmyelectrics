@@ -19,7 +19,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/styles.css?v=30">
+  <link rel="stylesheet" href="assets/styles.css?v=31">
   <link rel="preload" as="image" href="assets/img/hero-panel.jpg">
 
   <!-- Prices must match the back office -->
@@ -49,6 +49,7 @@
       "name": "Electrical testing",
       "itemListElement": [
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Domestic EICR (up to 8 circuits)" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "79", "maxPrice": "140", "priceCurrency": "GBP", "valueAddedTaxIncluded": false } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Homebuyer's electrical report (EICR + written report, up to 8 circuits)" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "149", "maxPrice": "249", "priceCurrency": "GBP", "valueAddedTaxIncluded": false } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "PAT testing (up to 10 items)" }, "priceSpecification": { "@type": "PriceSpecification", "price": "59.95", "priceCurrency": "GBP", "valueAddedTaxIncluded": false } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Smoke, heat & CO alarm check (up to 6 alarms)" }, "priceSpecification": { "@type": "PriceSpecification", "price": "50", "priceCurrency": "GBP", "valueAddedTaxIncluded": false } },
         { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial fixed wire testing (up to 10 circuits)" }, "priceSpecification": { "@type": "PriceSpecification", "minPrice": "169", "priceCurrency": "GBP", "valueAddedTaxIncluded": false } }
@@ -141,6 +142,7 @@
                 <option value="EICR_DOM">Domestic EICR</option>
                 <option value="PAT">PAT testing</option>
                 <option value="FIRE">Smoke, heat &amp; CO alarm check</option>
+                <option value="homebuyer">Homebuyer's electrical report</option>
                 <option value="business">More than one board or property</option>
               </select>
             </label>
@@ -227,7 +229,7 @@
             <p>Moving in, renovating, or not sure when it was last checked? An EICR tells you exactly where you stand.</p>
             <ul class="ticks">
               <li><svg class="icon"><use href="#i-check"/></svg>Recommended every 10 years</li>
-              <li><svg class="icon"><use href="#i-check"/></svg>Ideal before you buy</li>
+              <li><svg class="icon"><use href="#i-check"/></svg>Homebuyer reports before you buy</li>
               <li><svg class="icon"><use href="#i-check"/></svg>Plain-English findings</li>
             </ul>
             <a class="card-link" href="#book" data-book="EICR_DOM">Book a home EICR <svg class="icon"><use href="#i-arrow"/></svg></a>
@@ -296,6 +298,30 @@
               <li><svg class="icon"><use href="#i-check"/></svg>Parking &amp; congestion charges added to the final bill if applicable</li>
             </ul>
             <a class="btn btn-volt" href="#book" data-book="EICR_DOM">Book an EICR</a>
+          </article>
+
+          <article class="price-card" id="homebuyer">
+            <h3>Homebuyer's electrical report</h3>
+            <p class="price-for">Before you buy, or before you sell</p>
+            <p class="price"><small>from</small><strong data-price="HOMEBUYER.studio">£149</strong><small>+VAT</small></p>
+            <p class="price-note">A full EICR plus a written report, up to <span data-cfg="pricing.HOMEBUYER.included">8</span> circuits</p>
+            <div class="tiers">
+              <div><span>Studio</span><span class="mono" data-price="HOMEBUYER.studio">£149</span></div>
+              <div><span>1 bedroom</span><span class="mono" data-price="HOMEBUYER.bed1">£159</span></div>
+              <div><span>2 bedrooms</span><span class="mono" data-price="HOMEBUYER.bed2">£169</span></div>
+              <div><span>3 bedrooms</span><span class="mono" data-price="HOMEBUYER.bed3">£189</span></div>
+              <div><span>4 bedrooms</span><span class="mono" data-price="HOMEBUYER.bed4">£209</span></div>
+              <div><span>5 bedrooms</span><span class="mono" data-price="HOMEBUYER.bed5">£229</span></div>
+              <div><span>6 bedrooms</span><span class="mono" data-price="HOMEBUYER.bed6">£249</span></div>
+              <div><span>Each extra circuit</span><span class="mono" data-price="HOMEBUYER.extra">£15</span></div>
+            </div>
+            <ul class="ticks">
+              <li><svg class="icon"><use href="#i-check"/></svg>Full EICR certificate included</li>
+              <li><svg class="icon"><use href="#i-check"/></svg>Plain-English report on the wiring, fittings and fuse board</li>
+              <li><svg class="icon"><use href="#i-check"/></svg>Repairs and upgrades priced, to help you negotiate</li>
+              <li><svg class="icon"><use href="#i-check"/></svg>Easy to share with your solicitor or lender</li>
+            </ul>
+            <a class="btn btn-ghost" href="#callback" data-callback-need="homebuyer">Request a homebuyer report</a>
           </article>
 
           <article class="price-card">
@@ -566,6 +592,7 @@
                   <option value="EICR_DOM">Domestic EICR</option>
                   <option value="PAT">PAT testing</option>
                   <option value="FIRE">Smoke, heat &amp; CO alarm check</option>
+                  <option value="homebuyer">Homebuyer's electrical report</option>
                   <option value="business">More than one board or property</option>
                 </select>
               </label>
@@ -587,6 +614,12 @@
                 <span class="svc-icon"><svg class="icon"><use href="#i-home"/></svg></span>
                 <span><span class="svc-name">Domestic EICR</span><span class="svc-desc">Studio to 6 bedrooms, up to <span data-cfg="pricing.EICR_DOM.included">8</span> circuits. <span data-price="EICR_DOM.extra">£15</span> per extra circuit, plus parking &amp; congestion charges if applicable</span></span>
                 <span class="svc-cost"><small>from</small><strong data-price="EICR_DOM.studio">£79</strong><small>+VAT</small></span>
+                <span class="svc-go"><svg class="icon"><use href="#i-arrow"/></svg></span>
+              </a>
+              <a class="svc-link" href="#callback" data-callback-need="homebuyer">
+                <span class="svc-icon"><svg class="icon"><use href="#i-key"/></svg></span>
+                <span><span class="svc-name">Homebuyer's electrical report</span><span class="svc-desc">A full EICR plus a written report for buyers. Studio to 6 bedrooms, up to <span data-cfg="pricing.HOMEBUYER.included">8</span> circuits. We'll call you to arrange it</span></span>
+                <span class="svc-cost"><small>from</small><strong data-price="HOMEBUYER.studio">£149</strong><small>+VAT</small></span>
                 <span class="svc-go"><svg class="icon"><use href="#i-arrow"/></svg></span>
               </a>
               <a class="svc-link" href="#book" data-book="PAT">
@@ -674,6 +707,7 @@
             <fieldset class="cb-needs">
               <legend>What do you need?</legend>
               <input type="checkbox" id="cbn-eicr" name="needs" value="EICR_DOM" data-label="EICR" checked><label for="cbn-eicr">EICR</label>
+              <input type="checkbox" id="cbn-hb" name="needs" value="" data-need="homebuyer" data-label="Homebuyer's electrical report"><label for="cbn-hb">Homebuyer report</label>
               <input type="checkbox" id="cbn-pat" name="needs" value="PAT" data-label="PAT testing"><label for="cbn-pat">PAT testing</label>
               <input type="checkbox" id="cbn-fire" name="needs" value="FIRE" data-label="Smoke, heat &amp; CO alarms"><label for="cbn-fire">Smoke &amp; CO alarms</label>
               <input type="checkbox" id="cbn-com" name="needs" value="" data-label="Commercial fixed wire testing"><label for="cbn-com">Commercial EICR</label>
@@ -848,9 +882,9 @@
     <a class="btn btn-volt" href="#book" data-book="">Book a test <svg class="icon"><use href="#i-arrow"/></svg></a>
   </div>
 
-  <script src="assets/config.js?v=30"></script>
-  <script src="assets/consent.js?v=30"></script>
-  <script src="assets/site.js?v=30"></script>
+  <script src="assets/config.js?v=31"></script>
+  <script src="assets/consent.js?v=31"></script>
+  <script src="assets/site.js?v=31"></script>
 
   <!-- Booking-app tracking (integration brief, section 03). Pasted as supplied.
        Keep it last, after site.js has built the booking links. -->

@@ -319,7 +319,10 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
 
 /* ---------- Pricing ---------- */
 .pricing { background: var(--surface); border-block: 1px solid var(--line); }
-.price-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; align-items: stretch; }
+.price-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; align-items: stretch; }
+/* Five cards: three across (EICR, homebuyer, PAT), then two across */
+.price-grid > .price-card { grid-column: span 2; }
+.price-grid > .price-card:nth-child(n + 4) { grid-column: span 3; }
 .price-card { position: relative; border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 30px 28px 28px; display: flex; flex-direction: column; background: var(--paper); }
 .price-card.featured { background: var(--ink); color: #fff; border-color: var(--ink); box-shadow: 0 30px 60px rgba(12, 24, 64, .18); }
 .price-flag { position: absolute; top: -12px; left: 28px; background: var(--volt); color: var(--volt-ink); font-size: 12px; font-weight: 700; padding: 6px 11px; border-radius: 999px; letter-spacing: .01em; }
@@ -665,6 +668,8 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
   .header-link span { display: none; }
   .grid-4, .price-grid, .how-grid { grid-template-columns: repeat(2, 1fr); }
   .price-grid { row-gap: 28px; }
+  .price-grid > .price-card, .price-grid > .price-card:nth-child(n + 4) { grid-column: auto; }
+  .price-grid > .price-card:last-child:nth-child(odd) { grid-column: 1 / -1; }
   .hero-inner { grid-template-columns: 1fr; gap: 72px; }
   .hero-visual { justify-self: center; max-width: 420px; }
   .book-grid { grid-template-columns: 1fr; }

@@ -110,13 +110,22 @@
   const LEAD_URL = (CFG.callback && CFG.callback.endpoint) || (BASE ? BASE + '/api/public/lead' : '');
   const callbackOn = !!(cbForm && CFG.callback && CFG.callback.enabled && LEAD_URL);
 
-  function goToCallback(postcode) {
+  function goToCallback(postcode, need) {
     if (!$('#callback')) { window.location.href = '/#callback'; return; }   // pages without the callback section
     if (cbForm && postcode && !cbForm.elements.postcode.value) cbForm.elements.postcode.value = postcode;
+    // e.g. need = 'homebuyer': tick just that box in "What do you need?"
+    const needBox = cbForm && need && $(`input[name="needs"][data-need="${need}"]`, cbForm);
+    if (needBox) $$('input[name="needs"]', cbForm).forEach((i) => { i.checked = i === needBox; });
     $('#callback').scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
     history.replaceState(null, '', '#callback');
     setTimeout(() => { if (cbForm) cbForm.elements.name.focus({ preventScroll: true }); }, reduceMotion ? 0 : 600);
   }
+
+  // Buttons for services that are quoted rather than booked online (e.g. the homebuyer's report)
+  $$('[data-callback-need]').forEach((a) => a.addEventListener('click', (e) => {
+    e.preventDefault();
+    goToCallback('', a.dataset.callbackNeed);
+  }));
 
   function setStatus(type, html) {
     cbStatus.className = `cb-status is-${type}`;
@@ -210,6 +219,7 @@
       const pc = parsePostcode(raw);
       const postcode = pc ? pc.formatted : raw.toUpperCase();
       if (service.startsWith('business')) { goToCallback(postcode); return; }
+      if (service.startsWith('homebuyer')) { goToCallback(postcode, 'homebuyer'); return; }
       window.location.href = bookUrl(service, postcode);
     });
   });
