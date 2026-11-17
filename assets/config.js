@@ -36,7 +36,7 @@ window.TME_CONFIG = {
      - adsId: Google Ads tag, account 184-703-9523 (keeps the ad click so the booking counts as a conversion)
      - clarityId: Microsoft Clarity project ID (heatmaps and recordings of where people click) */
   analytics: {
-    ga4Id: '',                 // e.g. 'G-XXXXXXXXXX'
+    ga4Id: 'G-RZZKMYENGW',     // same property as the booking app (Back office > Settings > Marketing)
     adsId: 'AW-18579487106',
     clarityId: '',             // e.g. 'abcd1234ef' (Clarity > Settings > Overview > Project ID)
   },
