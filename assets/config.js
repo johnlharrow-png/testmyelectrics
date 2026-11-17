@@ -30,11 +30,15 @@ window.TME_CONFIG = {
     url: '',
   },
 
-  /* Google tags (brief section 04). Use the SAME IDs Wayne enters in
-     Back office > Settings > Marketing. Empty = no tags and no cookie banner. */
+  /* Tracking (brief section 04). Use the SAME IDs as Back office > Settings > Marketing.
+     All empty = no tags and no cookie banner. Everything waits for the cookie banner (consent.js).
+     - ga4Id: Google Analytics 4 (visits, where people came from, button clicks as "button_click" events)
+     - adsId: Google Ads tag, account 184-703-9523 (keeps the ad click so the booking counts as a conversion)
+     - clarityId: Microsoft Clarity project ID (heatmaps and recordings of where people click) */
   analytics: {
-    ga4Id: '',   // e.g. 'G-XXXXXXXXXX'
-    adsId: '',   // e.g. 'AW-XXXXXXXXX'
+    ga4Id: '',                 // e.g. 'G-XXXXXXXXXX'
+    adsId: 'AW-18579487106',
+    clarityId: '',             // e.g. 'abcd1234ef' (Clarity > Settings > Overview > Project ID)
   },
 
   /* Prices shown on the site, EXCLUDING VAT (weekday appointments).

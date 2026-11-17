@@ -55,6 +55,27 @@
 
   window.TME = { parsePostcode, isCovered, bookUrl };
 
+  /* ---------- Click tracking (Google Analytics) ----------
+     Every link and button click goes to GA4 as a "button_click" event with the button's text,
+     where it goes and which part of the page it was in. Phone and email links also send
+     "phone_click" / "email_click", which can be marked as key events (conversions) in GA4.
+     Nothing is sent unless consent.js has loaded the Google tag; Consent Mode decides what GA4 keeps. */
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('a, button, summary');
+    if (!el || typeof window.gtag !== 'function' || el.closest('.consent')) return;
+    const text = (el.getAttribute('aria-label') || el.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100);
+    const area = el.closest('section[id], header, footer, nav, .mobile-cta');
+    const href = el.getAttribute('href') || '';
+    const params = {
+      link_text: text,
+      link_url: el.href || href,
+      click_location: area ? (area.id || area.className.split(' ')[0] || area.tagName.toLowerCase()) : 'page',
+    };
+    window.gtag('event', 'button_click', params);
+    if (href.startsWith('tel:')) window.gtag('event', 'phone_click', params);
+    if (href.startsWith('mailto:')) window.gtag('event', 'email_click', params);
+  }, true);
+
   /* ---------- Contact details + prices from config ---------- */
   $$('[data-email]').forEach((el) => { el.textContent = CFG.business.email; });
   $$('[data-email-link]').forEach((a) => { a.href = 'mailto:' + CFG.business.email; });
