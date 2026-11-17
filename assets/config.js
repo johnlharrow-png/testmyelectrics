@@ -41,7 +41,7 @@ window.TME_CONFIG = {
     clarityId: '',             // e.g. 'abcd1234ef' (Clarity > Settings > Overview > Project ID)
   },
 
-  /* Prices shown on the site, EXCLUDING VAT (weekday appointments).
+  /* Prices shown on the site, EXCLUDING VAT (appointments are Monday to Friday only).
      They MUST match the back office, because the booking page charges what the back office says.
      If you change a number here, also check the tier labels in index.html and the JSON-LD block. */
   pricing: {
