@@ -325,9 +325,15 @@
   }
 
   /* ---------- Screenshots (letting agents page) ----------
-     Until an image file is in assets/img/agents/, its frame shows what goes there instead of a broken image. */
+     A screenshot that isn't in assets/img/agents/ yet is hidden instead of showing a broken image:
+     a missing phone overlay just goes, a missing main screenshot takes its whole card with it. */
   $$('img[data-shot]').forEach((img) => {
-    const missing = () => { const frame = img.closest('[data-label]'); if (frame) frame.classList.add('is-missing'); };
+    const missing = () => {
+      const phone = img.closest('.shot-phone');
+      const card = img.closest('.ag-shot');
+      if (phone && card && card.querySelector('.shot-frame')) phone.hidden = true;
+      else if (card) card.hidden = true;
+    };
     if (img.complete && !img.naturalWidth) missing();
     else img.addEventListener('error', missing);
   });
