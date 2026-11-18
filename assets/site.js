@@ -52,6 +52,12 @@
 
   $$('[data-book]').forEach((a) => { a.href = bookUrl(a.dataset.book || ''); });
   $$('[data-portal]').forEach((a) => { a.href = portalUrl; });
+  // Other files on the booking app, e.g. data-app="agents.priceListPdf" (a key in config.js)
+  $$('[data-app]').forEach((a) => {
+    let path = CFG;
+    for (const key of a.dataset.app.split('.')) path = path == null ? path : path[key];
+    if (BASE && typeof path === 'string') a.href = BASE + path;
+  });
 
   window.TME = { parsePostcode, isCovered, bookUrl };
 
@@ -91,10 +97,19 @@
     }
     if (RV.url) { a.href = RV.url; a.target = '_blank'; a.rel = 'noopener'; }
   });
-  $$('[data-price]').forEach((el) => {
+  const priceOf = (path) => {
     let v = CFG.pricing;
-    for (const key of el.dataset.price.split('.')) v = v == null ? v : v[key];
-    if (typeof v === 'number') el.textContent = gbp(v);
+    for (const key of path.split('.')) v = v == null ? v : v[key];
+    return typeof v === 'number' ? v : null;
+  };
+  $$('[data-price]').forEach((el) => {
+    const v = priceOf(el.dataset.price);
+    if (v != null) el.textContent = gbp(v);
+  });
+  // The same price with VAT at 20% (config prices are ex VAT), rounded to the penny
+  $$('[data-price-inc]').forEach((el) => {
+    const v = priceOf(el.dataset.priceInc);
+    if (v != null) el.textContent = gbp(Math.round(v * 120) / 100);
   });
   $$('[data-cfg]').forEach((el) => {
     let v = CFG;
@@ -223,6 +238,100 @@
     });
   }
 
+  /* ---------- Letting agents: "Get your agent account" form (/letting-agents) ----------
+     Same route as the callback form: POST /api/lead on this site, which Caddy forwards to the
+     booking app's /api/public/lead. kind "agent_request" lands in Back office > Leads and is
+     emailed to the office, who then send the invite (Back office > Letting agents > Invite an agent).
+     The agency and the number of properties go in message, as the app asks. */
+  const agForm = $('[data-agent-form]');
+  if (agForm) {
+    const agStatus = $('[data-ag-status]', agForm);
+    const say = (type, html) => {
+      agStatus.className = `cb-status is-${type}`;
+      agStatus.innerHTML = html;
+      agStatus.hidden = false;
+    };
+    const thanks = (name) => {
+      const first = (name || '').split(' ')[0];
+      const box = document.createElement('div');
+      box.className = 'cb-thanks';
+      box.tabIndex = -1;
+      box.innerHTML = `<strong>Thanks${first ? ', ' + esc(first) : ''}. We've got your request.</strong>`
+        + '<p>We\'ll set up your agent account and email you a login link. The link works for 2 days: open it, sign our agent terms once, and you can raise your first job.</p>';
+      agForm.replaceWith(box);
+      box.focus();
+    };
+
+    agForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const f = agForm.elements;
+      const v = (n) => (f[n] && f[n].value ? f[n].value.trim() : '');
+      if (v('website')) { thanks(v('name')); return; }   // honeypot: bots get a fake success
+
+      const agency = v('agency');
+      const name = v('name');
+      const email = v('email');
+      const phone = v('phone');
+      const props = (agForm.querySelector('input[name="properties"]:checked') || {}).value || '';
+      if (!agency) { say('error', 'Please give the name of your agency.'); f.agency.focus(); return; }
+      if (!name) { say('error', 'Please give your name.'); f.name.focus(); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+        say('error', 'Please give your work email address. Your login link goes to it.');
+        f.email.focus();
+        return;
+      }
+      if (!(CFG.callback && CFG.callback.enabled && LEAD_URL)) {
+        say('error', `Sorry, online requests aren't switched on yet. Please email us at ${emailLink()}.`);
+        return;
+      }
+
+      // Which email or ad brought them here (saved by the tracking script at the bottom of the page)
+      const attr = savedAttribution();
+      const source = ['utm_source', 'utm_medium', 'utm_campaign'].map((k) => attr[k]).filter(Boolean).join(' / ')
+        || (attr.gclid || attr.gbraid || attr.wbraid ? 'Google Ads' : '');
+      const message = [
+        'Agent account request from testmyelectrics.com/letting-agents',
+        `Agency: ${agency}`,
+        `Properties managed: ${props || 'not given'}`,
+        source && `Came from: ${source}`,
+      ].filter(Boolean).join('\n');
+
+      const btn = $('button[type="submit"]', agForm);
+      btn.disabled = true;
+      say('info', 'Sending…');
+      try {
+        const res = await fetch(LEAD_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ kind: 'agent_request', name, email, phone, message }),
+        });
+        let data = {};
+        try { data = await res.json(); } catch (_) { /* empty body */ }
+        if (!res.ok || !data.ok) {
+          const err = new Error(data.error || `HTTP ${res.status}`);
+          err.userMessage = data.error;
+          throw err;
+        }
+        thanks(name);
+        // The conversion: mark generate_lead as a key event in GA4 and import it into Google Ads
+        if (typeof window.gtag === 'function') window.gtag('event', 'generate_lead', { form: 'agent_request' });
+      } catch (err) {
+        console.error('[TME] agent request failed', err);
+        say('error', `${err.userMessage ? esc(err.userMessage) + '.' : "Sorry, we couldn't send that just now."} Please try again, or email us at ${emailLink()}.`);
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  }
+
+  /* ---------- Screenshots (letting agents page) ----------
+     Until an image file is in assets/img/agents/, its frame shows what goes there instead of a broken image. */
+  $$('img[data-shot]').forEach((img) => {
+    const missing = () => { const frame = img.closest('[data-label]'); if (frame) frame.classList.add('is-missing'); };
+    if (img.complete && !img.naturalWidth) missing();
+    else img.addEventListener('error', missing);
+  });
+
   /* ---------- Postcode boxes: straight into the booking app ---------- */
   $$('[data-quick-book]').forEach((form) => {
     // EICR add-ons (alarm check, PAT). Sent as ?service=EICR_DOM,FIRE,PAT. The booking app needs a one-line
@@ -265,10 +374,11 @@
     }
   });
 
-  /* ---------- Mobile sticky CTA: shown once the hero is gone, hidden over the booking section ---------- */
+  /* ---------- Mobile sticky CTA: shown once the hero is gone, hidden over the booking section ----------
+     (or over the section named in data-hide-over, e.g. the request form on /letting-agents) */
   const bar = $('[data-mobile-bar]');
   const hero = $('.hero');
-  const book = $('#book');
+  const book = bar && $(bar.dataset.hideOver || '#book');
   if (bar && hero && book && 'IntersectionObserver' in window) {
     let heroOn = true;
     let bookOn = false;

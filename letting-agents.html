@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EICR for Letting Agents from £79 + VAT | testmyelectrics.com</title>
+  <meta name="description" content="EICRs for letting agents in Essex and East London, from £79 + VAT. Common faults fixed on the same visit at fixed prices, before-and-after photos for the landlord, and invoices on account.">
+  <link rel="canonical" href="https://www.testmyelectrics.com/letting-agents">
+  <meta name="theme-color" content="#0C1840">
+
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.testmyelectrics.com/letting-agents">
+  <meta property="og:title" content="EICR and fixes in one visit, for letting agents">
+  <meta property="og:description" content="EICR from £79 + VAT. Common faults fixed on the same visit at fixed prices, with before-and-after photos you can forward to the landlord.">
+  <meta property="og:image" content="https://www.testmyelectrics.com/assets/img/hero-panel.jpg">
+  <meta property="og:locale" content="en_GB">
+
+  <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="48x48">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css?v=37">
+  <link rel="preload" as="image" type="image/webp" href="/assets/img/hero-panel.webp" imagesrcset="/assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" imagesizes="(max-width: 760px) 360px, (max-width: 1120px) 420px, 470px">
+</head>
+<!--
+  Letting agents landing page. Brief: "Letting agents landing page: brief for John" (18 Nov 2026).
+  - Prices: config.js > pricing.AGENT (copied from Back office > Agent prices). The numbers in this
+    file are only the fallback; the page shows the config values.
+  - The request form posts to /api/lead (Caddy forwards it to the booking app), kind "agent_request".
+  - Screenshots go in assets/img/agents/ with the file names used below.
+  - Don't promise what the portal doesn't do: no self sign-up, no live chat, and we don't send the
+    report to the landlord ourselves. No insurance figure on this page.
+-->
+<body class="lp ag">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+      <symbol id="i-key" viewBox="0 0 24 24"><circle cx="7.5" cy="15.5" r="4.5"/><path d="m10.7 12.3 9.3-9.3"/><path d="m17 6 3 3"/><path d="m14.5 8.5 2 2"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3H6.5A1.5 1.5 0 0 0 5 4.5v15A1.5 1.5 0 0 0 6.5 21h11a1.5 1.5 0 0 0 1.5-1.5V8z"/><path d="M14 3v5h5"/><path d="m9 14.5 2 2 4-4"/></symbol>
+      <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></symbol>
+      <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2 4.5 13.5H11L10 22l8.5-11.5H12z"/></symbol>
+      <symbol id="i-repeat" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8 12.5 2.8 2.8L16.5 9.5"/></symbol>
+      <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3 12.2V4.5A1.5 1.5 0 0 1 4.5 3h7.7a1.5 1.5 0 0 1 1 .44l7.4 7.4a1.5 1.5 0 0 1 0 2.12l-7.7 7.7a1.5 1.5 0 0 1-2.12 0l-7.4-7.4A1.5 1.5 0 0 1 3 12.2z"/><circle cx="8" cy="8" r="1.5"/></symbol>
+      <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8h3l2-3h6l2 3h3a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/><path d="M5 20h14"/></symbol>
+      <symbol id="i-receipt" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6"/><path d="M9 12h6"/><path d="M9 16h3"/></symbol>
+      <symbol id="i-clipboard" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="m9 13 2 2 4-4"/></symbol>
+      <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.1L3.5 17.2a1.8 1.8 0 0 0 2.5 2.5l5.8-5.8a4 4 0 0 0 5.1-5.4l-2.6 2.6-2.1-.4-.4-2.1z"/></symbol>
+    </defs>
+  </svg>
+
+  <header class="site-header" data-header>
+    <div class="container header-inner">
+      <a class="brand" href="/" aria-label="testmyelectrics.com home">
+        <img class="brand-logo" src="/assets/img/logo.png" alt="testmyelectrics.com" width="1047" height="152">
+      </a>
+      <div class="header-actions">
+        <a class="header-link ag-login-link" href="https://book.testmyelectrics.com/portal/" data-portal><svg class="icon"><use href="#i-user"/></svg>Agent log in</a>
+        <a class="btn btn-volt btn-sm" href="#request">Get your agent account</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <section class="hero ag-hero" id="top">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow no-rule"><span class="pulse-dot" aria-hidden="true"></span> For letting agents · Essex &amp; East London</p>
+          <h1>EICR from <span data-price="AGENT.studio">£79</span>&nbsp;+&nbsp;VAT. <span class="hl">Common faults fixed on the same&nbsp;visit.</span></h1>
+          <p class="lead">One visit, not two. Fixed prices. Photos you can forward to the landlord.</p>
+
+          <div class="ag-hero-actions">
+            <a class="btn btn-volt btn-lg" href="#request">Get your agent account <svg class="icon"><use href="#i-arrow"/></svg></a>
+            <a class="btn btn-ghost-light btn-lg" href="https://book.testmyelectrics.com/downloads/testmyelectrics-letting-agents.pdf" data-app="agents.priceListPdf" target="_blank" rel="noopener"><svg class="icon"><use href="#i-download"/></svg>Download the price list (PDF)</a>
+          </div>
+          <p class="ag-hero-login">Already have an account? <a href="https://book.testmyelectrics.com/portal/" data-portal>Agent log in <svg class="icon"><use href="#i-arrow"/></svg></a></p>
+
+          <ul class="hero-trust">
+            <li><svg class="icon"><use href="#i-check"/></svg>Invoiced on account</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>NAPIT registered</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>TrustMark approved</li>
+          </ul>
+        </div>
+
+        <div class="hero-visual">
+          <figure class="hero-photo">
+            <picture>
+              <source type="image/webp" srcset="/assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" sizes="(max-width: 760px) 360px, (max-width: 1120px) 420px, 470px">
+              <img src="/assets/img/hero-panel.jpg" alt="A testmyelectrics.com electrician testing a consumer unit with a multifunction tester" width="896" height="1120" fetchpriority="high">
+            </picture>
+          </figure>
+
+          <div class="float-card float-1" aria-hidden="true">
+            <span class="fc-icon"><svg class="icon"><use href="#i-clipboard"/></svg></span>
+            <div><strong>Job approved: your PO</strong><span>Spend limit <span data-price="AGENT.spendLimit">£150</span> + VAT</span></div>
+          </div>
+
+          <div class="float-card float-2" aria-hidden="true">
+            <span class="fc-icon fc-pass"><svg class="icon"><use href="#i-check"/></svg></span>
+            <div><strong>Socket replaced, <span data-price="AGENT.socket">£20</span> + VAT</strong><span>Before and after photos added</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registered and approved -->
+    <div class="ag-strip">
+      <div class="container ag-strip-inner">
+        <p class="proof-label">Registered and approved</p>
+        <ul>
+          <li><img src="/assets/img/accreditations/napit.png" alt="NAPIT registered" width="246" height="78" loading="lazy"></li>
+          <li><img src="/assets/img/accreditations/trustmark.png" alt="TrustMark, Government Endorsed Quality" width="436" height="102" loading="lazy"></li>
+          <li><img src="/assets/img/accreditations/constructionline-gold.png" alt="Constructionline Gold Member" width="303" height="133" loading="lazy"></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ================= THREE REASONS ================= -->
+    <section class="section ag-why" id="why">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">Why agents use us</p>
+          <h2>The EICR and the fixes, in one visit.</h2>
+        </div>
+        <div class="ag-grid-3">
+          <article class="card">
+            <span class="card-icon"><svg class="icon"><use href="#i-repeat"/></svg></span>
+            <h3>No second visit</h3>
+            <p>We fix the common faults while the engineer is already there. No remedial visit to book, no chasing the landlord for a second quote.</p>
+          </article>
+          <article class="card">
+            <span class="card-icon"><svg class="icon"><use href="#i-tag"/></svg></span>
+            <h3>No surprise quotes</h3>
+            <p>Set a spend limit for each job: we suggest <span data-price="AGENT.spendLimit">£150</span> + VAT. Anything over it, we send you photos and a price to approve from your phone.</p>
+          </article>
+          <article class="card">
+            <span class="card-icon"><svg class="icon"><use href="#i-camera"/></svg></span>
+            <h3>Evidence you can forward</h3>
+            <p>One report per property, with before and after photos of every fix and the certificate references. Forward it to the landlord as it is.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HOW IT WORKS ================= -->
+    <section class="section ag-how" id="how">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">How it works</p>
+          <h2>From account to certificate in four steps.</h2>
+        </div>
+        <ol class="how-grid ag-steps">
+          <li class="how-step">
+            <div class="how-top"><span class="card-icon"><svg class="icon"><use href="#i-key"/></svg></span><span class="how-num">01</span></div>
+            <h3>Ask for an account</h3>
+            <p>Fill in the <a href="#request">short form</a>. We set up your agent account and email you a login link. You sign our agent terms once.</p>
+          </li>
+          <li class="how-step">
+            <div class="how-top"><span class="card-icon"><svg class="icon"><use href="#i-clipboard"/></svg></span><span class="how-num">02</span></div>
+            <h3>Raise a job in the portal</h3>
+            <p>Choose the property type, set your spend limit and press <strong>Approve and raise job</strong>. That's your purchase order.</p>
+          </li>
+          <li class="how-step">
+            <div class="how-top"><span class="card-icon"><svg class="icon"><use href="#i-tool"/></svg></span><span class="how-num">03</span></div>
+            <h3>We test and fix on the day</h3>
+            <p>The engineer does the EICR and fixes what's on our price list, within your limit, with a photo before and after each fix.</p>
+          </li>
+          <li class="how-step">
+            <div class="how-top"><span class="card-icon"><svg class="icon"><use href="#i-file"/></svg></span><span class="how-num">04</span></div>
+            <h3>Certificate, report, invoice</h3>
+            <p>You get the certificate and the photo report. The invoice goes on your account.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ================= THE PORTAL ================= -->
+    <!-- Screenshots: put the files in assets/img/agents/ with these names. Take fresh ones with the
+         live prices before the page goes live, and blur or crop real names, addresses and emails. -->
+    <section class="section ag-portal" id="portal">
+      <div class="container">
+        <div class="section-head">
+          <p class="eyebrow">The agent portal</p>
+          <h2>Everything in one place.</h2>
+          <p>Raise jobs, approve extra work, and see every certificate, report and invoice. It works on a phone as well as a desktop.</p>
+        </div>
+
+        <div class="ag-shots">
+          <figure class="ag-shot">
+            <div class="shot-stage">
+              <div class="shot-frame" data-label="Raising a job (desktop)">
+                <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>book.testmyelectrics.com/portal</span></div>
+                <img data-shot src="/assets/img/agents/portal-agent-book.png" alt="Raising a job in the agent portal: property type, add-ons, spend limit and the approval step" loading="lazy">
+              </div>
+              <div class="shot-phone" data-label="On a phone">
+                <img data-shot src="/assets/img/agents/portal-agent-book-phone.png" alt="Raising a job in the agent portal on a phone" loading="lazy">
+              </div>
+            </div>
+            <figcaption><strong>Raise a job in a minute</strong><span>Pick the property type, add PAT testing or alarms, set your limit and approve.</span></figcaption>
+          </figure>
+
+          <figure class="ag-shot">
+            <div class="shot-stage phone-only">
+              <div class="shot-phone" data-label="Approving extra work">
+                <img data-shot src="/assets/img/agents/agent-approve-phone.png" alt="Work above the spend limit on a phone: photos, a price and an Approve button" loading="lazy">
+              </div>
+            </div>
+            <figcaption><strong>Above your limit, approve from your phone</strong><span>Photos, a price and an Approve button. No login needed.</span></figcaption>
+          </figure>
+
+          <figure class="ag-shot">
+            <div class="shot-stage">
+              <div class="shot-frame" data-label="Your agent price list">
+                <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>book.testmyelectrics.com/portal</span></div>
+                <img data-shot src="/assets/img/agents/portal-agent-prices.png" alt="The agent price list in the portal" loading="lazy">
+              </div>
+            </div>
+            <figcaption><strong>Fixed prices, no surprises</strong><span>Your price list is in the portal, so you know the cost before you raise a job.</span></figcaption>
+          </figure>
+
+          <figure class="ag-shot">
+            <div class="shot-stage">
+              <div class="shot-frame" data-label="Your purchase order">
+                <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>book.testmyelectrics.com/portal</span></div>
+                <img data-shot src="/assets/img/agents/portal-agent-po.png" alt="The purchase order the agent approved: who, when, the spend limit and the price list" loading="lazy">
+              </div>
+            </div>
+            <figcaption><strong>Every job is your purchase order</strong><span>Who approved it, when, the spend limit and the price list it was raised on.</span></figcaption>
+          </figure>
+
+          <figure class="ag-shot">
+            <div class="shot-stage">
+              <div class="shot-frame" data-label="Your account (desktop)">
+                <div class="shot-bar" aria-hidden="true"><i></i><i></i><i></i><span>book.testmyelectrics.com/portal</span></div>
+                <img data-shot src="/assets/img/agents/portal-agent-account.png" alt="The agent account: what is owed, how to pay, every job and every invoice" loading="lazy">
+              </div>
+              <div class="shot-phone" data-label="On a phone">
+                <img data-shot src="/assets/img/agents/portal-agent-account-phone.png" alt="The agent account on a phone" loading="lazy">
+              </div>
+            </div>
+            <figcaption><strong>See every job and what it cost</strong><span>What you owe, how to pay, every job and every invoice.</span></figcaption>
+          </figure>
+
+          <figure class="ag-shot">
+            <div class="shot-stage">
+              <div class="shot-frame shot-doc" data-label="Sample before-and-after report (page 1)">
+                <img data-shot src="/assets/img/agents/sample-fixes-report.png" alt="First page of a sample fixes report, with before and after photos of each fix" loading="lazy">
+              </div>
+            </div>
+            <figcaption><strong>The report you forward to the landlord</strong><span>Each fix with a photo before and after, what was done and the price.</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PRICES ================= -->
+    <!-- Numbers come from config.js > pricing.AGENT (Back office > Agent prices). Item wording is here. -->
+    <section class="section pricing ag-prices" id="prices">
+      <div class="container">
+        <div class="section-head split">
+          <div>
+            <p class="eyebrow">Agent prices</p>
+            <h2>Fixed prices, done on the same visit.</h2>
+            <p>Ex VAT, with the price including VAT in brackets. The same list is in your agent portal.</p>
+          </div>
+          <a class="btn btn-ink" href="https://book.testmyelectrics.com/downloads/testmyelectrics-letting-agents.pdf" data-app="agents.priceListPdf" target="_blank" rel="noopener"><svg class="icon"><use href="#i-download"/></svg>Price list (PDF)</a>
+        </div>
+
+        <article class="ag-eicr">
+          <div class="ag-eicr-head">
+            <h3>Domestic EICR</h3>
+            <p>Up to <span data-cfg="pricing.AGENT.included">8</span> circuits included</p>
+          </div>
+          <div class="ag-eicr-tiles">
+            <div><span>Studio</span><p><small>from</small><strong data-price="AGENT.studio">£79</strong><small>+VAT</small></p><em>(<span data-price-inc="AGENT.studio">£94.80</span> inc VAT)</em></div>
+            <div><span>Flat</span><p><small>from</small><strong data-price="AGENT.flat">£99</strong><small>+VAT</small></p><em>(<span data-price-inc="AGENT.flat">£118.80</span> inc VAT)</em></div>
+            <div><span>House</span><p><small>from</small><strong data-price="AGENT.house">£120</strong><small>+VAT</small></p><em>(<span data-price-inc="AGENT.house">£144</span> inc VAT)</em></div>
+          </div>
+          <ul class="ag-rows">
+            <li><span>Each circuit above <span data-cfg="pricing.AGENT.included">8</span></span><span class="ag-p"><strong data-price="AGENT.extraCircuit">£10</strong> <small>(<span data-price-inc="AGENT.extraCircuit">£12</span>)</small></span></li>
+            <li><span>Smoke alarm certificate, with an EICR</span><span class="ag-p"><strong data-price="AGENT.smoke">£30</strong> <small>(<span data-price-inc="AGENT.smoke">£36</span>)</small></span></li>
+            <li><span>PAT testing, up to 10 appliances, with an EICR</span><span class="ag-p"><strong data-price="AGENT.patUpTo10">£40</strong> <small>(<span data-price-inc="AGENT.patUpTo10">£48</span>)</small></span></li>
+            <li><span>PAT testing, each appliance above 10</span><span class="ag-p"><strong data-price="AGENT.patExtra">£1</strong> <small>(<span data-price-inc="AGENT.patExtra">£1.20</span>)</small></span></li>
+          </ul>
+        </article>
+
+        <div class="ag-fix-grid">
+          <article class="ag-fix">
+            <h3>Sockets, switches and lights</h3>
+            <p class="ag-fix-note">Fixed on the visit · from, ex VAT (inc VAT)</p>
+            <ul class="ag-rows">
+              <li><span>Replace a damaged socket-outlet (single or double) or light switch</span><span class="ag-p"><strong data-price="AGENT.socket">£20</strong> <small>(<span data-price-inc="AGENT.socket">£24</span>)</small></span></li>
+              <li><span>Replace a damaged fused spur</span><span class="ag-p"><strong data-price="AGENT.spur">£25</strong> <small>(<span data-price-inc="AGENT.spur">£30</span>)</small></span></li>
+              <li><span>Replace a damaged cooker switch</span><span class="ag-p"><strong data-price="AGENT.cookerSwitch">£30</strong> <small>(<span data-price-inc="AGENT.cookerSwitch">£36</span>)</small></span></li>
+              <li><span>Replace a broken ceiling rose, pendant or lampholder</span><span class="ag-p"><strong data-price="AGENT.ceilingRose">£25</strong> <small>(<span data-price-inc="AGENT.ceilingRose">£30</span>)</small></span></li>
+              <li><span>Replace a broken light with a standard LED batten</span><span class="ag-p"><strong data-price="AGENT.ledBatten">£45</strong> <small>(<span data-price-inc="AGENT.ledBatten">£54</span>)</small></span></li>
+              <li><span>Replace a GU10 or MR16 lampholder in a recessed light, each</span><span class="ag-p"><strong data-price="AGENT.gu10">£15</strong> <small>(<span data-price-inc="AGENT.gu10">£18</span>)</small></span></li>
+              <li><span>Replace a bathroom or outdoor light with an IP65 fitting</span><span class="ag-p"><strong data-price="AGENT.ip65Light">£50</strong> <small>(<span data-price-inc="AGENT.ip65Light">£60</span>)</small></span></li>
+              <li><span>Replace an outdoor socket with a weatherproof IP66 socket</span><span class="ag-p"><strong data-price="AGENT.outdoorSocket">£45</strong> <small>(<span data-price-inc="AGENT.outdoorSocket">£54</span>)</small></span></li>
+              <li><span>Enclose an unenclosed connection, per location</span><span class="ag-p"><strong data-price="AGENT.enclose">£25</strong> <small>(<span data-price-inc="AGENT.enclose">£30</span>)</small></span></li>
+            </ul>
+          </article>
+
+          <div class="ag-fix-col">
+            <article class="ag-fix">
+              <h3>Consumer unit: blanks, seals and devices</h3>
+              <p class="ag-fix-note">Fixed on the visit · from, ex VAT (inc VAT)</p>
+              <ul class="ag-rows">
+                <li><span>Fit missing blanks, up to 4</span><span class="ag-p"><strong data-price="AGENT.blanks">£15</strong> <small>(<span data-price-inc="AGENT.blanks">£18</span>)</small></span></li>
+                <li><span>Seal openings in the consumer unit or an enclosure</span><span class="ag-p"><strong data-price="AGENT.seal">£15</strong> <small>(<span data-price-inc="AGENT.seal">£18</span>)</small></span></li>
+                <li><span>Replace a faulty RCD (up to 80A): BG Fortress, Wylex or MK Sentry board</span><span class="ag-p"><strong data-price="AGENT.rcd">£70</strong> <small>(<span data-price-inc="AGENT.rcd">£84</span>)</small></span></li>
+                <li><span>Replace a single MCB in a BG, Wylex or MK board, same make</span><span class="ag-p"><strong data-price="AGENT.mcb">£25</strong> <small>(<span data-price-inc="AGENT.mcb">£30</span>)</small></span></li>
+                <li><span>Fit missing RCD, earthing or bonding labels (free with another fix)</span><span class="ag-p"><strong data-price="AGENT.labels">£10</strong> <small>(<span data-price-inc="AGENT.labels">£12</span>)</small></span></li>
+              </ul>
+            </article>
+
+            <article class="ag-fix">
+              <h3>Earthing and bonding</h3>
+              <p class="ag-fix-note">Fixed on the visit · from, ex VAT (inc VAT)</p>
+              <ul class="ag-rows">
+                <li><span>Replace a loose, corroded or missing bonding clamp, with label</span><span class="ag-p"><strong data-price="AGENT.bondingClamp">£20</strong> <small>(<span data-price-inc="AGENT.bondingClamp">£24</span>)</small></span></li>
+                <li><span>Main bonding to gas or water (10&nbsp;mm², up to 5&nbsp;m, accessible route)</span><span class="ag-p"><strong data-price="AGENT.bondingOne">£65</strong> <small>(<span data-price-inc="AGENT.bondingOne">£78</span>)</small></span></li>
+                <li><span>Main bonding to gas and water</span><span class="ag-p"><strong data-price="AGENT.bondingBoth">£110</strong> <small>(<span data-price-inc="AGENT.bondingBoth">£132</span>)</small></span></li>
+              </ul>
+            </article>
+          </div>
+
+          <article class="ag-fix ag-fix-wide">
+            <h3>Consumer unit replacement</h3>
+            <p class="ag-fix-note">A separate visit · from, ex VAT (inc VAT)</p>
+            <ul class="ag-rows ag-rows-2">
+              <li><span>Metal consumer unit, dual RCD, up to 10 circuits</span><span class="ag-p"><strong data-price="AGENT.cuDualRcd">£495</strong> <small>(<span data-price-inc="AGENT.cuDualRcd">£594</span>)</small></span></li>
+              <li><span>Metal consumer unit, all RCBOs, up to 10 circuits</span><span class="ag-p"><strong data-price="AGENT.cuRcbo">£650</strong> <small>(<span data-price-inc="AGENT.cuRcbo">£780</span>)</small></span></li>
+              <li><span>Each circuit over 10</span><span class="ag-p"><strong data-price="AGENT.cuExtraCircuit">£25</strong> <small>(<span data-price-inc="AGENT.cuExtraCircuit">£30</span>)</small></span></li>
+              <li><span>Upgrade meter tails and fit an isolator (if needed)</span><span class="ag-p"><strong data-price="AGENT.tails">£75</strong> <small>(<span data-price-inc="AGENT.tails">£90</span>)</small></span></li>
+            </ul>
+          </article>
+        </div>
+
+        <p class="ag-small">Fixed prices cover the items above, done during the EICR visit and within your spend limit: like-for-like replacements, standard white accessories and normal access. PAT testing and smoke alarm certificates are add-ons to an EICR only. Anything that can't be done on the visit is quoted as normal, as are rewiring, chasing walls, fault-finding, parts not on the van, any other make of RCD or MCB, a whole new recessed light fitting and any circuit that fails on test. Consumer unit replacements include the certificate and Building Control notification. Every job you raise in the agent portal is approved by you and counts as your purchase order, under the agent terms you sign when your account is set up.</p>
+      </div>
+    </section>
+
+    <!-- ================= ON ACCOUNT ================= -->
+    <section class="ag-account" id="account">
+      <div class="container ag-account-inner">
+        <span class="ag-account-icon"><svg class="icon"><use href="#i-receipt"/></svg></span>
+        <div>
+          <h2>On account. No payment to release certificates.</h2>
+          <p>Invoices are payable 28 days after the end of the week of the invoice (our weeks end on Friday). Pay by bank transfer or card.</p>
+        </div>
+        <a class="btn btn-volt" href="#request">Get your agent account <svg class="icon"><use href="#i-arrow"/></svg></a>
+      </div>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="section ag-faq" id="faq">
+      <div class="container faq-wrap">
+        <div class="section-head">
+          <p class="eyebrow">Questions</p>
+          <h2>What agents ask us.</h2>
+          <div class="faq-side">
+            <span class="fc-icon"><svg class="icon"><use href="#i-user"/></svg></span>
+            <div><strong>Already have an account?</strong><a href="https://book.testmyelectrics.com/portal/" data-portal>Agent log in</a></div>
+          </div>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>What if the engineer finds something not on your list?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a"><p>We send you photos and a price, and you approve it from your phone. We only do the work once you've approved it. The same goes for anything that would take the job over your spend limit.</p></div>
+          </details>
+          <details>
+            <summary>Do I get a Satisfactory certificate on the day?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a"><p>Where everything the engineer finds is on our price list and within your spend limit, yes: we fix it on the visit and the certificate is issued the same day.</p><p>If something needs a quote or a separate visit, we send you the photos and the price first. Our Qualified Supervisor decides the outcome of every EICR.</p></div>
+          </details>
+          <details>
+            <summary>How do I match invoices to jobs?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a"><p>Every job has a PO number, and you can add your own reference when you raise it.</p></div>
+          </details>
+          <details>
+            <summary>Can my landlord get the report?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a"><p>Yes. Forward the PDF, or use <strong>Send to tenant / agent</strong> in the portal to email them a secure link.</p></div>
+          </details>
+          <details>
+            <summary>Which areas do you cover?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a"><p>Essex and East London. If you're not sure about a property, put its postcode in your request or email us at <a href="mailto:bookings@testmyelectrics.com">bookings@testmyelectrics.com</a> and we'll tell you.</p></div>
+          </details>
+          <details>
+            <summary>What if the tenant isn't in?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a"><p>The engineer waits 5 minutes, takes a photo of the door and leaves. The visit is charged in full, as set out in the agent terms.</p></div>
+          </details>
+          <details>
+            <summary>How do I log in once I have an account?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a"><p>Go to <a href="https://book.testmyelectrics.com/portal/" data-portal>Agent log in</a>, type your email address and we'll email you a login link.</p></div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= REQUEST AN AGENT ACCOUNT ================= -->
+    <!-- Posts to /api/lead (Caddy > booking app /api/public/lead) with kind "agent_request". See site.js. -->
+    <section class="section callback-section" id="request">
+      <div class="container cb-wrap">
+        <div class="cb-intro">
+          <p class="eyebrow">Get your agent account</p>
+          <h2>Try us on one property.</h2>
+          <p>Tell us who you are and we'll set up your agent account. We set up every account ourselves, so there's nothing to sign up for.</p>
+          <ol class="cb-steps">
+            <li><strong>Send this form</strong><span>It takes a minute.</span></li>
+            <li><strong>We set up your account</strong><span>And email you a login link. It works for 2 days.</span></li>
+            <li><strong>Sign the agent terms once</strong><span>Then raise your first job.</span></li>
+          </ol>
+          <p class="ag-mailto">Prefer email? <a href="mailto:bookings@testmyelectrics.com?subject=Agent%20account%20request&amp;body=Agency%20name%3A%20%0D%0AYour%20name%3A%20%0D%0APhone%3A%20%0D%0ARoughly%20how%20many%20properties%20you%20manage%3A%20%0D%0A">Email bookings@testmyelectrics.com</a></p>
+        </div>
+
+        <div class="callback cb-card">
+          <form class="cb-form" data-agent-form novalidate aria-label="Get your agent account" data-clarity-mask="true">
+            <label class="cb-field"><span>Agency name</span><input name="agency" autocomplete="organization" required></label>
+            <div class="cb-row">
+              <label class="cb-field"><span>Your name</span><input name="name" autocomplete="name" required></label>
+              <label class="cb-field"><span>Phone <em>optional</em></span><input name="phone" type="tel" autocomplete="tel" inputmode="tel"></label>
+            </div>
+            <label class="cb-field"><span>Work email <em>your login link goes here</em></span><input name="email" type="email" autocomplete="email" required></label>
+            <fieldset class="cb-needs">
+              <legend>Roughly how many properties do you manage?</legend>
+              <input type="radio" id="agp-1" name="properties" value="Under 50"><label for="agp-1">Under 50</label>
+              <input type="radio" id="agp-2" name="properties" value="50–200"><label for="agp-2">50–200</label>
+              <input type="radio" id="agp-3" name="properties" value="200–500"><label for="agp-3">200–500</label>
+              <input type="radio" id="agp-4" name="properties" value="500+"><label for="agp-4">500+</label>
+            </fieldset>
+            <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
+            <p class="cb-status" data-ag-status role="status" hidden></p>
+            <button class="btn btn-volt btn-lg" type="submit">Get your agent account <svg class="icon"><use href="#i-arrow"/></svg></button>
+            <p class="cb-small">We'll only use your details to set up your account and reply to you. <a href="/privacy">Privacy policy</a></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="lp-footer">
+    <div class="container lp-footer-inner">
+      <p>© <span data-year>2026</span> UK Sustainability Group Ltd t/a TestMyElectrics. Unit 21 Industrial Estate, Old Church Road, East Hanningfield, Chelmsford CM3 8AB. Company no. 13349877. VAT no. 383 7414 76. NAPIT registered.</p>
+      <nav aria-label="Footer">
+        <a href="https://book.testmyelectrics.com/portal/" data-portal>Agent log in</a>
+        <a href="/">testmyelectrics.com</a>
+        <a href="/privacy">Privacy policy</a>
+        <a href="/complaints">Complaints</a>
+        <button type="button" class="link-like" data-cookie-settings>Cookie settings</button>
+      </nav>
+    </div>
+  </footer>
+
+  <div class="mobile-bar" data-mobile-bar data-hide-over="#request">
+    <a class="btn btn-volt" href="#request">Get your agent account <svg class="icon"><use href="#i-arrow"/></svg></a>
+    <a class="btn btn-ghost-light" href="https://book.testmyelectrics.com/portal/" data-portal>Log in</a>
+  </div>
+
+  <script src="/assets/config.js?v=37"></script>
+  <script src="/assets/consent.js?v=37"></script>
+  <script src="/assets/site.js?v=37"></script>
+
+  <!-- Booking-app tracking (integration brief, section 03). Pasted as supplied.
+       Keep it last, after site.js has built the booking links. It also keeps the utm_ tags from the
+       outreach email (?utm_source=outreach&utm_medium=email&utm_campaign=letting-agents), which the
+       request form adds to the lead as "Came from". -->
+  <script>
+  (function () {
+    var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid'];
+    var q = new URLSearchParams(location.search), keep = {};
+    try { keep = JSON.parse(sessionStorage.getItem('eeg_attr') || '{}'); } catch (e) {}
+    KEYS.forEach(function (k) { if (q.get(k)) keep[k] = q.get(k); });
+    try { sessionStorage.setItem('eeg_attr', JSON.stringify(keep)); } catch (e) {}
+    document.querySelectorAll('a[href*="/book/"]').forEach(function (a) {
+      var u = new URL(a.href, location.href);
+      Object.keys(keep).forEach(function (k) { if (!u.searchParams.has(k)) u.searchParams.set(k, keep[k]); });
+      a.href = u.toString();
+    });
+  })();
+  </script>
+</body>
+</html>

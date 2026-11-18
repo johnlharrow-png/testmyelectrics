@@ -53,6 +53,32 @@ window.TME_CONFIG = {
     FIRE:       { price: 40, included: 6, extra: 8.33 },
     COMMERCIAL: { price: 169, included: 10, extra: 10 },
     EMERGENCY:  { monthly: 80, annual: 199 },
+
+    /* Letting agents page (/letting-agents): the AGENT price list, not the public one above.
+       Source of truth: Back office > Agent prices (Testing prices and Remedial prices tabs).
+       The flyer PDF has the same table. Copied from the flyer on 18 Nov 2026.
+       If the back office changes, change these numbers the same day. The page shows inc VAT
+       in brackets, worked out from these (x 1.2). The item wording is in letting-agents.html. */
+    AGENT: {
+      // EICR and add-ons ("from" prices for the EICR)
+      studio: 79, flat: 99, house: 120, included: 8, extraCircuit: 10,
+      smoke: 30, patUpTo10: 40, patExtra: 1,
+      spendLimit: 150,   // the spend limit per job we suggest to agents
+      // Fixes on the visit: sockets, switches and lights
+      socket: 20, spur: 25, cookerSwitch: 30, ceilingRose: 25, ledBatten: 45, gu10: 15,
+      ip65Light: 50, outdoorSocket: 45, enclose: 25,
+      // Consumer unit: blanks, seals and devices
+      blanks: 15, seal: 15, rcd: 70, mcb: 25, labels: 10,
+      // Earthing and bonding
+      bondingClamp: 20, bondingOne: 65, bondingBoth: 110,
+      // Consumer unit replacement (separate visit)
+      cuDualRcd: 495, cuRcbo: 650, cuExtraCircuit: 25, tails: 75,
+    },
+  },
+
+  /* Letting agents page: files on the booking app (BASE). */
+  agents: {
+    priceListPdf: '/downloads/testmyelectrics-letting-agents.pdf',
   },
 
   /* Postcode coverage for homes & rentals (used by the "Do we cover you?" checker).

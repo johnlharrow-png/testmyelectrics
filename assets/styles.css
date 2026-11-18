@@ -316,6 +316,7 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
 .card-link { margin-top: auto; font-weight: 600; font-size: 15px; text-decoration: none; display: inline-flex; gap: 6px; align-items: center; transition: gap .15s; }
 .card-link .icon { width: 17px; height: 17px; stroke-width: 2; }
 .card-link:hover { gap: 10px; }
+.card-link + .card-link { margin-top: 10px; }
 
 /* ---------- Pricing ---------- */
 .pricing { background: var(--surface); border-block: 1px solid var(--line); }
@@ -633,6 +634,145 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
 .lp-footer nav { display: flex; gap: 18px; flex-wrap: wrap; }
 .lp-footer a { color: rgba(255, 255, 255, .85); text-decoration: none; }
 .lp-footer a:hover, .lp-footer .link-like:hover { color: #fff; }
+
+/* ---------- Letting agents page (/letting-agents) ---------- */
+.ag .section { padding: 88px 0; }
+.ag h1, .ag h2 { text-wrap: balance; }
+.ag .hero { padding: 72px 0 100px; }
+.ag .hero h1 { font-size: clamp(38px, 5.4vw, 66px); }
+.ag .lead { font-size: 20px; color: rgba(255, 255, 255, .8); }
+.ag-hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.ag-hero-login { margin-top: 18px; font-size: 15px; color: rgba(255, 255, 255, .65); }
+.ag-hero-login a { display: inline-flex; align-items: center; gap: 6px; color: #fff; font-weight: 600; text-decoration: none; }
+.ag-hero-login a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.ag-hero-login .icon { width: 16px; height: 16px; color: var(--volt); stroke-width: 2.2; }
+.float-card strong span { color: inherit; }
+.ag .header-link.ag-login-link { font-weight: 600; }
+
+.ag-strip { background: var(--surface); border-bottom: 1px solid var(--line); }
+.ag-strip-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px 40px; padding: 22px 0; flex-wrap: wrap; }
+.ag-strip ul { list-style: none; margin: 0; padding: 0; display: flex; align-items: center; gap: 20px 44px; flex-wrap: wrap; }
+.ag-strip img { height: 40px; width: auto; }
+
+.ag-grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.ag-grid-3 .card > p { font-size: 16px; }
+.ag-how { background: var(--surface); border-block: 1px solid var(--line); }
+.ag-how .how-step { background: var(--paper); }
+.ag-steps { list-style: none; padding: 0; margin: 0; }
+.ag-steps a { color: var(--brand); font-weight: 600; }
+.ag-steps strong { color: var(--text); }
+
+/* Portal screenshots: a browser frame (and a phone over it) on a tinted stage */
+.ag-shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.ag-shot { margin: 0; display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; }
+.shot-stage {
+  position: relative; aspect-ratio: 16 / 10; padding: 28px 32px 0; overflow: hidden; border-bottom: 1px solid var(--line);
+  background: radial-gradient(120% 90% at 100% 0%, rgba(244, 123, 32, .1), transparent 55%), linear-gradient(160deg, #E8ECF6, #F3F5F9);
+}
+.shot-frame {
+  position: relative; height: 100%; display: flex; flex-direction: column; overflow: hidden;
+  background: #fff; border-radius: 12px 12px 0 0; box-shadow: 0 18px 44px rgba(12, 24, 64, .14), 0 0 0 1px rgba(12, 24, 64, .07);
+}
+.shot-bar { flex: none; display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 12px; background: var(--paper); border-bottom: 1px solid var(--line); }
+.shot-bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--line-2); flex: none; }
+.shot-bar span { margin-left: 8px; font: 500 10.5px/1 var(--font-mono); color: var(--muted-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.shot-frame img { display: block; width: 100%; flex: 1; min-height: 0; object-fit: cover; object-position: top left; }
+.shot-frame.shot-doc { width: 64%; margin-inline: auto; border-radius: 6px 6px 0 0; }
+.shot-phone {
+  position: absolute; z-index: 1; right: 6%; bottom: -14%; width: 24%; aspect-ratio: 9 / 19.5; padding: 5px;
+  border-radius: 22px; background: var(--ink); box-shadow: 0 22px 48px rgba(12, 24, 64, .3);
+}
+.shot-phone img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 17px; background: #fff; }
+.shot-stage.phone-only { display: flex; justify-content: center; padding: 28px 0 0; }
+.phone-only .shot-phone { position: relative; right: auto; bottom: auto; width: 34%; flex: none; align-self: flex-start; }
+/* No image file yet: say what goes there */
+.is-missing img { visibility: hidden; }
+.is-missing::after {
+  content: "Screenshot: " attr(data-label); position: absolute; inset: 26px 0 0; display: grid; place-items: center; padding: 16px; text-align: center;
+  font: 600 13px/1.4 var(--font-body); color: var(--muted-2); background: repeating-linear-gradient(135deg, #F7F8FB 0 12px, #EFF2F7 12px 24px);
+}
+.shot-doc.is-missing::after { inset: 0; }
+.shot-phone.is-missing::after { inset: 5px; border-radius: 17px; padding: 10px; font-size: 11px; }
+.ag-shot figcaption { padding: 20px 24px 24px; }
+.ag-shot figcaption strong { display: block; font: 700 18px/1.3 var(--font-display); letter-spacing: -.01em; }
+.ag-shot figcaption span { display: block; margin-top: 6px; color: var(--muted); font-size: 15px; }
+
+/* Agent prices */
+.ag-eicr {
+  display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 22px 40px; align-items: center;
+  background: var(--ink); color: #fff; border-radius: var(--radius-lg); padding: 30px; box-shadow: 0 30px 60px rgba(12, 24, 64, .18);
+}
+.ag-eicr-head { grid-column: 1 / -1; display: flex; justify-content: space-between; align-items: baseline; gap: 6px 16px; flex-wrap: wrap; }
+.ag-eicr-head h3 { font-size: 22px; }
+.ag-eicr-head p { color: rgba(255, 255, 255, .6); font-size: 14px; }
+.ag-eicr-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.ag-eicr-tiles > div { padding: 16px; border-radius: 14px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .1); }
+.ag-eicr-tiles > div > span { font-size: 12.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255, 255, 255, .7); }
+.ag-eicr-tiles p { display: flex; align-items: baseline; gap: 4px; margin-top: 8px; }
+.ag-eicr-tiles strong { font: 700 38px/1 var(--font-display); letter-spacing: -.03em; }
+.ag-eicr-tiles small { font-size: 12.5px; color: rgba(255, 255, 255, .6); }
+.ag-eicr-tiles em { display: block; margin-top: 6px; font-style: normal; font-size: 12.5px; color: rgba(255, 255, 255, .55); }
+.ag-rows { list-style: none; margin: 0; padding: 0; font-size: 14.5px; }
+.ag-rows li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 9px 0; border-top: 1px solid var(--line); line-height: 1.4; }
+.ag-rows li:first-child { border-top: 0; }
+.ag-p { flex: none; white-space: nowrap; text-align: right; font-variant-numeric: tabular-nums; }
+.ag-p strong { font-weight: 700; }
+.ag-p small { font-size: 12.5px; color: var(--muted); }
+.ag-eicr .ag-rows li { border-top-color: rgba(255, 255, 255, .1); }
+.ag-eicr .ag-p small { color: rgba(255, 255, 255, .55); }
+.ag-fix-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; align-items: start; }
+.ag-fix-col { display: grid; gap: 16px; }
+.ag-fix { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px 26px 16px; }
+.ag-fix h3 { font-size: 18px; letter-spacing: -.01em; }
+.ag-fix-note { font-size: 13px; color: var(--muted); margin: 4px 0 10px; }
+.ag-fix-wide { grid-column: 1 / -1; }
+.ag-rows-2 { display: grid; grid-template-columns: 1fr 1fr; column-gap: 40px; }
+.ag-rows-2 li:nth-child(2) { border-top: 0; }
+.ag-small { margin-top: 20px; max-width: 980px; font-size: 13px; line-height: 1.6; color: var(--muted); }
+
+.ag-account { background: var(--ink); color: #fff; padding: 56px 0; }
+.ag-account-inner { display: flex; align-items: center; gap: 24px 32px; flex-wrap: wrap; }
+.ag-account-icon { width: 56px; height: 56px; border-radius: 16px; background: var(--volt); color: var(--volt-ink); display: grid; place-items: center; flex: none; }
+.ag-account-icon .icon { width: 26px; height: 26px; }
+.ag-account-inner > div { flex: 1; min-width: 260px; }
+.ag-account h2 { font-size: clamp(24px, 3vw, 34px); letter-spacing: -.025em; }
+.ag-account p { margin-top: 8px; max-width: 680px; font-size: 16.5px; color: rgba(255, 255, 255, .7); }
+
+.ag-mailto { margin-top: 22px; font-size: 15px; color: var(--muted); }
+.ag-mailto a { color: var(--brand); font-weight: 600; }
+.ag .cb-small a { color: rgba(255, 255, 255, .75); }
+
+@media (max-width: 1120px) {
+  .ag-eicr { grid-template-columns: 1fr; }
+}
+@media (max-width: 900px) {
+  .ag-grid-3, .ag-shots, .ag-fix-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .ag .section { padding: 64px 0; }
+  .ag .hero { padding: 44px 0 72px; }
+  .ag .lead { font-size: 18px; }
+  body.ag .header-actions > .btn { display: none; }   /* beats the .lp rule further down */
+  .ag .header-link.ag-login-link { display: inline-flex; }
+  .ag-hero-actions .btn { width: 100%; }
+  .ag-strip-inner { justify-content: center; text-align: center; }
+  .ag-strip ul { justify-content: center; gap: 16px 28px; }
+  .ag-strip img { height: 32px; }
+  .shot-stage { padding: 20px 20px 0; }
+  .ag-eicr { padding: 22px; }
+  .ag-eicr-tiles { grid-template-columns: 1fr; gap: 8px; }
+  .ag-eicr-tiles > div { display: grid; grid-template-columns: 1fr auto; align-items: center; column-gap: 12px; padding: 12px 14px; }
+  .ag-eicr-tiles > div > span, .ag-eicr-tiles em { grid-column: 1; }
+  .ag-eicr-tiles em { margin-top: 2px; }
+  .ag-eicr-tiles p { grid-column: 2; grid-row: 1 / span 2; margin-top: 0; }
+  .ag-eicr-tiles strong { font-size: 30px; }
+  .ag-fix { padding: 20px 18px 12px; }
+  .ag-rows { font-size: 14px; }
+  .ag-rows-2 { grid-template-columns: 1fr; }
+  .ag-rows-2 li:nth-child(2) { border-top: 1px solid var(--line); }
+  .ag-account { padding: 44px 0; }
+  .ag-account-inner .btn { width: 100%; }
+}
 
 /* ---------- Legal pages (terms, privacy, complaints) ---------- */
 .legal { padding: 64px 0 104px; }
