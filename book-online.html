@@ -7,7 +7,7 @@
   <meta name="description" content="Book an EICR, PAT test or smoke and CO alarm check online. NAPIT-registered electricians covering Essex and East London. EICRs from £79 + VAT.">
   <!-- Ad landing page: kept out of search results so it doesn't compete with the homepage -->
   <meta name="robots" content="noindex, follow">
-  <link rel="canonical" href="https://www.testmyelectrics.com/">
+  <link rel="canonical" href="https://www.testmyelectrics.com/book-online">
   <meta name="theme-color" content="#0C1840">
   <link rel="icon" href="/assets/favicon-192.png" type="image/png" sizes="192x192">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/assets/styles.css?v=36">
-  <link rel="preload" as="image" href="/assets/img/hero-panel.jpg">
+  <link rel="preload" as="image" type="image/webp" href="/assets/img/hero-panel.webp" imagesrcset="/assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" imagesizes="(max-width: 760px) 360px, (max-width: 1120px) 420px, 470px">
 </head>
 <body class="lp">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -74,8 +74,8 @@
             <span class="rv-stars" aria-hidden="true" style="--rv: 94%"></span>
           </a>
           <p class="eyebrow no-rule"><span class="pulse-dot" aria-hidden="true"></span> EICR · PAT · Alarm checks — Essex &amp; East London</p>
-          <h1>Electrical safety testing, <span class="hl">booked online in a&nbsp;minute.</span></h1>
-          <p class="lead">EICRs from <strong>£79 + VAT</strong>, plus PAT testing and smoke alarm checks, by NAPIT-registered electricians across Essex and East London. Choose a slot, pay securely online, and your certificate lands in your account.</p>
+          <h1>EICR certificates from <span data-price="EICR_DOM.studio">£79</span>&nbsp;+&nbsp;VAT, <span class="hl">booked online in a&nbsp;minute</span></h1>
+          <p class="lead">Book an Electrical Installation Condition Report (EICR) from <strong><span data-price="EICR_DOM.studio">£79</span> + VAT</strong>, plus PAT testing and smoke alarm checks, by NAPIT-registered electricians across Essex and East London. Choose a slot, pay securely online, and your EICR certificate lands in your account.</p>
 
           <form class="quick-book" data-quick-book aria-label="Check availability">
             <label class="qb-field qb-select">
@@ -108,7 +108,10 @@
 
         <div class="hero-visual">
           <figure class="hero-photo">
-            <img src="/assets/img/hero-panel.jpg" alt="A testmyelectrics.com electrician testing a distribution board with a multifunction tester" width="896" height="1120" fetchpriority="high">
+            <picture>
+              <source type="image/webp" srcset="/assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" sizes="(max-width: 760px) 360px, (max-width: 1120px) 420px, 470px">
+              <img src="/assets/img/hero-panel.jpg" alt="A testmyelectrics.com electrician testing a distribution board with a multifunction tester" width="896" height="1120" fetchpriority="high">
+            </picture>
           </figure>
 
           <div class="float-card float-1" aria-hidden="true">
@@ -165,7 +168,7 @@
         <div class="section-head split">
           <div>
             <p class="eyebrow">Pricing</p>
-            <h2>Clear prices, booked online.</h2>
+            <h2>EICR cost: from <span data-price="EICR_DOM.studio">£79</span> + VAT</h2>
             <p>Fixed prices for homes, rentals and businesses. All prices exclude VAT.</p>
           </div>
           <a class="btn btn-ink" href="/#book" data-book="">Start a booking <svg class="icon"><use href="#i-arrow"/></svg></a>
