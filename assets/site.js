@@ -104,6 +104,9 @@
     if (RV.url) { a.href = RV.url; a.target = '_blank'; a.rel = 'noopener'; }
     const count = a.querySelector('[data-rv-count]');
     if (count && RV.count) count.textContent = `(${RV.count} reviews)`;
+    // What shows in its place until then (the trust strip on /book-online)
+    const fallback = a.parentElement && a.parentElement.querySelector('[data-reviews-fallback]');
+    if (fallback && score && RV.url) fallback.hidden = true;
     // A badge that starts hidden (the ad landing page) only appears with a score people can check
     if (a.hasAttribute('hidden') && score && RV.url) a.hidden = false;
   });
@@ -404,10 +407,19 @@
     if (!qbMain) return;
     e.preventDefault();
     const [service, ...extras] = (a.dataset.checkPrices || '').split(',').filter(Boolean);   // empty = keep the box's choice
-    const sel = qbMain.elements.service;
-    if (service && [...sel.options].some((o) => o.value === service) && sel.value !== service) {
+    const sel = qbMain.elements.service;   // a <select>, or a hidden input on a postcode-only box
+    const allowed = sel && (sel.options ? [...sel.options].some((o) => o.value === service) : true);
+    if (service && allowed && sel.value !== service) {
       sel.value = service;
       sel.dispatchEvent(new Event('change'));
+    }
+    // Say what the box will book when that isn't the page's main service (e.g. the homebuyer's report)
+    const hint = $('[data-qb-hint]', qbMain);
+    if (hint) {
+      hint.dataset.base = hint.dataset.base || hint.textContent;
+      hint.textContent = sel && sel.value === 'HOMEBUYER' && !sel.options
+        ? 'Pop in your postcode to see dates and prices for a homebuyer’s report.'
+        : hint.dataset.base;
     }
     extras.forEach((x) => {
       const box = $(`input[name="addons"][value="${x}"]`, qbMain);

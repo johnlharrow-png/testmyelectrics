@@ -87,7 +87,6 @@
   if (A.adsId) tools.push('Google Ads');
   if (clarityId) tools.push('Microsoft Clarity');
   const toolText = tools.length > 1 ? `${tools.slice(0, -1).join(', ')} and ${tools[tools.length - 1]}` : tools[0];
-  const why = clarityId ? 'to see how the site is used, where people click and which ads work' : 'to see how the site is used and which ads work';
 
   let banner = null;
   function choose(value) {
@@ -96,6 +95,7 @@
     if (ids.length) gtag('consent', 'update', value === 'granted' ? GRANTED : DENIED);
     if (value === 'granted') startClarity(); else stopClarity();
     if (banner) { banner.remove(); banner = null; }
+    document.documentElement.style.removeProperty('--consent-h');
   }
   function showBanner() {
     if (banner) return;
@@ -104,7 +104,7 @@
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-label', 'Cookie choices');
     banner.innerHTML = `
-      <p><strong>Cookies</strong><span class="consent-long">We'd like to use ${toolText} cookies ${why}. They stay off unless you accept. <a href="/privacy#cookies">Privacy policy</a></span><span class="consent-short">Analytics &amp; ad cookies? <a href="/privacy#cookies">Privacy</a></span></p>
+      <p><strong>Cookies</strong><span class="consent-long">Analytics and ad cookies (${toolText}) stay off unless you accept. <a href="/privacy#cookies">Privacy policy</a></span><span class="consent-short">Analytics &amp; ad cookies? <a href="/privacy#cookies">Privacy</a></span></p>
       <div class="consent-actions">
         <button type="button" class="btn btn-ink btn-sm" data-choice="denied">Reject</button>
         <button type="button" class="btn btn-ink btn-sm" data-choice="granted">Accept</button>
@@ -114,6 +114,10 @@
       if (b) choose(b.dataset.choice);
     });
     document.body.appendChild(banner);
+    // The phone booking bar sits just above the strip (styles.css reads --consent-h)
+    const setH = () => { if (banner) document.documentElement.style.setProperty('--consent-h', banner.offsetHeight + 'px'); };
+    setH();
+    if ('ResizeObserver' in window) new ResizeObserver(setH).observe(banner);
   }
 
   if (!saved) showBanner();

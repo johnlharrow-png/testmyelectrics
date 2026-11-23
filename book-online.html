@@ -16,11 +16,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles.css?v=42">
-  <!-- Hero photo: preloaded only where it sits at the top of the page (on phones it is below the booking box) -->
-  <link rel="preload" as="image" type="image/webp" href="/assets/img/hero-panel.webp" imagesrcset="/assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" imagesizes="(max-width: 1120px) 420px, 470px" media="(min-width: 761px)" fetchpriority="high">
+  <link rel="stylesheet" href="/assets/styles.css?v=43">
 </head>
-<body class="lp">
+<body class="bo">
   <a class="skip-link" href="#main">Skip to content</a>
 
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -50,83 +48,51 @@
     </defs>
   </svg>
 
-  <header class="site-header" data-header>
+  <header class="site-header bo-header" data-header>
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="testmyelectrics.com home">
         <img class="brand-logo" src="/assets/img/logo-header.png" alt="testmyelectrics.com" width="1047" height="152">
       </a>
       <div class="header-actions">
-        <a class="header-link lp-email-link" href="mailto:bookings@testmyelectrics.com" data-email-link data-email>bookings@testmyelectrics.com</a>
-        <a class="header-link lp-callback-link" href="/#callback">Request a callback</a>
+        <a class="bo-email" href="mailto:bookings@testmyelectrics.com" data-email-link aria-label="Email us at bookings@testmyelectrics.com"><svg class="icon"><use href="#i-mail"/></svg>Email us</a>
         <a class="btn btn-volt btn-sm" href="/#book" data-book="EICR_DOM" data-check-prices="">Check dates &amp; prices</a>
       </div>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero" id="book">
+    <!-- 1. First screen: headline, one line, booking box. On a phone it all fits in the top ~450px. -->
+    <section class="hero bo-hero" id="book">
       <div class="hero-bg" aria-hidden="true"></div>
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="container hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow no-rule"><span class="pulse-dot" aria-hidden="true"></span> EICR certificates — Essex &amp; East London</p>
           <h1>EICR certificates from <span class="hl"><span data-price="EICR_DOM.studio">£79</span>&nbsp;+&nbsp;VAT</span></h1>
-          <p class="lead">An Electrical Installation Condition Report (EICR) by NAPIT-registered electricians across Essex and East London.</p>
+          <p class="bo-line">NAPIT-registered electricians across Essex &amp; East London. Pick a slot and pay online.</p>
 
-          <form class="quick-book" data-quick-book data-require-postcode aria-label="Check dates and prices">
-            <label class="qb-field qb-select">
-              <span>What do you need?</span>
-              <select name="service" aria-label="Service">
-                <option value="EICR_DOM">Domestic EICR</option>
-                <option value="HOMEBUYER">Homebuyer's report</option>
-                <option value="business">More than one board or property</option>
-              </select>
-            </label>
+          <form class="quick-book bo-book" data-quick-book data-require-postcode aria-label="Check dates and prices for an EICR">
+            <input type="hidden" name="service" value="EICR_DOM">
             <label class="qb-field">
               <span>Postcode</span>
-              <input name="postcode" type="text" placeholder="e.g. CM2 6AB" autocomplete="postal-code" aria-label="Postcode" aria-required="true">
+              <input name="postcode" type="text" placeholder="e.g. CM1 1AB" autocomplete="postal-code" aria-label="Postcode" aria-required="true">
             </label>
             <button class="btn btn-volt" type="submit">Check dates &amp; prices <svg class="icon"><use href="#i-arrow"/></svg></button>
             <p class="qb-hint" data-qb-hint role="status" hidden>Pop in your postcode to see dates and prices.</p>
-              <div class="qb-addons" data-addons>
-                <span class="qb-addons-label">Add to your EICR <span class="muted-inline">(+VAT)</span></span>
-                <label class="qb-addon"><input type="checkbox" name="addons" value="FIRE"><span>Smoke &amp; CO alarm check <em>+<span data-price="FIRE.price">£40</span></em></span></label>
-                <label class="qb-addon"><input type="checkbox" name="addons" value="PAT"><span>PAT testing <em>+<span data-price="PAT.upTo10">£40</span></em></span></label>
-              </div>
           </form>
           <p class="lp-hero-contact">Questions? Email <a href="mailto:bookings@testmyelectrics.com" data-email-link><span data-email>bookings@testmyelectrics.com</span></a></p>
-
-          <!-- Google reviews badge: hidden until config.reviews has a score AND a link to the reviews
-               (the TestMyElectrics.com Google listing had no reviews on 2026-11-23). -->
-          <a class="rv-badge" data-reviews hidden>
-            <span class="rv-g" aria-hidden="true"><svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.5 2.4-7.2 2.4-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg></span>
-            <span class="rv-name">Google rating</span>
-            <strong class="rv-score" data-rv-score></strong>
-            <span class="rv-stars" aria-hidden="true"></span>
-            <span class="rv-count" data-rv-count></span>
-          </a>
-
-          <ul class="hero-trust">
-            <li><svg class="icon"><use href="#i-check"/></svg>NAPIT registered, no. 64559</li>
-            <li><svg class="icon"><use href="#i-check"/></svg>TrustMark approved</li>
-            <li><svg class="icon"><use href="#i-check"/></svg>Constructionline Gold</li>
-            <li><svg class="icon"><use href="#i-check"/></svg>£5m public liability</li>
-          </ul>
         </div>
 
         <div class="hero-visual">
           <figure class="hero-photo">
             <picture>
-              <source type="image/webp" srcset="/assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" sizes="(max-width: 760px) 360px, (max-width: 1120px) 420px, 470px">
+              <source type="image/webp" srcset="/assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" sizes="(max-width: 760px) 300px, 336px">
               <img src="/assets/img/hero-panel.jpg" alt="A testmyelectrics.com electrician testing a distribution board with a multifunction tester" width="896" height="1120">
             </picture>
           </figure>
-
           <div class="float-card float-1" aria-hidden="true">
             <span class="fc-icon"><svg class="icon"><use href="#i-calendar"/></svg></span>
             <div><strong>Booking confirmed</strong><span>Thu · morning slot</span></div>
           </div>
-
           <div class="float-card float-2" aria-hidden="true">
             <span class="fc-icon fc-pass"><svg class="icon"><use href="#i-check"/></svg></span>
             <div><strong>EICR: Satisfactory</strong><span>Certificate sent to your account</span></div>
@@ -135,51 +101,28 @@
       </div>
     </section>
 
-    <!-- How it works -->
-    <section class="lp-section" id="how" aria-labelledby="lp-how">
-      <div class="container">
-        <div class="lp-head">
-          <p class="eyebrow">How it works</p>
-          <h2 id="lp-how">Booked online, tested, certificate sent.</h2>
-        </div>
-        <ol class="how-grid lp-how" style="list-style:none;padding:0">
-          <li class="how-step">
-            <div class="how-top"><span class="card-icon"><svg class="icon"><use href="#i-calendar"/></svg></span><span class="how-num">01</span></div>
-            <h3>Book online</h3>
-            <p>Pick a morning or afternoon slot and pay securely online. It takes about a minute, and you get a confirmation email.</p>
-          </li>
-          <li class="how-step">
-            <div class="how-top"><span class="card-icon"><svg class="icon"><use href="#i-bolt"/></svg></span><span class="how-num">02</span></div>
-            <h3>We test</h3>
-            <p>A NAPIT-registered electrician inspects and tests your installation in no more than 2–3 hours, and talks you through anything they find.</p>
-          </li>
-          <li class="how-step">
-            <div class="how-top"><span class="card-icon"><svg class="icon"><use href="#i-file"/></svg></span><span class="how-num">03</span></div>
-            <h3>Your EICR certificate</h3>
-            <p>Your certificate is emailed to you and saved in your online account, along with your invoice.</p>
-          </li>
-        </ol>
-      </div>
+    <!-- 2. Trust strip. The Google rating only shows once config.reviews has a score and a link to the
+         reviews (the TestMyElectrics.com Google listing had none on 2026-11-23); until then: TrustMark. -->
+    <section class="bo-trust" aria-label="Why book with us">
+      <ul class="container">
+        <li><svg class="icon"><use href="#i-shield"/></svg>NAPIT registered (no. 64559)</li>
+        <li>
+          <a class="bo-google" data-reviews hidden><span aria-hidden="true">★</span> <span data-rv-score></span> on Google <span data-rv-count></span></a>
+          <span data-reviews-fallback><svg class="icon"><use href="#i-check"/></svg>TrustMark approved</span>
+        </li>
+        <li><svg class="icon"><use href="#i-file"/></svg>Certificate in your online account</li>
+      </ul>
     </section>
 
-    <section class="section pricing" id="pricing">
+    <!-- 3. Prices: EICR only, with the homebuyer's report as a smaller second card -->
+    <section class="bo-section bo-prices" id="pricing" aria-labelledby="bo-prices">
       <div class="container">
-        <div class="section-head split">
-          <div>
-            <p class="eyebrow">Pricing</p>
-            <h2>EICR cost: from <span data-price="EICR_DOM.studio">£79</span> + VAT</h2>
-            <p>Fixed prices by the size of the property. All prices exclude VAT.</p>
-          </div>
-          <a class="btn btn-ink" href="/#book" data-book="EICR_DOM" data-check-prices="">Check dates &amp; prices <svg class="icon"><use href="#i-arrow"/></svg></a>
-        </div>
-
-        <div class="price-grid">
-          <article class="price-card featured">
+        <h2 id="bo-prices">EICR cost: from <span data-price="EICR_DOM.studio">£79</span> + VAT</h2>
+        <div class="bo-price-grid">
+          <article class="price-card featured bo-eicr">
             <span class="price-flag">Landlords: every 5 years</span>
             <h3>Domestic EICR</h3>
-            <p class="price-for">Landlords, homeowners &amp; buyers</p>
-            <p class="price"><small>from</small><strong data-price="EICR_DOM.studio">£79</strong><small>+VAT</small></p>
-            <p class="price-note">One fuse board, up to <span data-cfg="pricing.EICR_DOM.included">8</span> circuits</p>
+            <p class="price-for">One fuse board, up to <span data-cfg="pricing.EICR_DOM.included">8</span> circuits. All prices + VAT.</p>
             <div class="tiers">
               <div><span>Studio</span><span class="mono" data-price="EICR_DOM.studio">£79</span></div>
               <div><span>1 bedroom</span><span class="mono" data-price="EICR_DOM.bed1">£90</span></div>
@@ -188,223 +131,132 @@
               <div><span>4 bedrooms</span><span class="mono" data-price="EICR_DOM.bed4">£120</span></div>
               <div><span>5 bedrooms</span><span class="mono" data-price="EICR_DOM.bed5">£130</span></div>
               <div><span>6 bedrooms</span><span class="mono" data-price="EICR_DOM.bed6">£140</span></div>
-              <div><span>Each circuit over <span data-cfg="pricing.EICR_DOM.included">8</span></span><span class="mono" data-price="EICR_DOM.extra">£15</span></div>
             </div>
-            <p class="price-extras"><strong>Only if they apply:</strong> <span data-price="EICR_DOM.extra">£15</span> for each circuit over <span data-cfg="pricing.EICR_DOM.included">8</span>, counted by our engineer on the day, and parking or the congestion charge at cost, only if we have to pay them to reach you.</p>
-            <ul class="ticks">
-              <li><svg class="icon"><use href="#i-check"/></svg>Full inspection &amp; test to BS 7671</li>
-              <li><svg class="icon"><use href="#i-check"/></svg>Certificate in your online account</li>
-              <li><svg class="icon"><use href="#i-check"/></svg>Add an alarm check or PAT testing to the same visit</li>
-                          </ul>
             <a class="btn btn-volt" href="/#book" data-book="EICR_DOM" data-check-prices="EICR_DOM">Check dates &amp; prices</a>
           </article>
-
-          <article class="price-card" id="homebuyer">
+          <article class="price-card bo-homebuyer" id="homebuyer">
             <h3>Homebuyer's electrical report</h3>
-            <p class="price-for">Before you buy, or before you sell</p>
+            <p class="price-for">Before you buy or sell: a full EICR plus a written report, with repairs priced to help you negotiate.</p>
             <p class="price"><small>from</small><strong data-price="HOMEBUYER.studio">£149</strong><small>+VAT</small></p>
-            <p class="price-note">A full EICR plus a written report, up to <span data-cfg="pricing.HOMEBUYER.included">8</span> circuits</p>
-            <div class="tiers">
-              <div><span>Studio</span><span class="mono" data-price="HOMEBUYER.studio">£149</span></div>
-              <div><span>1 bedroom</span><span class="mono" data-price="HOMEBUYER.bed1">£159</span></div>
-              <div><span>2 bedrooms</span><span class="mono" data-price="HOMEBUYER.bed2">£169</span></div>
-              <div><span>3 bedrooms</span><span class="mono" data-price="HOMEBUYER.bed3">£189</span></div>
-              <div><span>4 bedrooms</span><span class="mono" data-price="HOMEBUYER.bed4">£209</span></div>
-              <div><span>5 bedrooms</span><span class="mono" data-price="HOMEBUYER.bed5">£229</span></div>
-              <div><span>6 bedrooms</span><span class="mono" data-price="HOMEBUYER.bed6">£249</span></div>
-              <div><span>Each circuit over <span data-cfg="pricing.HOMEBUYER.included">8</span></span><span class="mono" data-price="HOMEBUYER.extra">£15</span></div>
-            </div>
-            <p class="price-extras"><strong>Only if they apply:</strong> <span data-price="HOMEBUYER.extra">£15</span> for each circuit over <span data-cfg="pricing.HOMEBUYER.included">8</span>, counted by our engineer on the day, and parking or the congestion charge at cost, only if we have to pay them to reach you.</p>
-            <ul class="ticks">
-              <li><svg class="icon"><use href="#i-check"/></svg>Full EICR certificate included</li>
-              <li><svg class="icon"><use href="#i-check"/></svg>Plain-English report on the wiring, fittings and fuse board</li>
-              <li><svg class="icon"><use href="#i-check"/></svg>Repairs and upgrades priced, to help you negotiate</li>
-              <li><svg class="icon"><use href="#i-check"/></svg>Easy to share with your solicitor or lender</li>
-            </ul>
             <a class="btn btn-ghost" href="/#book" data-book="HOMEBUYER" data-check-prices="HOMEBUYER">Check dates &amp; prices</a>
           </article>
-
-          <article class="price-card">
-            <h3>Smoke, heat &amp; CO alarms</h3>
-            <p class="price-for">Test, interlink &amp; battery check</p>
-            <p class="price"><strong data-price="FIRE.price">£40</strong><small>+VAT</small></p>
-            <p class="addon-note"><svg class="icon"><use href="#i-plus"/></svg>Add-on only: booked with an EICR or homebuyer's report</p>
-            <p class="price-note">Up to <span data-cfg="pricing.FIRE.included">6</span> alarms</p>
-            <div class="tiers">
-              <div><span>Up to 6 alarms</span><span class="mono" data-price="FIRE.price">£40</span></div>
-              <div><span>Each alarm over <span data-cfg="pricing.FIRE.included">6</span></span><span class="mono" data-price="FIRE.extra">£8.33</span></div>
-            </div>
-            <ul class="ticks">
-              <li><svg class="icon"><use href="#i-check"/></svg>Smoke, heat and carbon monoxide</li>
-              <li><svg class="icon"><use href="#i-check"/></svg>Interlinked alarms tested together</li>
-              <li><svg class="icon"><use href="#i-check"/></svg>Ideal at the start of a tenancy</li>
-            </ul>
-            <a class="btn btn-ghost" href="/#book" data-book="EICR_DOM,FIRE" data-check-prices="EICR_DOM,FIRE">Check dates &amp; prices</a>
-          </article>
-
         </div>
-
-        <div class="pricing-foot">
-          <span><svg class="icon"><use href="#i-check"/></svg>All prices exclude VAT</span>
-          <span><svg class="icon"><use href="#i-check"/></svg>Pay securely online when you book</span>
-          <span><svg class="icon"><use href="#i-check"/></svg>Free rescheduling up to 24 hours before</span>
-          <span><svg class="icon"><use href="#i-check"/></svg>Remedial work only with your approval</span>
-        </div>
+        <p class="bo-price-note">Most homes have <span data-cfg="pricing.EICR_DOM.included">8</span> circuits or fewer. If yours has more, it's <span data-price="EICR_DOM.extra">£15</span> + VAT per extra circuit. Parking or congestion charges are only added if we have to pay them.</p>
       </div>
     </section>
 
-    <!-- Accreditations -->
-    <section class="lp-section" aria-labelledby="lp-accred">
+    <!-- 4. How it works -->
+    <section class="bo-section bo-how-wrap" aria-labelledby="bo-how">
       <div class="container">
-        <div class="lp-head">
-          <p class="eyebrow">Accreditations</p>
-          <h2 id="lp-accred">Qualified, registered and insured.</h2>
-        </div>
-          <ul class="logo-wall on-light accred-strip">
-            <li><img src="/assets/img/accreditations/napit.png" alt="NAPIT registered, registration number 64559" loading="lazy"></li>
-            <li><img src="/assets/img/accreditations/trustmark.png" alt="TrustMark, Government Endorsed Quality" loading="lazy"></li>
-            <li><img src="/assets/img/accreditations/constructionline-gold.png" alt="Constructionline Gold Member" loading="lazy"></li>
-          </ul>
-          <p class="lp-accred-note">NAPIT registration no. 64559 · TrustMark approved · Constructionline Gold · £5m public liability</p>
+        <h2 id="bo-how">How it works</h2>
+        <ol class="bo-how">
+          <li><span class="bo-how-icon"><svg class="icon"><use href="#i-calendar"/></svg></span><div><strong>Book online</strong><p>Choose a morning or afternoon slot and pay securely.</p></div></li>
+          <li><span class="bo-how-icon"><svg class="icon"><use href="#i-bolt"/></svg></span><div><strong>We test</strong><p>Our NAPIT-registered electrician inspects and tests your installation.</p></div></li>
+          <li><span class="bo-how-icon"><svg class="icon"><use href="#i-file"/></svg></span><div><strong>Your certificate</strong><p>Your certificate goes into your online account.</p></div></li>
+        </ol>
       </div>
     </section>
 
-    <!-- Areas we cover (same towns as the homepage; homes and rentals only on this page) -->
-    <section class="lp-section alt" id="areas" aria-labelledby="lp-areas">
+    <!-- 5. Reviews: built from config.reviews.items by site.js; hidden while there are none -->
+    <section class="bo-section" id="reviews" aria-labelledby="bo-reviews" data-reviews-list hidden>
       <div class="container">
-        <div class="lp-head">
-          <p class="eyebrow">Areas we cover</p>
-          <h2 id="lp-areas">EICRs across Essex and East London.</h2>
-          <p>Based in East Hanningfield, near Chelmsford. Postcode areas <strong data-coverage-areas>CM, SS, CO, RM, IG, E, EN9, CB10 and CB11</strong>.</p>
-        </div>
-        <div class="areas-grid lp-areas">
-          <div class="area-col">
-            <h3><svg class="icon"><use href="#i-pin"/></svg>Essex</h3>
-            <ul class="chips">
-              <li class="chip">Chelmsford</li><li class="chip">Basildon</li><li class="chip">Southend-on-Sea</li>
-              <li class="chip">Colchester</li><li class="chip">Brentwood</li><li class="chip">Billericay</li>
-              <li class="chip">Wickford</li><li class="chip">Rayleigh</li><li class="chip">Benfleet</li>
-              <li class="chip">Maldon</li><li class="chip">Witham</li><li class="chip">Braintree</li>
-              <li class="chip">Harlow</li><li class="chip">Epping</li><li class="chip">Loughton</li>
-              <li class="chip">Grays &amp; Thurrock</li><li class="chip">Clacton-on-Sea</li><li class="chip">Saffron Walden</li>
-            </ul>
-          </div>
-          <div class="area-col">
-            <h3><svg class="icon"><use href="#i-pin"/></svg>East London</h3>
-            <ul class="chips">
-              <li class="chip">Havering</li><li class="chip">Redbridge</li><li class="chip">Barking &amp; Dagenham</li>
-              <li class="chip">Newham</li><li class="chip">Waltham Forest</li><li class="chip">Tower Hamlets</li>
-              <li class="chip">Hackney</li><li class="chip">Romford</li><li class="chip">Ilford</li>
-              <li class="chip">Stratford</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Customers: London councils only (restaurant and retail logos mean little to a landlord).
-         Real homeowner and landlord reviews go in the reviews section below once config.reviews has some. -->
-    <section class="lp-section" aria-labelledby="lp-clients">
-      <div class="container">
-        <div class="lp-head">
-          <p class="eyebrow">Our customers</p>
-          <h2 id="lp-clients">Trusted by London councils.</h2>
-          <p>Schools across London boroughs, plus landlords and homeowners across Essex and East London.</p>
-        </div>
-        <ul class="logo-wall on-light lp-councils">
-          <li><img src="/assets/img/clients/haringey.svg" alt="Haringey Council" loading="lazy"></li>
-          <li><img src="/assets/img/clients/islington.png" alt="Islington Council" loading="lazy"></li>
-          <li><img src="/assets/img/clients/hackney.svg" alt="Hackney Council" loading="lazy"></li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Reviews: built from config.reviews.items by site.js; stays hidden while there are none -->
-    <section class="lp-section" id="reviews" aria-labelledby="lp-reviews" data-reviews-list hidden>
-      <div class="container">
-        <div class="lp-head">
-          <p class="eyebrow">Reviews</p>
-          <h2 id="lp-reviews">What landlords and homeowners say.</h2>
-        </div>
+        <h2 id="bo-reviews">What landlords and homeowners say</h2>
         <ul class="lp-reviews" data-reviews-items></ul>
       </div>
     </section>
 
-    <!-- ================= FAQ (wording from the homepage FAQ and the booking terms) ================= -->
-    <section class="section" id="faq">
-      <div class="container faq-wrap">
-        <div class="section-head">
-          <p class="eyebrow">FAQ</p>
-          <h2>EICR questions, straight answers.</h2>
-        </div>
-
+    <!-- 6. FAQ (wording from the homepage FAQ and the booking terms) -->
+    <section class="bo-section bo-faq" id="faq" aria-labelledby="bo-faq">
+      <div class="container">
+        <h2 id="bo-faq">EICR questions</h2>
         <div class="faq">
           <details>
-            <summary>How often does a rental property need an EICR?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <summary>What is an EICR?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
             <div class="faq-a">
-              <p>In England, landlords must have the electrical installation inspected and tested <strong>at least every five years</strong> under the Electrical Safety Standards in the Private Rented Sector Regulations 2020.</p>
-              <p>You need to give a copy of the report to your tenants <strong>within 28 days</strong>, and to the local council within 7 days if they ask for it. Councils can fine landlords up to £30,000 for breaches.</p>
+              <p>An Electrical Installation Condition Report: a full inspection and test of your wiring, fuse board, sockets and fittings against the UK wiring regulations (BS 7671), with a certificate showing whether it's safe.</p>
             </div>
           </details>
           <details>
-            <summary>How long does an EICR take, and will the power be off?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <summary>How often do landlords need one?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a">
+              <p>At least every 5 years, under the Electrical Safety Standards in the Private Rented Sector Regulations 2020. Give a copy to existing tenants within 28 days, to new tenants before they move in, and to the council within 7 days if they ask.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How long does it take?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
             <div class="faq-a">
               <p>Times can vary, but an EICR takes no longer than 2–3 hours. The power will be off for short periods while circuits are tested, so it's worth saving any work and resetting clocks afterwards.</p>
             </div>
           </details>
           <details>
-            <summary>When do I get my EICR certificate?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <summary>When do I get the certificate?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
             <div class="faq-a">
-              <p>We email it to you and save it in <a href="#book" data-portal>your online account</a>, where you can download copies at any time. There's no password: we email you a login link.</p>
-              <p>If there's nothing extra to pay, it's issued without any further payment. If our engineer found more circuits than you booked, or we had to pay for parking, it's issued as soon as that final bill is paid.</p>
+              <p>It's emailed to you and goes into <a href="/#book" data-portal>your online account</a> to download. If there's nothing extra to pay, it's issued without any further payment. If our engineer found more circuits than you booked, or we had to pay for parking, it's issued as soon as that final bill is paid.</p>
+            </div>
+          </details>
+          <details>
+            <summary>What if something fails?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a">
+              <p>We explain any C1 or C2 issues in plain English and quote for the work. Nothing is done without your approval. Landlords must complete remedial work within 28 days, or sooner if the report says so.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Can I change the date?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a">
+              <p>Yes, free of charge, up to 24 hours before your appointment. See our <a href="/terms#appointments">booking terms</a>.</p>
             </div>
           </details>
           <details>
             <summary>Do I need to be home?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
             <div class="faq-a">
-              <p>Not necessarily. Someone aged 18 or over needs to be there to let us in, or you can arrange access, for example with your tenant, your letting agent or a key safe. If no one answers when our engineer arrives, they'll wait 5 minutes and then leave, and the visit counts as missed.</p>
-              <p>Before we arrive, please clear any furniture away from sockets and light switches, and unplug all electrical items. See our <a href="/terms#appointments">booking terms</a>.</p>
+              <p>Not necessarily. Someone aged 18 or over needs to be there to let us in, or you can arrange access, for example with your tenant, your letting agent or a key safe. If no one answers when our engineer arrives, they'll wait 5 minutes and then leave, and the visit counts as missed. Before we arrive, please clear any furniture away from sockets and light switches, and unplug all electrical items.</p>
             </div>
           </details>
-          <details>
-            <summary>What happens if my property fails?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
-            <div class="faq-a">
-              <p>Any <strong>C1</strong> (danger present), <strong>C2</strong> (potentially dangerous) or <strong>FI</strong> (further investigation needed) code makes a report "unsatisfactory". <strong>C3</strong> codes are recommendations and don't fail the report.</p>
-              <p>We'll explain what we found and send a clear quote for any remedial work, which is only ever done with your approval. Landlords must complete remedial work within 28 days, or sooner if the report says so.</p>
-            </div>
-          </details>
-          <details>
-            <summary>What's an EICR, and do homeowners need one?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
-            <div class="faq-a">
-              <p>An Electrical Installation Condition Report is a full inspection and test of your wiring, fuse board, sockets, lighting and earthing, checked against the UK wiring regulations (BS 7671).</p>
-              <p>For owner-occupied homes, an EICR is recommended at least every 10 years, and it's a smart move before you buy a property or start a renovation.</p>
-            </div>
-          </details>
-          <p class="faq-more">Can't find your answer? <a href="mailto:bookings@testmyelectrics.com" data-email-link>Email us at <span data-email>bookings@testmyelectrics.com</span></a></p>
+          <p class="faq-more">Can't find your answer? Email <a href="mailto:bookings@testmyelectrics.com" data-email-link><span data-email>bookings@testmyelectrics.com</span></a></p>
         </div>
+      </div>
+    </section>
+
+    <!-- 7. Areas covered -->
+    <section class="bo-section bo-areas" aria-labelledby="bo-areas">
+      <div class="container">
+        <h2 id="bo-areas">Areas we cover</h2>
+        <p>We cover Chelmsford, Southend, Basildon, Colchester, Brentwood, Billericay, Harlow, Romford, Ilford, Clacton, Braintree, Maldon and surrounding areas: postcodes <span data-coverage-areas>CM, SS, CO, RM, IG, E, EN9, CB10 and CB11</span>.</p>
       </div>
     </section>
   </main>
 
-  <footer class="lp-footer">
-    <div class="container lp-footer-inner">
-      <p>© <span data-year>2026</span> TestMyElectrics, a trading style of UK Sustainability Group Limited. Company no. 13349877. VAT no. 383 7414 76. Unit 21, Industrial Estate, Old Church Road, East Hanningfield, Essex CM3 8AB. Email <a href="mailto:bookings@testmyelectrics.com" data-email-link><span data-email>bookings@testmyelectrics.com</span></a>.</p>
-      <nav aria-label="Legal">
-        <a href="/terms">Booking terms</a>
-        <a href="/privacy">Privacy policy</a>
-        <a href="/complaints">Complaints</a>
-        <button type="button" class="link-like" data-cookie-settings>Cookie settings</button>
-      </nav>
+  <footer class="bo-footer">
+    <div class="container bo-footer-grid">
+      <div>
+        <h2>Contact</h2>
+        <p><a href="mailto:bookings@testmyelectrics.com" data-email-link><span data-email>bookings@testmyelectrics.com</span></a></p>
+      </div>
+      <div>
+        <h2>Company</h2>
+        <p>© <span data-year>2026</span> TestMyElectrics, a trading style of UK Sustainability Group Limited. Company no. 13349877. VAT no. 383 7414 76.</p>
+        <p>Unit 21, Industrial Estate, Old Church Road, East Hanningfield, Essex CM3 8AB.</p>
+      </div>
+      <div>
+        <h2>Legal</h2>
+        <nav aria-label="Legal">
+          <a href="/terms">Booking terms</a>
+          <a href="/privacy">Privacy policy</a>
+          <a href="/complaints">Complaints</a>
+          <button type="button" class="link-like" data-cookie-settings>Cookie settings</button>
+        </nav>
+      </div>
     </div>
   </footer>
 
+  <!-- Phones only: always one tap from the booking box -->
   <div class="mobile-bar" data-mobile-bar>
     <a class="btn btn-volt" href="/#book" data-book="EICR_DOM" data-check-prices="">Check dates &amp; prices <svg class="icon"><use href="#i-arrow"/></svg></a>
   </div>
 
-  <script src="/assets/config.js?v=42"></script>
-  <script src="/assets/consent.js?v=42"></script>
-  <script src="/assets/site.js?v=42"></script>
+  <script src="/assets/config.js?v=43"></script>
+  <script src="/assets/consent.js?v=43"></script>
+  <script src="/assets/site.js?v=43"></script>
 
   <!-- Booking-app tracking (integration brief, section 03). Pasted as supplied.
        Keep it last, after site.js has built the booking links. -->

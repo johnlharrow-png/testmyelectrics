@@ -879,69 +879,154 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
   .consent { left: 12px; right: 12px; bottom: 12px; width: auto; }
 }
 
-/* ---------- Ad landing page (/book-online): booking box on the first screen of a phone ---------- */
-.lp-email-link { font-weight: 600; }
+/* ---------- Booking box helpers (postcode required on the ad page) ---------- */
 .qb-hint { grid-column: 1 / -1; margin: 2px 6px 0; font-size: 14px; font-weight: 600; color: var(--volt); }
 .quick-book.needs-postcode .qb-field:has(input[name="postcode"]) { box-shadow: 0 0 0 3px rgba(244, 123, 32, .8); }
-.lp .rv-badge { margin: 18px 0 0; }
-.rv-count { color: rgba(255, 255, 255, .7); font-size: 14px; }
-.price-extras { margin-top: 12px; font-size: 13px; line-height: 1.5; color: var(--muted); }
-.price-extras strong { color: var(--text); }
-.featured .price-extras { color: rgba(255, 255, 255, .7); }
-.featured .price-extras strong { color: #fff; }
-.lp .lp-how { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-.lp .lp-areas { grid-template-columns: 1fr 1fr; }
-.logo-wall.lp-councils { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 900px; margin-inline: auto; }
-.lp #faq { background: var(--surface); border-block: 1px solid var(--line); }
-.lp-accred-note { margin-top: 18px; text-align: center; font-size: 14px; font-weight: 600; color: var(--muted); }
-/* The ad page loads two variable fonts only (no JetBrains Mono): prices and step numbers keep aligned digits */
-.lp .mono, .lp .how-num { font-family: var(--font-body); font-variant-numeric: tabular-nums; }
 .faq-more { padding-top: 22px; color: var(--muted); font-size: 16px; }
-.faq-more a { color: var(--brand); font-weight: 600; }
+.faq-more a { color: var(--brand); font-weight: 600; overflow-wrap: anywhere; }
 .lp-reviews { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .lp-reviews li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; }
 .lp-reviews blockquote { margin: 0; font-size: 16px; line-height: 1.55; }
 .lp-reviews .rv-who { margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--muted); }
-/* Cookie banner: the short wording is for the slim strip on phones (below) */
+
+/* ---------- Cookie banner: a slim one-line bar along the bottom, every page ----------
+   consent.js sets --consent-h while it shows, so the phone booking bar sits above it. */
+.consent {
+  left: 0; right: 0; bottom: 0; width: auto; border-radius: 0; border-width: 1px 0 0;
+  padding: 10px max(20px, (100% - 1100px) / 2) calc(10px + env(safe-area-inset-bottom));
+  display: flex; align-items: center; justify-content: space-between; gap: 12px 24px;
+  box-shadow: 0 -8px 24px rgba(12, 24, 64, .12);
+}
+.consent p { font-size: 14px; line-height: 1.4; }
+.consent p strong { display: none; }
 .consent .consent-short { display: none; }
-
-@media (max-width: 900px) {
-  .lp .lp-email-link { display: none; }   /* still shown under the booking box, in the FAQ and the footer */
+.consent-actions { flex: none; gap: 8px; }
+.consent-actions .btn { flex: none; height: 36px; padding: 0 16px; font-size: 14px; }
+.mobile-bar { bottom: calc(12px + var(--consent-h, 0px)); transform: translateY(calc(100% + 24px + var(--consent-h, 0px))); }
+@media (max-width: 360px) {   /* two buttons in the bar still fit a 320px phone */
+  .mobile-bar .btn { min-width: 0; padding-inline: 12px; font-size: 14px; }
+  .mobile-bar .btn-ghost-light { padding-inline: 12px; }
 }
-
+@media (max-width: 1180px) {
+  .consent .consent-long { display: none; }
+  .consent .consent-short { display: inline; }
+}
 @media (max-width: 760px) {
-  .lp .hero { padding: 20px 0 64px; }
-  .lp .hero .eyebrow { display: none; }
-  .lp .hero h1 { margin-top: 0; }
-  .lp .lead { font-size: 16px; line-height: 1.5; margin-top: 12px; }
-  .lp .quick-book { margin-top: 18px; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
-  .lp .quick-book > .btn { grid-column: 1 / -1; height: 52px; }
-  .lp .qb-field { padding: 8px 12px; }
-  .lp .qb-field select, .lp .qb-field input { font-size: 16px; }   /* under 16px, iPhones zoom in on focus */
-  .lp .lp-how, .lp .lp-areas, .lp-reviews { grid-template-columns: minmax(0, 1fr); }
-  .logo-wall.lp-councils { grid-template-columns: 1fr; max-width: 320px; }
-
-  /* Cookie banner as a slim strip along the bottom */
-  .lp .consent {
-    left: 0; right: 0; bottom: 0; width: auto; border-radius: 14px 14px 0 0; border-width: 1px 0 0;
-    padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); grid-template-columns: minmax(0, 1fr) auto;
-    align-items: center; gap: 10px; box-shadow: 0 -8px 24px rgba(12, 24, 64, .16);
-  }
-  .lp .consent p { font-size: 12.5px; line-height: 1.4; }
-  .lp .consent p strong, .lp .consent .consent-long { display: none; }
-  .lp .consent .consent-short { display: inline; }
-  .lp .consent-actions { gap: 6px; }
-  .lp .consent-actions .btn { flex: none; height: 36px; padding: 0 12px; font-size: 13.5px; }
+  .consent { left: 0; right: 0; bottom: 0; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); gap: 10px; }
+  .consent p { font-size: 12.5px; line-height: 1.35; }
+  .consent .consent-long { display: none; }
+  .consent .consent-short { display: inline; }
+  .consent-actions { gap: 6px; }
+  .consent-actions .btn { height: 36px; padding: 0 12px; font-size: 13.5px; }
 }
-
-/* Narrow phones on the ad pages: logo and "Check dates & prices" side by side down to 340px; below that the
-   header button goes (the booking box is on the first screen and the sticky bar takes over after it) */
 @media (max-width: 400px) {
-  .lp .brand-logo { height: 20px; }
-  .lp .header-actions > .btn { padding: 0 12px; font-size: 13px; }
-  .lp .consent p { font-size: 12px; }
-  .lp .consent-actions .btn { padding: 0 10px; font-size: 13px; }
+  .consent p { font-size: 12px; }
+  .consent-actions .btn { padding: 0 10px; font-size: 13px; }
 }
-@media (max-width: 340px) {
-  .lp .header-actions > .btn { display: none; }
+
+/* ---------- Ad landing page (/book-online, body.bo): mobile first, 1,100px wide on desktop ---------- */
+.bo .container { width: min(1100px, 100% - 64px); }
+.bo .mono { font-family: var(--font-body); font-variant-numeric: tabular-nums; }   /* two web fonts only: no JetBrains Mono */
+.bo h2 { font-size: clamp(26px, 3vw, 36px); letter-spacing: -.03em; }
+
+/* Header: logo, "Email us", and on desktop an orange "Check dates & prices" */
+.bo .header-inner { height: 64px; }
+.bo-email { display: inline-flex; align-items: center; gap: 7px; font-size: 15px; font-weight: 600; color: var(--brand); text-decoration: none; }
+.bo-email:hover { text-decoration: underline; text-underline-offset: 3px; }
+.bo-email .icon { width: 18px; height: 18px; }
+
+/* First screen: headline, one line, postcode + button on one row (desktop); photo beside it, 420px tall at most */
+.bo .hero { padding: 44px 0 48px; }
+.bo .hero-inner { grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr); gap: 48px; }
+.bo .hero h1 { margin-top: 0; font-size: clamp(38px, 4.6vw, 58px); }
+.bo-line { margin-top: 14px; max-width: 540px; font-size: 18px; line-height: 1.5; color: rgba(255, 255, 255, .78); }
+.bo .quick-book { margin-top: 24px; max-width: 560px; grid-template-columns: minmax(0, 1fr) auto; }
+.bo .quick-book > .btn { height: 58px; }
+.bo .lp-hero-contact { margin-top: 14px; }
+.bo .hero-visual { max-width: 336px; justify-self: center; }
+
+/* Trust strip: three ticks in a row, straight under the first screen */
+.bo-trust { background: var(--paper); border-bottom: 1px solid var(--line); }
+.bo-trust ul { list-style: none; margin-block: 0; padding: 18px 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 24px; }
+.bo-trust li { display: flex; justify-content: center; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; text-align: center; }
+.bo-trust li > span, .bo-google { display: inline-flex; align-items: center; gap: 9px; }
+.bo-trust .icon { width: 19px; height: 19px; flex: none; color: var(--pass); stroke-width: 2.2; }
+.bo-google { color: var(--text); text-decoration: none; }
+.bo-google > span[aria-hidden] { color: #F5A400; }
+a.bo-google[href]:hover { text-decoration: underline; text-underline-offset: 3px; }
+.bo-google [data-rv-count] { font-weight: 500; color: var(--muted); }
+
+/* Sections */
+.bo-section { padding: 64px 0; }
+.bo-section h2 { margin-bottom: 24px; }
+
+/* Prices: the EICR table about two-thirds wide, the homebuyer's report beside it, the extras line under both */
+.bo-prices { background: var(--surface); border-bottom: 1px solid var(--line); }
+.bo-price-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 16px; align-items: stretch; }
+.bo-price-grid .price-card { padding: 28px; }
+.bo-eicr .price-for { color: rgba(255, 255, 255, .7); }
+.bo-eicr .tiers { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 32px; row-gap: 4px; margin: 18px 0 22px; font-size: 15px; }
+.bo-eicr .btn { margin-top: auto; }
+.bo-homebuyer .price { margin-top: 18px; }
+.bo-homebuyer .price strong { font-size: 38px; }
+.bo-homebuyer .btn { margin-top: auto; }
+.bo-homebuyer .price-for { line-height: 1.5; }
+.bo-price-note { margin-top: 18px; font-size: 15.5px; line-height: 1.55; color: var(--text); }
+
+/* How it works: three steps, an icon, a heading and one line each */
+.bo-how { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.bo-how li { display: flex; gap: 14px; align-items: flex-start; padding: 22px; border-radius: var(--radius-lg); background: var(--surface); border: 1px solid var(--line); }
+.bo-how-icon { width: 42px; height: 42px; border-radius: 12px; background: var(--ink); color: var(--volt); display: grid; place-items: center; flex: none; }
+.bo-how-icon .icon { width: 20px; height: 20px; }
+.bo-how strong { display: block; font: 700 17px/1.3 var(--font-display); letter-spacing: -.01em; }
+.bo-how p { margin-top: 4px; font-size: 15px; line-height: 1.5; color: var(--muted); }
+
+/* FAQ and areas: one column, about 760px wide, centred */
+.bo-faq { background: var(--surface); border-block: 1px solid var(--line); }
+.bo-faq .container, .bo-areas .container { max-width: 760px; }
+.bo-faq .faq summary { padding: 18px 0; font-size: 17.5px; }
+.bo-areas { text-align: center; }
+.bo-areas h2 { margin-bottom: 14px; }
+.bo-areas p { font-size: 16.5px; line-height: 1.6; color: var(--muted); }
+.bo-areas [data-coverage-areas] { color: var(--text); font-weight: 600; }
+
+/* Footer: contact, company details, legal links */
+.bo-footer { background: var(--ink); color: rgba(255, 255, 255, .65); padding: 40px 0; font-size: 14px; line-height: 1.6; }
+.bo-footer-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr) minmax(0, 1fr); gap: 24px 40px; }
+.bo-footer h2 { margin: 0 0 8px; font: 600 12.5px/1 var(--font-body); letter-spacing: .09em; text-transform: uppercase; color: rgba(255, 255, 255, .5); }
+.bo-footer p + p { margin-top: 6px; }
+.bo-footer a { color: #fff; text-decoration: none; overflow-wrap: anywhere; }
+.bo-footer .link-like { color: #fff; font-size: 14px; }
+.bo-footer a:hover, .bo-footer .link-like:hover { text-decoration: underline; color: #fff; }
+.bo-footer nav { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; }
+
+@media (max-width: 1120px) {
+  .bo .hero-inner { grid-template-columns: minmax(0, 1.22fr) minmax(0, 1fr); }
+  .bo .hero-visual { max-width: 300px; }
+}
+
+/* Phones: everything to "Check dates & prices" inside the top ~450px, photo below the box */
+@media (max-width: 760px) {
+  .bo .container { width: calc(100% - 32px); }
+  .bo .header-inner { height: 58px; }
+  .bo .header-actions > .btn { display: none; }   /* the sticky bar does this job on a phone */
+  .bo .hero { padding: 22px 0 40px; }
+  .bo .hero-inner { grid-template-columns: minmax(0, 1fr); gap: 40px; }
+  .bo .hero h1 { font-size: 40px; }
+  .bo-line { font-size: 16px; margin-top: 12px; }
+  .bo .quick-book { margin-top: 18px; grid-template-columns: minmax(0, 1fr); }
+  .bo .quick-book > .btn { height: 54px; }
+  .bo .qb-field input { font-size: 16px; }   /* under 16px, iPhones zoom in on focus */
+  .bo .hero-visual { max-width: 300px; margin-bottom: 18px; }
+  .bo-trust ul { grid-template-columns: minmax(0, 1fr); padding: 16px 0; gap: 10px; }
+  .bo-trust li { justify-content: flex-start; text-align: left; }
+  .bo-section { padding: 48px 0; }
+  .bo-price-grid, .bo-how, .lp-reviews { grid-template-columns: minmax(0, 1fr); }
+  .bo-eicr .tiers { grid-template-columns: minmax(0, 1fr); }
+  .bo-footer-grid { grid-template-columns: minmax(0, 1fr); }
+  .bo-footer { padding-bottom: 104px; }   /* room for the booking bar at the end of the page */
+}
+@media (max-width: 400px) {
+  .bo .brand-logo { height: 22px; }
+  .bo .hero h1 { font-size: 36px; }
 }
