@@ -1079,3 +1079,91 @@ a.bo-rating[href]:hover .bo-rating-name { text-decoration: underline; text-under
   .bo-trust .bo-accred { gap: 12px; }
   .bo-trust .bo-accred img { height: 36px; }
 }
+
+/* ==========================================================================
+   EICR guide (/eicr-explained, built by tools/build-eicr-guide.py)
+   ========================================================================== */
+.eg-c1 { --c: #C81E1E; --cbg: #FDECEC; }
+.eg-c2 { --c: #B93D0B; --cbg: #FEF1E7; }
+.eg-c3 { --c: #1D4ED8; --cbg: #EAF1FE; }
+.eg-fi { --c: #6D28D9; --cbg: #F1ECFE; }
+.eg-hero { background: var(--ink); color: #fff; padding: 56px 0 64px; }
+.eg-hero-inner { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .9fr); gap: 48px; align-items: center; }
+.eg-hero .eyebrow { color: rgba(255, 255, 255, .7); }
+.eg-hero h1 { font-size: clamp(32px, 4.4vw, 52px); letter-spacing: -.035em; margin-top: 14px; }
+.eg-lead { margin: 16px 0 0; max-width: 620px; font-size: 18px; line-height: 1.55; color: rgba(255, 255, 255, .8); }
+.eg-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.eg-by { margin: 18px 0 0; font-size: 14px; color: rgba(255, 255, 255, .62); }
+.eg-report { margin: 0; justify-self: center; width: 100%; max-width: 380px; background: #fff; color: var(--text); border-radius: 18px; padding: 18px; box-shadow: 0 30px 70px rgba(0, 0, 0, .35); }
+.eg-report-head { display: flex; justify-content: space-between; padding-bottom: 12px; margin-bottom: 4px; border-bottom: 1px dashed var(--line-2); font: 500 11px/1 var(--font-mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.eg-report ul { list-style: none; margin: 0; padding: 0; }
+.eg-report li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 2px; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+.eg-chip { padding: 6px 9px; border-radius: 999px; background: var(--c); color: #fff; font: 700 12px/1 var(--font-body); white-space: nowrap; }
+.eg-chip.ok { background: var(--pass-bg); color: #0B5E2E; }
+.eg-result { display: flex; justify-content: space-between; gap: 10px; margin: 12px 0 0; padding: 12px; border-radius: 12px; background: #FDECEC; color: #8F1414; font-size: 14px; font-weight: 700; }
+.eg-intro { max-width: 720px; margin: -10px 0 24px; font-size: 17px; line-height: 1.55; color: var(--muted); }
+.eg-alt { background: var(--surface); border-block: 1px solid var(--line); }
+.eg-checks { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.eg-check { padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.eg-ic { width: 40px; height: 40px; margin-bottom: 12px; border-radius: 11px; background: var(--ink); color: var(--volt); display: grid; place-items: center; }
+.eg-ic .icon { width: 20px; height: 20px; }
+.eg-check h3, .eg-myth h3 { font-size: 18px; margin-bottom: 6px; }
+.eg-check p, .eg-myth p { margin: 0; font-size: 15.5px; line-height: 1.5; color: var(--muted); }
+.eg-figrow { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.eg-fig { margin: 0; display: flex; gap: 18px; align-items: center; padding: 14px 18px 14px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.eg-fig img { flex: none; width: 128px; height: auto; border-radius: 10px; }
+.eg-fig figcaption { font-size: 15.5px; line-height: 1.5; color: var(--muted); }
+.eg-fig figcaption strong { color: var(--text); }
+.eg-credit { display: block; margin-top: 6px; font-size: 12.5px; color: var(--muted); }
+.eg-credit a { color: inherit; }
+.eg-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.eg-res { padding: 22px; border-radius: var(--radius); border: 1px solid; }
+.eg-res.pass { background: var(--pass-bg); border-color: #BFE5CD; }
+.eg-res.fail { background: #FDECEC; border-color: #F6C9C9; }
+.eg-res h3 { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 21px; }
+.eg-res p { margin: 0; font-size: 16px; line-height: 1.55; }
+.eg-x { width: 28px; height: 28px; border-radius: 50%; background: #C81E1E; color: #fff; display: grid; place-items: center; flex: none; }
+.eg-x .icon { width: 15px; height: 15px; }
+.eg-res .tick, .eg-myth .tick { width: 28px; height: 28px; flex: none; }
+.eg-res .tick .icon, .eg-myth .tick .icon { width: 15px; height: 15px; }
+.eg-codes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.eg-code { display: flex; flex-direction: column; overflow: hidden; background: var(--surface); border: 1px solid var(--line); border-top: 6px solid var(--c); border-radius: var(--radius-lg); scroll-margin-top: 90px; }
+.eg-code-art { position: relative; margin: 0; min-height: 222px; padding: 12px 0 14px; background: var(--cbg); display: flex; justify-content: center; align-items: center; }
+.eg-code-art img { display: block; height: 196px; width: auto; max-width: 100%; object-fit: contain; }
+.eg-code-art img.eg-round { height: 184px; border-radius: 50%; }
+.eg-code-art .eg-credit { position: absolute; right: 10px; bottom: 6px; margin: 0; padding: 2px 7px; border-radius: 6px; background: rgba(255, 255, 255, .85); font-size: 11.5px; }
+.eg-code-body { padding: 20px 22px 24px; display: flex; flex-direction: column; flex: 1; }
+.eg-code-tag { display: flex; align-items: center; gap: 10px; }
+.eg-code-tag b { padding: 7px 10px; border-radius: 8px; background: var(--c); color: #fff; font: 700 15px/1 var(--font-mono); }
+.eg-code-tag span { font-size: 20px; }
+.eg-code-sum { margin: 12px 0 10px; font-size: 16.5px; font-weight: 600; line-height: 1.45; }
+.eg-code ul { margin: 0 0 16px; padding-left: 18px; font-size: 15.5px; line-height: 1.5; color: var(--muted); }
+.eg-code li + li { margin-top: 4px; }
+.eg-next { margin: auto 0 0; padding: 12px 14px; border-radius: 12px; background: var(--paper); font-size: 15px; line-height: 1.5; }
+.eg-lim { margin: 18px 0 0; padding: 16px 18px; border: 1px dashed var(--line-2); border-radius: var(--radius); font-size: 15.5px; line-height: 1.5; color: var(--muted); }
+.eg-lim b { color: var(--text); }
+.eg-myths { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.eg-myth { display: flex; gap: 14px; align-items: flex-start; padding: 18px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); }
+.eg-rules { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: rule; max-width: 860px; }
+.eg-rules li { position: relative; padding: 14px 16px 14px 56px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; font-size: 16px; line-height: 1.5; }
+.eg-rules li::before { counter-increment: rule; content: counter(rule); position: absolute; left: 14px; top: 12px; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: #fff; display: grid; place-items: center; font: 700 14px/1 var(--font-body); }
+.eg-more { margin: 18px 0 0; display: flex; align-items: center; gap: 6px; font-weight: 700; }
+.eg-more a { color: var(--brand); }
+.eg-more .icon { width: 16px; height: 16px; color: var(--brand); }
+.eg-cta { background: var(--ink); color: #fff; text-align: center; }
+.eg-cta h2 { color: #fff; }
+.eg-cta p { max-width: 640px; margin: 0 auto 22px; font-size: 17px; line-height: 1.55; color: rgba(255, 255, 255, .78); }
+.eg-cta .eg-src { margin: 22px auto 0; font-size: 13.5px; color: rgba(255, 255, 255, .62); }
+.eg-cta .eg-src a { color: inherit; }
+@media (max-width: 1000px) {
+  .eg-checks { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .eg-hero { padding: 36px 0 44px; }
+  .eg-hero-inner { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .eg-checks, .eg-results, .eg-codes, .eg-myths, .eg-figrow { grid-template-columns: minmax(0, 1fr); }
+  .eg-code-art { min-height: 190px; }
+  .eg-code-art img { height: 164px; }
+  .eg-code-art img.eg-round { height: 156px; }
+  .eg-fig img { width: 96px; }
+}
