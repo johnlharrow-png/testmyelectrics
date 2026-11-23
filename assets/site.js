@@ -86,6 +86,12 @@
   $$('[data-email]').forEach((el) => { el.textContent = CFG.business.email; });
   $$('[data-email-link]').forEach((a) => { a.href = 'mailto:' + CFG.business.email; });
   $$('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
+  // Postcode areas we cover for homes, from config.coverage.domestic ("CM, SS, … and CB11")
+  $$('[data-coverage-areas]').forEach((el) => {
+    const list = (CFG.coverage && CFG.coverage.domestic) || [];
+    if (list.length > 1) el.textContent = list.slice(0, -1).join(', ') + ' and ' + list[list.length - 1];
+    else if (list.length) el.textContent = list[0];
+  });
   const RV = CFG.reviews || {};
   $$('[data-rv-score]').forEach((el) => { if (RV.score) el.textContent = RV.score; });
   $$('[data-reviews]').forEach((a) => {

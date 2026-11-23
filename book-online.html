@@ -15,9 +15,10 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles.css?v=40">
-  <link rel="preload" as="image" type="image/webp" href="/assets/img/hero-panel.webp" imagesrcset="/assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" imagesizes="(max-width: 760px) 360px, (max-width: 1120px) 420px, 470px">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/styles.css?v=42">
+  <!-- Hero photo: preloaded only where it sits at the top of the page (on phones it is below the booking box) -->
+  <link rel="preload" as="image" type="image/webp" href="/assets/img/hero-panel.webp" imagesrcset="/assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" imagesizes="(max-width: 1120px) 420px, 470px" media="(min-width: 761px)" fetchpriority="high">
 </head>
 <body class="lp">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -52,11 +53,11 @@
   <header class="site-header" data-header>
     <div class="container header-inner">
       <a class="brand" href="/" aria-label="testmyelectrics.com home">
-        <img class="brand-logo" src="/assets/img/logo.png" alt="testmyelectrics.com" width="1047" height="152">
+        <img class="brand-logo" src="/assets/img/logo-header.png" alt="testmyelectrics.com" width="1047" height="152">
       </a>
       <div class="header-actions">
         <a class="header-link lp-email-link" href="mailto:bookings@testmyelectrics.com" data-email-link data-email>bookings@testmyelectrics.com</a>
-        <a class="header-link lp-callback-link" href="#callback">Request a callback</a>
+        <a class="header-link lp-callback-link" href="/#callback">Request a callback</a>
         <a class="btn btn-volt btn-sm" href="/#book" data-book="EICR_DOM" data-check-prices="">Check dates &amp; prices</a>
       </div>
     </div>
@@ -83,7 +84,7 @@
             </label>
             <label class="qb-field">
               <span>Postcode</span>
-              <input name="postcode" type="text" placeholder="e.g. CM2 6AB" autocomplete="postal-code" aria-label="Postcode">
+              <input name="postcode" type="text" placeholder="e.g. CM2 6AB" autocomplete="postal-code" aria-label="Postcode" aria-required="true">
             </label>
             <button class="btn btn-volt" type="submit">Check dates &amp; prices <svg class="icon"><use href="#i-arrow"/></svg></button>
             <p class="qb-hint" data-qb-hint role="status" hidden>Pop in your postcode to see dates and prices.</p>
@@ -106,7 +107,7 @@
           </a>
 
           <ul class="hero-trust">
-            <li><svg class="icon"><use href="#i-check"/></svg>NAPIT registered</li>
+            <li><svg class="icon"><use href="#i-check"/></svg>NAPIT registered, no. 64559</li>
             <li><svg class="icon"><use href="#i-check"/></svg>TrustMark approved</li>
             <li><svg class="icon"><use href="#i-check"/></svg>Constructionline Gold</li>
             <li><svg class="icon"><use href="#i-check"/></svg>£5m public liability</li>
@@ -117,7 +118,7 @@
           <figure class="hero-photo">
             <picture>
               <source type="image/webp" srcset="/assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" sizes="(max-width: 760px) 360px, (max-width: 1120px) 420px, 470px">
-              <img src="/assets/img/hero-panel.jpg" alt="A testmyelectrics.com electrician testing a distribution board with a multifunction tester" width="896" height="1120" fetchpriority="high">
+              <img src="/assets/img/hero-panel.jpg" alt="A testmyelectrics.com electrician testing a distribution board with a multifunction tester" width="896" height="1120">
             </picture>
           </figure>
 
@@ -260,10 +261,11 @@
           <h2 id="lp-accred">Qualified, registered and insured.</h2>
         </div>
           <ul class="logo-wall on-light accred-strip">
-            <li><img src="/assets/img/accreditations/napit.png" alt="NAPIT registered" loading="lazy"></li>
+            <li><img src="/assets/img/accreditations/napit.png" alt="NAPIT registered, registration number 64559" loading="lazy"></li>
             <li><img src="/assets/img/accreditations/trustmark.png" alt="TrustMark, Government Endorsed Quality" loading="lazy"></li>
             <li><img src="/assets/img/accreditations/constructionline-gold.png" alt="Constructionline Gold Member" loading="lazy"></li>
           </ul>
+          <p class="lp-accred-note">NAPIT registration no. 64559 · TrustMark approved · Constructionline Gold · £5m public liability</p>
       </div>
     </section>
 
@@ -273,7 +275,7 @@
         <div class="lp-head">
           <p class="eyebrow">Areas we cover</p>
           <h2 id="lp-areas">EICRs across Essex and East London.</h2>
-          <p>Based in East Hanningfield, near Chelmsford.</p>
+          <p>Based in East Hanningfield, near Chelmsford. Postcode areas <strong data-coverage-areas>CM, SS, CO, RM, IG, E, EN9, CB10 and CB11</strong>.</p>
         </div>
         <div class="areas-grid lp-areas">
           <div class="area-col">
@@ -358,6 +360,13 @@
             </div>
           </details>
           <details>
+            <summary>Do I need to be home?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a">
+              <p>Not necessarily. Someone aged 18 or over needs to be there to let us in, or you can arrange access, for example with your tenant, your letting agent or a key safe. If no one answers when our engineer arrives, they'll wait 5 minutes and then leave, and the visit counts as missed.</p>
+              <p>Before we arrive, please clear any furniture away from sockets and light switches, and unplug all electrical items. See our <a href="/terms#appointments">booking terms</a>.</p>
+            </div>
+          </details>
+          <details>
             <summary>What happens if my property fails?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
             <div class="faq-a">
               <p>Any <strong>C1</strong> (danger present), <strong>C2</strong> (potentially dangerous) or <strong>FI</strong> (further investigation needed) code makes a report "unsatisfactory". <strong>C3</strong> codes are recommendations and don't fail the report.</p>
@@ -375,79 +384,6 @@
         </div>
       </div>
     </section>
-
-    <!-- ================= CALLBACK: more than one board / several properties / business ================= -->
-    <!-- Sends to BASE/api/public/lead (brief §05). Needs callback.enabled in config.js — see INTEGRATION.md. -->
-    <section class="section callback-section" id="callback">
-      <div class="container cb-wrap">
-        <div class="cb-intro">
-          <p class="eyebrow">Request a callback</p>
-          <h2>More than one board, or a whole portfolio?</h2>
-          <p>Our online prices are for one fuse board in one property. Tell us what you've got and we'll call you back with a price for everything, then book the visits for you.</p>
-          <ul class="ticks">
-            <li><svg class="icon"><use href="#i-check"/></svg>Homes with two or more fuse boards</li>
-            <li><svg class="icon"><use href="#i-check"/></svg>Landlords and letting agents with several properties</li>
-            <li><svg class="icon"><use href="#i-check"/></svg>Schools, restaurants, offices and multi-site businesses</li>
-          </ul>
-          <ol class="cb-steps">
-            <li><strong>Tell us about your properties</strong><span>It takes a minute and there's no obligation.</span></li>
-            <li><strong>We call you back</strong><span>We talk it through and give you a price for the lot.</span></li>
-            <li><strong>We book it all in</strong><span>Visits scheduled around you and your tenants.</span></li>
-          </ol>
-        </div>
-
-        <div class="callback cb-card">
-          <form class="cb-form" data-callback-form novalidate aria-label="Request a callback" data-clarity-mask="true">
-            <fieldset class="cb-needs">
-              <legend>I'm a…</legend>
-              <input type="radio" id="cbw-ll" name="who" value="Landlord" checked><label for="cbw-ll">Landlord</label>
-              <input type="radio" id="cbw-ag" name="who" value="Letting agent"><label for="cbw-ag">Letting agent</label>
-              <input type="radio" id="cbw-ho" name="who" value="Homeowner"><label for="cbw-ho">Homeowner</label>
-              <input type="radio" id="cbw-bz" name="who" value="Business / school"><label for="cbw-bz">Business or school</label>
-            </fieldset>
-            <div class="cb-row">
-              <fieldset class="cb-needs">
-                <legend>Number of properties</legend>
-                <input type="radio" id="cbp-1" name="properties" value="1"><label for="cbp-1">1</label>
-                <input type="radio" id="cbp-2" name="properties" value="2–5"><label for="cbp-2">2–5</label>
-                <input type="radio" id="cbp-6" name="properties" value="6–20"><label for="cbp-6">6–20</label>
-                <input type="radio" id="cbp-20" name="properties" value="20+"><label for="cbp-20">20+</label>
-              </fieldset>
-              <fieldset class="cb-needs">
-                <legend>Fuse boards per property</legend>
-                <input type="radio" id="cbb-1" name="boards" value="1"><label for="cbb-1">1</label>
-                <input type="radio" id="cbb-2" name="boards" value="2"><label for="cbb-2">2</label>
-                <input type="radio" id="cbb-3" name="boards" value="3+"><label for="cbb-3">3+</label>
-                <input type="radio" id="cbb-ns" name="boards" value="Not sure"><label for="cbb-ns">Not sure</label>
-              </fieldset>
-            </div>
-            <fieldset class="cb-needs">
-              <legend>What do you need?</legend>
-              <input type="checkbox" id="cbn-eicr" name="needs" value="EICR_DOM" data-label="EICR" checked><label for="cbn-eicr">EICR</label>
-              <input type="checkbox" id="cbn-hb" name="needs" value="" data-need="homebuyer" data-label="Homebuyer's electrical report"><label for="cbn-hb">Homebuyer report</label>
-              <input type="checkbox" id="cbn-pat" name="needs" value="PAT" data-label="PAT testing"><label for="cbn-pat">PAT testing</label>
-              <input type="checkbox" id="cbn-fire" name="needs" value="FIRE" data-label="Smoke, heat &amp; CO alarms"><label for="cbn-fire">Smoke &amp; CO alarms</label>
-              <input type="checkbox" id="cbn-com" name="needs" value="" data-label="Commercial fixed wire testing"><label for="cbn-com">Commercial EICR</label>
-              <input type="checkbox" id="cbn-el" name="needs" value="" data-label="Emergency lighting"><label for="cbn-el">Emergency lighting</label>
-            </fieldset>
-            <div class="cb-row">
-              <label class="cb-field"><span>Name</span><input name="name" autocomplete="name" required></label>
-              <label class="cb-field"><span>Company <em>optional</em></span><input name="organisation" autocomplete="organization"></label>
-            </div>
-            <div class="cb-row">
-              <label class="cb-field"><span>Phone</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel"></label>
-              <label class="cb-field"><span>Email</span><input name="email" type="email" autocomplete="email"></label>
-            </div>
-            <label class="cb-field"><span>Postcode <em>main property</em></span><input name="postcode" autocomplete="postal-code"></label>
-            <label class="cb-field"><span>Anything else? <em>optional</em></span><textarea name="message" rows="3" placeholder="Property addresses, preferred dates, how to get in…"></textarea></label>
-            <div style="position:absolute;left:-9999px" aria-hidden="true"><label>Website <input name="website" tabindex="-1" autocomplete="off"></label></div>
-            <p class="cb-status" data-cb-status role="status" hidden></p>
-            <button class="btn btn-volt btn-lg" type="submit">Request a callback <svg class="icon"><use href="#i-arrow"/></svg></button>
-            <p class="cb-small">We'll only use your details to reply to this request.</p>
-          </form>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="lp-footer">
@@ -462,13 +398,13 @@
     </div>
   </footer>
 
-  <div class="mobile-bar" data-mobile-bar data-hide-over="#callback">
+  <div class="mobile-bar" data-mobile-bar>
     <a class="btn btn-volt" href="/#book" data-book="EICR_DOM" data-check-prices="">Check dates &amp; prices <svg class="icon"><use href="#i-arrow"/></svg></a>
   </div>
 
-  <script src="/assets/config.js?v=40"></script>
-  <script src="/assets/consent.js?v=40"></script>
-  <script src="/assets/site.js?v=40"></script>
+  <script src="/assets/config.js?v=42"></script>
+  <script src="/assets/consent.js?v=42"></script>
+  <script src="/assets/site.js?v=42"></script>
 
   <!-- Booking-app tracking (integration brief, section 03). Pasted as supplied.
        Keep it last, after site.js has built the booking links. -->

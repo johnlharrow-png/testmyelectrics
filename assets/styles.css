@@ -555,7 +555,8 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
 .faq-wrap .section-head { margin-bottom: 0; position: sticky; top: 110px; }
 .faq-side { margin-top: 28px; padding: 22px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); display: flex; gap: 14px; align-items: center; }
 .faq-side strong { display: block; font-size: 15px; }
-.faq-side a { font-weight: 700; text-decoration: none; font-size: 17px; }
+.faq-side > div { min-width: 0; }
+.faq-side a { font-weight: 700; text-decoration: none; font-size: 17px; overflow-wrap: anywhere; }
 .faq details { border-bottom: 1px solid var(--line); }
 .faq details:first-child { border-top: 1px solid var(--line); }
 .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 22px 0; font: 600 18.5px/1.35 var(--font-display); letter-spacing: -.01em; }
@@ -811,14 +812,14 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
   .hero-inner { grid-template-columns: 1fr; gap: 72px; }
   .hero-visual { justify-self: center; max-width: 420px; }
   .book-grid { grid-template-columns: 1fr; }
-  .areas-grid { grid-template-columns: 1fr 1fr; }
+  .areas-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
   .checker { grid-column: 1 / -1; }
   .accred-grid { grid-template-columns: repeat(2, 1fr); }
   .accred-grid > .accred, .accred-grid > .accred:nth-child(n + 4) { grid-column: auto; }
   .accred-grid > .accred:last-child:nth-child(odd) { grid-column: 1 / -1; }
-  .faq-wrap { grid-template-columns: 1fr; gap: 40px; }
+  .faq-wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
   .faq-wrap .section-head { position: static; }
-  .cb-wrap { grid-template-columns: 1fr; gap: 36px; }
+  .cb-wrap { grid-template-columns: minmax(0, 1fr); gap: 36px; }
   .cb-intro { position: static; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .proof-logos { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px 32px; }
@@ -851,7 +852,7 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
   .float-2 { left: -8px; bottom: -22px; }
   .float-card { padding: 10px 12px 10px 10px; }
   .fc-icon { width: 32px; height: 32px; }
-  .grid-4, .price-grid, .how-grid, .client-grid, .accred-grid, .areas-grid { grid-template-columns: 1fr; }
+  .grid-4, .price-grid, .how-grid, .client-grid, .accred-grid, .areas-grid { grid-template-columns: minmax(0, 1fr); }   /* minmax: never wider than the screen */
   .client-card { padding: 30px; min-height: 0; }
   .logo-wall { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .logo-wall.accred-strip { grid-template-columns: 1fr; max-width: 320px; }
@@ -892,6 +893,9 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
 .lp .lp-areas { grid-template-columns: 1fr 1fr; }
 .logo-wall.lp-councils { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 900px; margin-inline: auto; }
 .lp #faq { background: var(--surface); border-block: 1px solid var(--line); }
+.lp-accred-note { margin-top: 18px; text-align: center; font-size: 14px; font-weight: 600; color: var(--muted); }
+/* The ad page loads two variable fonts only (no JetBrains Mono): prices and step numbers keep aligned digits */
+.lp .mono, .lp .how-num { font-family: var(--font-body); font-variant-numeric: tabular-nums; }
 .faq-more { padding-top: 22px; color: var(--muted); font-size: 16px; }
 .faq-more a { color: var(--brand); font-weight: 600; }
 .lp-reviews { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -910,11 +914,11 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
   .lp .hero .eyebrow { display: none; }
   .lp .hero h1 { margin-top: 0; }
   .lp .lead { font-size: 16px; line-height: 1.5; margin-top: 12px; }
-  .lp .quick-book { margin-top: 18px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .lp .quick-book { margin-top: 18px; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
   .lp .quick-book > .btn { grid-column: 1 / -1; height: 52px; }
   .lp .qb-field { padding: 8px 12px; }
   .lp .qb-field select, .lp .qb-field input { font-size: 16px; }   /* under 16px, iPhones zoom in on focus */
-  .lp .lp-how, .lp .lp-areas, .lp-reviews { grid-template-columns: 1fr; }
+  .lp .lp-how, .lp .lp-areas, .lp-reviews { grid-template-columns: minmax(0, 1fr); }
   .logo-wall.lp-councils { grid-template-columns: 1fr; max-width: 320px; }
 
   /* Cookie banner as a slim strip along the bottom */
@@ -928,4 +932,16 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
   .lp .consent .consent-short { display: inline; }
   .lp .consent-actions { gap: 6px; }
   .lp .consent-actions .btn { flex: none; height: 36px; padding: 0 12px; font-size: 13.5px; }
+}
+
+/* Narrow phones on the ad pages: logo and "Check dates & prices" side by side down to 340px; below that the
+   header button goes (the booking box is on the first screen and the sticky bar takes over after it) */
+@media (max-width: 400px) {
+  .lp .brand-logo { height: 20px; }
+  .lp .header-actions > .btn { padding: 0 12px; font-size: 13px; }
+  .lp .consent p { font-size: 12px; }
+  .lp .consent-actions .btn { padding: 0 10px; font-size: 13px; }
+}
+@media (max-width: 340px) {
+  .lp .header-actions > .btn { display: none; }
 }
