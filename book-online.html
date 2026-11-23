@@ -15,7 +15,8 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600..700&family=Inter:wght@400..700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600..700&family=Inter:wght@400..700&display=swap" rel="stylesheet"></noscript>
   <link rel="stylesheet" href="/assets/styles.css?v=48">
 </head>
 <body class="bo">
@@ -93,8 +94,8 @@
         <div class="hero-visual">
           <figure class="hero-photo">
             <picture>
-              <source type="image/webp" srcset="/assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" sizes="(max-width: 760px) 300px, 336px">
-              <img src="/assets/img/hero-panel.jpg" alt="A testmyelectrics.com electrician testing a distribution board with a multifunction tester" width="896" height="1120">
+              <source type="image/webp" srcset="/assets/img/hero-panel-540.webp 540w, /assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" sizes="(max-width: 760px) 300px, 336px">
+              <img src="/assets/img/hero-panel.jpg" alt="A testmyelectrics.com electrician testing a distribution board with a multifunction tester" width="896" height="1120" fetchpriority="high">
             </picture>
           </figure>
           <div class="float-card float-1" aria-hidden="true">
@@ -113,9 +114,9 @@
     <section class="bo-trust" id="accreditations" aria-label="Why book with us">
       <div class="container bo-trust-inner">
         <ul class="bo-accred">
-          <li><img src="/assets/img/accreditations/napit.png" alt="NAPIT registered" width="246" height="78"><span>NAPIT no. 64559</span></li>
-          <li><img src="/assets/img/accreditations/trustmark.png" alt="TrustMark, Government Endorsed Quality" width="436" height="102"><span>TrustMark approved</span></li>
-          <li><img src="/assets/img/accreditations/constructionline-gold.png" alt="Constructionline Gold Member" width="303" height="133"><span>Constructionline Gold</span></li>
+          <li><img src="/assets/img/accreditations/napit.webp" alt="NAPIT registered" width="246" height="78" decoding="async"><span>NAPIT no. 64559</span></li>
+          <li><img src="/assets/img/accreditations/trustmark.webp" srcset="/assets/img/accreditations/trustmark-64.webp 274w, /assets/img/accreditations/trustmark.webp 436w" sizes="(max-width: 760px) 154px, 222px" alt="TrustMark, Government Endorsed Quality" width="436" height="102" decoding="async"><span>TrustMark approved</span></li>
+          <li><img src="/assets/img/accreditations/constructionline-gold.webp" srcset="/assets/img/accreditations/constructionline-gold-64.webp 146w, /assets/img/accreditations/constructionline-gold.webp 237w" sizes="(max-width: 760px) 82px, 118px" alt="Constructionline Gold Member" width="303" height="133" decoding="async"><span>Constructionline Gold</span></li>
         </ul>
       </div>
     </section>
@@ -157,7 +158,7 @@
         <h2 id="bo-clients">Trusted by councils and national brands</h2>
         <ul class="logo-wall on-light">
           <li><img src="/assets/img/clients/haringey.svg" alt="Haringey Council" loading="lazy"></li>
-          <li><img src="/assets/img/clients/islington.png" alt="Islington Council" loading="lazy"></li>
+          <li><img src="/assets/img/clients/islington.webp" alt="Islington Council" loading="lazy"></li>
           <li><img src="/assets/img/clients/hackney.svg" alt="Hackney Council" loading="lazy"></li>
           <li><img src="/assets/img/clients/the-ivy.svg" alt="The Ivy" loading="lazy"></li>
           <li><img src="/assets/img/clients/tgi-fridays.svg" alt="TGI Fridays" loading="lazy"></li>
