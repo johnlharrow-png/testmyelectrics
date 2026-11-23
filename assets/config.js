@@ -91,6 +91,6 @@ window.TME_CONFIG = {
   /* Postcode coverage for homes & rentals (used by the "Do we cover you?" checker).
      Entries can be postcode AREAS ('CM') or DISTRICTS ('EN9'). */
   coverage: {
-    domestic: ['CM', 'SS', 'CO', 'RM', 'IG', 'E', 'EN9', 'CB10', 'CB11'],
+    domestic: ['CM', 'SS', 'CO', 'RM', 'IG', 'E4', 'EN9', 'CB10', 'CB11'],   // East London postcodes: E4 only for homes
   },
 };
