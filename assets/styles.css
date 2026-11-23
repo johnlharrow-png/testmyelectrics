@@ -628,6 +628,10 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
 .logo-wall.accred-strip img { height: 64px; }
 .lp .pricing { border-bottom: 0; }
 .lp .header-link.lp-callback-link { display: inline-flex; font-weight: 600; }
+.lp-hero-contact { margin-top: 16px; font-size: 15px; color: rgba(255, 255, 255, .7); }
+.lp-hero-contact a { display: inline-flex; align-items: center; gap: 6px; color: #fff; font-weight: 600; text-decoration: none; overflow-wrap: anywhere; }
+.lp-hero-contact a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.lp-hero-contact .icon { flex: none; width: 16px; height: 16px; color: var(--volt); stroke-width: 2.2; }
 .lp-footer { background: var(--ink); color: rgba(255, 255, 255, .6); padding: 28px 0; font-size: 13.5px; }
 .lp-footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 16px 32px; flex-wrap: wrap; }
 .lp-footer p { max-width: 640px; }

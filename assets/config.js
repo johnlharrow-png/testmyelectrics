@@ -6,7 +6,7 @@
 window.TME_CONFIG = {
   business: {
     name: 'TestMyElectrics',
-    email: 'bookings@testmyelectrics.com',  // TODO: confirm mailbox exists
+    email: 'bookings@testmyelectrics.com',
   },
 
   /* BASE: the booking app's permanent address (brief section 01).

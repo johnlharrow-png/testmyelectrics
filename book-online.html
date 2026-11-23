@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles.css?v=38">
+  <link rel="stylesheet" href="/assets/styles.css?v=39">
   <link rel="preload" as="image" type="image/webp" href="/assets/img/hero-panel.webp" imagesrcset="/assets/img/hero-panel-640.webp 640w, /assets/img/hero-panel.webp 896w" imagesizes="(max-width: 760px) 360px, (max-width: 1120px) 420px, 470px">
 </head>
 <body class="lp">
@@ -55,6 +55,7 @@
         <img class="brand-logo" src="/assets/img/logo.png" alt="testmyelectrics.com" width="1047" height="152">
       </a>
       <div class="header-actions">
+        <a class="header-link" href="mailto:bookings@testmyelectrics.com" data-email-link aria-label="Email bookings@testmyelectrics.com"><svg class="icon"><use href="#i-mail"/></svg><span data-email>bookings@testmyelectrics.com</span></a>
         <a class="header-link lp-callback-link" href="#callback">Request a callback</a>
         <a class="btn btn-volt btn-sm" href="/#book" data-book="">Book a test</a>
       </div>
@@ -97,6 +98,7 @@
                 <label class="qb-addon"><input type="checkbox" name="addons" value="PAT"><span>PAT testing <em>+<span data-price="PAT.upTo10">£40</span></em></span></label>
               </div>
           </form>
+          <p class="lp-hero-contact">Questions before you book? <a href="mailto:bookings@testmyelectrics.com" data-email-link><svg class="icon"><use href="#i-mail"/></svg><span data-email>bookings@testmyelectrics.com</span></a></p>
 
           <ul class="hero-trust">
             <li><svg class="icon"><use href="#i-check"/></svg>NAPIT registered</li>
@@ -288,6 +290,76 @@
         </div>
       </div>
     </section>
+    <!-- ================= FAQ (the EICR questions from the homepage FAQ) ================= -->
+    <section class="section" id="faq">
+      <div class="container faq-wrap">
+        <div class="section-head">
+          <p class="eyebrow">FAQ</p>
+          <h2>EICR questions, straight answers.</h2>
+          <p>Can't find what you're after? Drop us a line and we'll get back to you.</p>
+          <div class="faq-side">
+            <span class="fc-icon"><svg class="icon"><use href="#i-mail"/></svg></span>
+            <div><strong>Email the team</strong><a href="mailto:bookings@testmyelectrics.com" data-email-link><span data-email>bookings@testmyelectrics.com</span></a></div>
+          </div>
+        </div>
+
+        <div class="faq">
+          <details>
+            <summary>How often does a rental property need an EICR?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a">
+              <p>In England, landlords must have the electrical installation inspected and tested <strong>at least every five years</strong> under the Electrical Safety Standards in the Private Rented Sector Regulations 2020.</p>
+              <p>You need to give a copy of the report to your tenants within 28 days, and to the local council within 7 days if they ask for it. Councils can fine landlords up to £30,000 for breaches.</p>
+            </div>
+          </details>
+          <details>
+            <summary>What's an EICR, and do homeowners need one?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a">
+              <p>An Electrical Installation Condition Report is a full inspection and test of your wiring, fuse board, sockets, lighting and earthing, checked against the UK wiring regulations (BS 7671).</p>
+              <p>For owner-occupied homes, an EICR is recommended at least every 10 years, and it's a smart move before you buy a property or start a renovation.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How much does an EICR cost?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a">
+              <p>All prices exclude VAT. A <strong>domestic EICR</strong> covers up to 8 circuits and costs £79 for a studio, rising to £140 for a six-bedroom home, plus £15 for each extra circuit. Parking and congestion charges are added to the final bill if they apply. <strong>PAT testing</strong> (up to 10 items, then £1.50 per extra item) and a <strong>smoke, heat and CO alarm check</strong> (up to 6 alarms) are £40 each as add-ons to an EICR or homebuyer's report.</p>
+              <p><strong>Commercial fixed wire testing</strong> starts at £169 for up to 10 circuits, plus £10 per extra circuit, and <strong>emergency lighting</strong> tests start at £80. Larger sites are quoted, and remedial work is only ever done with your approval.</p>
+            </div>
+          </details>
+          <details>
+            <summary>What happens if my property fails?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a">
+              <p>Any <strong>C1</strong> (danger present), <strong>C2</strong> (potentially dangerous) or <strong>FI</strong> (further investigation needed) code makes a report "unsatisfactory". <strong>C3</strong> codes are recommendations and don't fail the report.</p>
+              <p>We'll explain what we found and send a clear quote for any remedial work. Landlords must complete remedial work within 28 days, or sooner if the report says so.</p>
+            </div>
+          </details>
+          <details>
+            <summary>How long does a test take, and will the power be off?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a">
+              <p>Times can vary, but an EICR takes no longer than 2–3 hours. The power will be off for short periods while circuits are tested, so it's worth saving any work and resetting clocks afterwards.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Can I change my appointment?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a">
+              <p>Yes. You can reschedule free of charge up to 24 hours before your appointment. Please make sure someone can let us in at the agreed time: if no one is on site, the full charge still applies. See our <a href="/terms#appointments">booking terms</a>.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Where do I find my EICR certificate?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a">
+              <p>It's emailed to you and saved in <a href="#book" data-portal>My account</a>, along with your invoice and any quotes. We email you a login link, so there's no password to remember.</p>
+            </div>
+          </details>
+          <details>
+            <summary>I have more than one fuse board or several properties. Can I book online?<span class="plus"><svg class="icon"><use href="#i-plus"/></svg></span></summary>
+            <div class="faq-a">
+              <p>Online prices cover one fuse board in one property. For homes with more boards, portfolios of rental properties, or business premises, <a href="#callback">request a callback</a>. We'll call you with a price for everything and book all the visits for you.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
     <!-- ================= CALLBACK: more than one board / several properties / business ================= -->
     <!-- Sends to BASE/api/public/lead (brief §05). Needs callback.enabled in config.js — see INTEGRATION.md. -->
     <section class="section callback-section" id="callback">
@@ -364,7 +436,7 @@
 
   <footer class="lp-footer">
     <div class="container lp-footer-inner">
-      <p>© <span data-year>2026</span> TestMyElectrics, a trading style of UK Sustainability Group Limited. Company no. 13349877. VAT no. 383 7414 76. Unit 21, Industrial Estate, Old Church Road, East Hanningfield, Essex CM3 8AB.</p>
+      <p>© <span data-year>2026</span> TestMyElectrics, a trading style of UK Sustainability Group Limited. Company no. 13349877. VAT no. 383 7414 76. Unit 21, Industrial Estate, Old Church Road, East Hanningfield, Essex CM3 8AB. Email <a href="mailto:bookings@testmyelectrics.com" data-email-link><span data-email>bookings@testmyelectrics.com</span></a>.</p>
       <nav aria-label="Legal">
         <a href="/terms">Booking terms</a>
         <a href="/privacy">Privacy policy</a>
@@ -374,9 +446,9 @@
     </div>
   </footer>
 
-  <script src="/assets/config.js?v=38"></script>
-  <script src="/assets/consent.js?v=38"></script>
-  <script src="/assets/site.js?v=38"></script>
+  <script src="/assets/config.js?v=39"></script>
+  <script src="/assets/consent.js?v=39"></script>
+  <script src="/assets/site.js?v=39"></script>
 
   <!-- Booking-app tracking (integration brief, section 03). Pasted as supplied.
        Keep it last, after site.js has built the booking links. -->
