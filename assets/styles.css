@@ -1069,3 +1069,13 @@ a.bo-rating[href]:hover .bo-rating-name { text-decoration: underline; text-under
   .bo-how-shots li { scroll-snap-align: start; }
   .bo-shot { max-width: 220px; }
 }
+
+/* 23 Nov 2026 (Wayne): logos spread evenly across the strip, no boxes */
+.bo-trust .bo-trust-inner { display: block; }
+.bo-trust .bo-accred { width: 100%; max-width: 900px; margin-inline: auto; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+.bo-trust .bo-accred li { background: none; border: 0; border-radius: 0; padding: 0; gap: 8px; }
+.bo-trust .bo-accred img { height: 52px; }
+@media (max-width: 760px) {
+  .bo-trust .bo-accred { gap: 12px; }
+  .bo-trust .bo-accred img { height: 36px; }
+}
