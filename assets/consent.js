@@ -52,16 +52,25 @@
   if (ids.length) {
     gtag('consent', 'default', { ...DENIED, wait_for_update: 500 });
     if (saved === 'granted') gtag('consent', 'update', GRANTED);
-    // Fetch the tag once the page has loaded, so it doesn't hold up the first screen on a phone
-    // (Google's speed test counted it against the main photo). The calls below wait in dataLayer.
+    // Fetch the tag (about 340 KB) on the visitor's first scroll, tap or key press, or 4 seconds after
+    // the page has loaded, whichever comes first. Google's speed test counts anything fetched before the
+    // first screen appears against the main photo. The calls below wait in dataLayer until it arrives;
+    // ad click IDs still reach the booking app in the link (eeg_attr).
+    let tagLoaded = false;
+    const WAKE = ['scroll', 'pointerdown', 'touchstart', 'keydown'];
     const loadTag = () => {
+      if (tagLoaded) return;
+      tagLoaded = true;
+      WAKE.forEach((ev) => window.removeEventListener(ev, loadTag));
       const tag = document.createElement('script');
       tag.async = true;
       tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ids[0]);
       document.head.appendChild(tag);
     };
-    if (document.readyState === 'complete') setTimeout(loadTag, 0);
-    else window.addEventListener('load', () => setTimeout(loadTag, 0), { once: true });
+    WAKE.forEach((ev) => window.addEventListener(ev, loadTag, { once: true, passive: true }));
+    const later = () => setTimeout(loadTag, 4000);
+    if (document.readyState === 'complete') later();
+    else window.addEventListener('load', later, { once: true });
     gtag('js', new Date());
     ids.forEach((id) => gtag('config', id));
   }
