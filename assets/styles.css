@@ -1040,3 +1040,13 @@ a.bo-rating[href]:hover .bo-rating-name { text-decoration: underline; text-under
   .bo .brand-logo { height: 22px; }
   .bo .hero h1 { font-size: 36px; }
 }
+
+/* Landing pages made from /book-online (tools/build-landing-pages.py): the section about the search
+   (landlords, a town ...) that sits between the logos and the prices */
+.bo-local { padding-bottom: 0; }
+.bo-local p { max-width: 72ch; color: var(--text); font-size: 16.5px; line-height: 1.6; }
+.bo-local p + p, .bo-local ul + p { margin-top: 12px; }
+.bo-ticks { list-style: none; margin: 16px 0 0; padding: 0; display: grid; gap: 10px; max-width: 72ch; }
+.bo-ticks li { display: flex; gap: 10px; align-items: flex-start; font-size: 16px; line-height: 1.5; }
+.bo-ticks .icon { width: 20px; height: 20px; flex: none; margin-top: 2px; color: var(--pass); stroke-width: 2.2; }
+.bo-local .bo-postcodes { font-weight: 600; }
