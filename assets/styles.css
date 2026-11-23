@@ -877,3 +877,55 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
   .mobile-bar { display: flex; }
   .consent { left: 12px; right: 12px; bottom: 12px; width: auto; }
 }
+
+/* ---------- Ad landing page (/book-online): booking box on the first screen of a phone ---------- */
+.lp-email-link { font-weight: 600; }
+.qb-hint { grid-column: 1 / -1; margin: 2px 6px 0; font-size: 14px; font-weight: 600; color: var(--volt); }
+.quick-book.needs-postcode .qb-field:has(input[name="postcode"]) { box-shadow: 0 0 0 3px rgba(244, 123, 32, .8); }
+.lp .rv-badge { margin: 18px 0 0; }
+.rv-count { color: rgba(255, 255, 255, .7); font-size: 14px; }
+.price-extras { margin-top: 12px; font-size: 13px; line-height: 1.5; color: var(--muted); }
+.price-extras strong { color: var(--text); }
+.featured .price-extras { color: rgba(255, 255, 255, .7); }
+.featured .price-extras strong { color: #fff; }
+.lp .lp-how { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.lp .lp-areas { grid-template-columns: 1fr 1fr; }
+.logo-wall.lp-councils { grid-template-columns: repeat(3, minmax(0, 1fr)); max-width: 900px; margin-inline: auto; }
+.lp #faq { background: var(--surface); border-block: 1px solid var(--line); }
+.faq-more { padding-top: 22px; color: var(--muted); font-size: 16px; }
+.faq-more a { color: var(--brand); font-weight: 600; }
+.lp-reviews { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.lp-reviews li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg); padding: 24px; }
+.lp-reviews blockquote { margin: 0; font-size: 16px; line-height: 1.55; }
+.lp-reviews .rv-who { margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--muted); }
+/* Cookie banner: the short wording is for the slim strip on phones (below) */
+.consent .consent-short { display: none; }
+
+@media (max-width: 900px) {
+  .lp .lp-email-link { display: none; }   /* still shown under the booking box, in the FAQ and the footer */
+}
+
+@media (max-width: 760px) {
+  .lp .hero { padding: 20px 0 64px; }
+  .lp .hero .eyebrow { display: none; }
+  .lp .hero h1 { margin-top: 0; }
+  .lp .lead { font-size: 16px; line-height: 1.5; margin-top: 12px; }
+  .lp .quick-book { margin-top: 18px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .lp .quick-book > .btn { grid-column: 1 / -1; height: 52px; }
+  .lp .qb-field { padding: 8px 12px; }
+  .lp .qb-field select, .lp .qb-field input { font-size: 16px; }   /* under 16px, iPhones zoom in on focus */
+  .lp .lp-how, .lp .lp-areas, .lp-reviews { grid-template-columns: 1fr; }
+  .logo-wall.lp-councils { grid-template-columns: 1fr; max-width: 320px; }
+
+  /* Cookie banner as a slim strip along the bottom */
+  .lp .consent {
+    left: 0; right: 0; bottom: 0; width: auto; border-radius: 14px 14px 0 0; border-width: 1px 0 0;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center; gap: 10px; box-shadow: 0 -8px 24px rgba(12, 24, 64, .16);
+  }
+  .lp .consent p { font-size: 12.5px; line-height: 1.4; }
+  .lp .consent p strong, .lp .consent .consent-long { display: none; }
+  .lp .consent .consent-short { display: inline; }
+  .lp .consent-actions { gap: 6px; }
+  .lp .consent-actions .btn { flex: none; height: 36px; padding: 0 12px; font-size: 13.5px; }
+}

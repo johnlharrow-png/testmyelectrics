@@ -91,11 +91,24 @@
   $$('[data-reviews]').forEach((a) => {
     const score = parseFloat(RV.score);
     if (score) {
-      a.setAttribute('aria-label', `Rated ${RV.score} out of 5 on Google`);
+      a.setAttribute('aria-label', `Rated ${RV.score} out of 5 on Google${RV.count ? ` from ${RV.count} reviews` : ''}`);
       const stars = a.querySelector('.rv-stars');
       if (stars) stars.style.setProperty('--rv', `${Math.min(100, score * 20)}%`);
     }
     if (RV.url) { a.href = RV.url; a.target = '_blank'; a.rel = 'noopener'; }
+    const count = a.querySelector('[data-rv-count]');
+    if (count && RV.count) count.textContent = `(${RV.count} reviews)`;
+    // A badge that starts hidden (the ad landing page) only appears with a score people can check
+    if (a.hasAttribute('hidden') && score && RV.url) a.hidden = false;
+  });
+  // Reviews section (ad landing page): config.reviews.items = [{ text, name, detail }]
+  $$('[data-reviews-list]').forEach((sec) => {
+    const items = Array.isArray(RV.items) ? RV.items.filter((r) => r && r.text && r.name) : [];
+    const list = $('[data-reviews-items]', sec);
+    if (!items.length || !list) return;
+    list.innerHTML = items.map((r) => `<li><blockquote>“${esc(r.text)}”</blockquote>`
+      + `<p class="rv-who">${esc(r.name)}${r.detail ? `, ${esc(r.detail)}` : ''}</p></li>`).join('');
+    sec.hidden = false;
   });
   const priceOf = (path) => {
     let v = CFG.pricing;
@@ -356,9 +369,52 @@
       const pc = parsePostcode(raw);
       const postcode = pc ? pc.formatted : raw.toUpperCase();
       if (service.startsWith('business')) { goToCallback(postcode); return; }
+      // data-require-postcode (ad landing page): ask for the postcode here rather than opening the
+      // booking app with nothing filled in
+      if (!raw && form.hasAttribute('data-require-postcode')) { askForPostcode(form); return; }
       window.location.href = bookUrl(service, postcode);
     });
+    form.elements.postcode.addEventListener('input', () => {
+      form.classList.remove('needs-postcode');
+      const hint = $('[data-qb-hint]', form);
+      if (hint) hint.hidden = true;
+    });
   });
+
+  function askForPostcode(form) {
+    form.classList.add('needs-postcode');
+    const hint = $('[data-qb-hint]', form);
+    if (hint) hint.hidden = false;
+    form.elements.postcode.focus({ preventScroll: true });
+  }
+
+  /* ---------- "Check dates & prices" buttons (ad landing page) ----------
+     All of them do the same thing: with a postcode in the booking box, straight into the booking app
+     with that postcode and the button's service (e.g. data-check-prices="EICR_DOM,FIRE"); without one,
+     back up to the box with that service picked, ready for the postcode. Without JavaScript the
+     link still opens the booking app (data-book). */
+  const qbMain = $('[data-quick-book]');
+  $$('[data-check-prices]').forEach((a) => a.addEventListener('click', (e) => {
+    if (!qbMain) return;
+    e.preventDefault();
+    const [service, ...extras] = (a.dataset.checkPrices || '').split(',').filter(Boolean);   // empty = keep the box's choice
+    const sel = qbMain.elements.service;
+    if (service && [...sel.options].some((o) => o.value === service) && sel.value !== service) {
+      sel.value = service;
+      sel.dispatchEvent(new Event('change'));
+    }
+    extras.forEach((x) => {
+      const box = $(`input[name="addons"][value="${x}"]`, qbMain);
+      if (box) box.checked = true;
+    });
+    if (qbMain.elements.postcode.value.trim()) {
+      if (qbMain.requestSubmit) qbMain.requestSubmit(); else qbMain.dispatchEvent(new Event('submit', { cancelable: true }));
+      return;
+    }
+    const top = $('#book') || qbMain;
+    top.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+    setTimeout(() => askForPostcode(qbMain), reduceMotion ? 0 : 450);
+  }));
 
   /* ---------- Coverage checker ---------- */
   const cov = $('[data-coverage-check]');

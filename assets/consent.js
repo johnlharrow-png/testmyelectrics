@@ -104,7 +104,7 @@
     banner.setAttribute('role', 'dialog');
     banner.setAttribute('aria-label', 'Cookie choices');
     banner.innerHTML = `
-      <p><strong>Cookies</strong>We'd like to use ${toolText} cookies ${why}. They stay off unless you accept. <a href="/privacy#cookies">Privacy policy</a></p>
+      <p><strong>Cookies</strong><span class="consent-long">We'd like to use ${toolText} cookies ${why}. They stay off unless you accept. <a href="/privacy#cookies">Privacy policy</a></span><span class="consent-short">Analytics and ad cookies, off unless you accept. <a href="/privacy#cookies">Privacy</a></span></p>
       <div class="consent-actions">
         <button type="button" class="btn btn-ink btn-sm" data-choice="denied">Reject</button>
         <button type="button" class="btn btn-ink btn-sm" data-choice="granted">Accept</button>
