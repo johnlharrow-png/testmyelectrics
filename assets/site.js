@@ -106,9 +106,9 @@
     if (count && RV.count) count.textContent = `(${RV.count} reviews)`;
     // What shows in its place until then (the trust strip on /book-online)
     const fallback = a.parentElement && a.parentElement.querySelector('[data-reviews-fallback]');
-    if (fallback && score && RV.url) fallback.hidden = true;
-    // A badge that starts hidden (the ad landing page) only appears with a score people can check
-    if (a.hasAttribute('hidden') && score && RV.url) a.hidden = false;
+    if (fallback && score) fallback.hidden = true;
+    // No score in config: no badge
+    a.hidden = !score;
   });
   // Reviews section (ad landing page): config.reviews.items = [{ text, name, detail }]
   $$('[data-reviews-list]').forEach((sec) => {

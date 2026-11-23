@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@600..700&family=Inter:wght@400..700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/styles.css?v=44">
+  <link rel="stylesheet" href="/assets/styles.css?v=45">
 </head>
 <body class="bo">
   <a class="skip-link" href="#main">Skip to content</a>
@@ -101,17 +101,22 @@
       </div>
     </section>
 
-    <!-- 2. Trust strip. The Google rating only shows once config.reviews has a score and a link to the
-         reviews (the TestMyElectrics.com Google listing had none on 2026-11-23); until then: TrustMark. -->
+    <!-- 2. Trust strip: Google rating (score from config.reviews; it becomes a link once reviews.url is
+         filled in) and the accreditation logos. -->
     <section class="bo-trust" aria-label="Why book with us">
-      <ul class="container">
-        <li><svg class="icon"><use href="#i-shield"/></svg>NAPIT registered (no. 64559)</li>
-        <li>
-          <a class="bo-google" data-reviews hidden><span aria-hidden="true">★</span> <span data-rv-score></span> on Google <span data-rv-count></span></a>
-          <span data-reviews-fallback><svg class="icon"><use href="#i-check"/></svg>TrustMark approved</span>
-        </li>
-        <li><svg class="icon"><use href="#i-file"/></svg>Certificate in your online account</li>
-      </ul>
+      <div class="container bo-trust-inner">
+        <a class="bo-rating" data-reviews aria-label="Rated 4.7 out of 5 on Google">
+          <span class="bo-rating-g" aria-hidden="true"><svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.1H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 13 4 4 13 4 24s9 20 20 20 20-9 20-20c0-1.3-.1-2.6-.4-3.9z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 8 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.5 2.4-7.2 2.4-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.1H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.6-.4-3.9z"/></svg></span>
+          <strong data-rv-score>4.7</strong>
+          <span class="rv-stars bo-stars" aria-hidden="true"></span>
+          <span class="bo-rating-name">on Google <span data-rv-count></span></span>
+        </a>
+        <ul class="bo-accred">
+          <li><img src="/assets/img/accreditations/napit.png" alt="NAPIT registered" width="246" height="78"><span>NAPIT no. 64559</span></li>
+          <li><img src="/assets/img/accreditations/trustmark.png" alt="TrustMark, Government Endorsed Quality" width="436" height="102"><span>TrustMark approved</span></li>
+          <li><img src="/assets/img/accreditations/constructionline-gold.png" alt="Constructionline Gold Member" width="303" height="133"><span>Constructionline Gold</span></li>
+        </ul>
+      </div>
     </section>
 
     <!-- 3. Prices: EICR only, with the homebuyer's report as a smaller second card -->
@@ -142,6 +147,23 @@
           </article>
         </div>
         <p class="bo-price-note">Most homes have <span data-cfg="pricing.EICR_DOM.included">8</span> circuits or fewer. If yours has more, it's <span data-price="EICR_DOM.extra">£15</span> + VAT per extra circuit. Parking or congestion charges are only added if we have to pay them.</p>
+      </div>
+    </section>
+
+    <!-- Customers: councils first, then the brands -->
+    <section class="bo-section bo-clients" aria-labelledby="bo-clients">
+      <div class="container">
+        <h2 id="bo-clients">Trusted by councils and national brands</h2>
+        <ul class="logo-wall on-light">
+          <li><img src="/assets/img/clients/haringey.svg" alt="Haringey Council" loading="lazy"></li>
+          <li><img src="/assets/img/clients/islington.png" alt="Islington Council" loading="lazy"></li>
+          <li><img src="/assets/img/clients/hackney.svg" alt="Hackney Council" loading="lazy"></li>
+          <li><img src="/assets/img/clients/the-ivy.svg" alt="The Ivy" loading="lazy"></li>
+          <li><img src="/assets/img/clients/tgi-fridays.svg" alt="TGI Fridays" loading="lazy"></li>
+          <li><img src="/assets/img/clients/krispy-kreme.svg" alt="Krispy Kreme" loading="lazy"></li>
+          <li><img src="/assets/img/clients/wolseley.svg" alt="Wolseley" loading="lazy"></li>
+          <li><img src="/assets/img/clients/ford.svg" alt="Ford" loading="lazy"></li>
+        </ul>
       </div>
     </section>
 
@@ -254,9 +276,9 @@
     <a class="btn btn-volt" href="/#book" data-book="EICR_DOM" data-check-prices="">Check dates &amp; prices <svg class="icon"><use href="#i-arrow"/></svg></a>
   </div>
 
-  <script src="/assets/config.js?v=44"></script>
+  <script src="/assets/config.js?v=45"></script>
   <script src="/assets/consent.js?v=44"></script>
-  <script src="/assets/site.js?v=44"></script>
+  <script src="/assets/site.js?v=45"></script>
 
   <!-- Booking-app tracking (integration brief, section 03). Pasted as supplied.
        Keep it last, after site.js has built the booking links. -->

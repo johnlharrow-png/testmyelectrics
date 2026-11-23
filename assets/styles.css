@@ -945,16 +945,22 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
 .bo .lp-hero-contact { margin-top: 14px; }
 .bo .hero-visual { max-width: 336px; justify-self: center; }
 
-/* Trust strip: three ticks in a row, straight under the first screen */
+/* Trust strip, straight under the first screen: Google rating on the left, accreditation logos on the right */
 .bo-trust { background: var(--paper); border-bottom: 1px solid var(--line); }
-.bo-trust ul { list-style: none; margin-block: 0; padding: 18px 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px 24px; }
-.bo-trust li { display: flex; justify-content: center; align-items: center; gap: 9px; font-size: 15px; font-weight: 600; text-align: center; }
-.bo-trust li > span, .bo-google { display: inline-flex; align-items: center; gap: 9px; }
-.bo-trust .icon { width: 19px; height: 19px; flex: none; color: var(--pass); stroke-width: 2.2; }
-.bo-google { color: var(--text); text-decoration: none; }
-.bo-google > span[aria-hidden] { color: #F5A400; }
-a.bo-google[href]:hover { text-decoration: underline; text-underline-offset: 3px; }
-.bo-google [data-rv-count] { font-weight: 500; color: var(--muted); }
+.bo-trust-inner { display: flex; align-items: center; justify-content: space-between; gap: 18px 32px; padding-block: 20px; flex-wrap: wrap; }
+.bo-rating { display: inline-flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-size: 15px; font-weight: 600; }
+a.bo-rating[href]:hover .bo-rating-name { text-decoration: underline; text-underline-offset: 3px; }
+.bo-rating-g { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #fff; border: 1px solid var(--line); flex: none; }
+.bo-rating-g svg { width: 20px; height: 20px; }
+.bo-rating strong { font-size: 20px; font-weight: 700; }
+.bo-stars { background: linear-gradient(90deg, #fbbc04 var(--rv), #d9dce3 var(--rv)); }
+.bo-rating-name [data-rv-count] { font-weight: 500; color: var(--muted); }
+.bo-accred { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 150px)); gap: 12px; }
+.bo-accred li { display: grid; justify-items: center; align-content: center; gap: 6px; padding: 10px 12px 8px; background: #fff; border: 1px solid var(--line); border-radius: 12px; }
+.bo-accred img { display: block; height: 40px; width: 100%; object-fit: contain; }
+.bo-accred span { font-size: 12px; font-weight: 600; color: var(--muted); text-align: center; line-height: 1.25; }
+.bo-clients { background: var(--surface); border-block: 1px solid var(--line); }
+.bo-clients h2 { text-align: center; }
 
 /* Sections */
 .bo-section { padding: 64px 0; }
@@ -1018,8 +1024,12 @@ a.bo-google[href]:hover { text-decoration: underline; text-underline-offset: 3px
   .bo .quick-book > .btn { height: 54px; }
   .bo .qb-field input { font-size: 16px; }   /* under 16px, iPhones zoom in on focus */
   .bo .hero-visual { max-width: 300px; margin-bottom: 18px; }
-  .bo-trust ul { grid-template-columns: minmax(0, 1fr); padding: 16px 0; gap: 10px; }
-  .bo-trust li { justify-content: flex-start; text-align: left; }
+  .bo-trust-inner { flex-direction: column; align-items: stretch; padding-block: 16px; gap: 14px; }
+  .bo-rating { justify-content: center; }
+  .bo-accred { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .bo-accred li { padding: 8px 6px 6px; }
+  .bo-accred img { height: 32px; }
+  .bo-accred span { font-size: 11px; }
   .bo-section { padding: 48px 0; }
   .bo-price-grid, .bo-how, .lp-reviews { grid-template-columns: minmax(0, 1fr); }
   .bo-eicr .tiers { grid-template-columns: minmax(0, 1fr); }

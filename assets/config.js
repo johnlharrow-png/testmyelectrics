@@ -23,15 +23,13 @@ window.TME_CONFIG = {
     endpoint: '/api/lead',
   },
 
-  /* Google reviews on /book-online. The badge (score, count, stars) only shows once BOTH score and url
-     are filled in, so the rating links to reviews people can check. The TestMyElectrics.com Google
-     listing had no reviews on 2026-11-23, so all of this is empty for now.
-     - url: the link to your reviews (Google Business Profile > Read reviews > Share)
+  /* Google rating on /book-online. The badge shows whenever score is set; once url is filled in it
+     links to the reviews (Google Business Profile > Read reviews > Share).
      - items: 2–3 real reviews, copied word for word, e.g.
        { text: 'The review, word for word', name: 'First name', detail: 'landlord, Chelmsford' }
        The reviews section appears as soon as there's at least one. */
   reviews: {
-    score: '',
+    score: '4.7',
     count: '',
     url: '',
     items: [],
