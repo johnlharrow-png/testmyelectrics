@@ -26,14 +26,18 @@ def ticks(items):
 
 
 def build(slug, title, description, h1, line, local_id, local_h2, local_body, areas=None, placeholder=None,
-          drop_homebuyer=False):
+          drop_homebuyer=False, own_canonical=True):
     p = SRC
     p = swap(p, '<title>Book an EICR from £79 + VAT | Essex &amp; East London | testmyelectrics.com</title>',
              f'<title>{html.escape(title, quote=False)}</title>')
     p = re.sub(r'<meta name="description" content="[^"]*">',
                f'<meta name="description" content="{html.escape(description)}">', p, count=1)
-    p = swap(p, '<link rel="canonical" href="https://www.testmyelectrics.com/book-online">',
-             f'<link rel="canonical" href="https://www.testmyelectrics.com/{slug}">')
+    # Town pages share most of their text with /book-online, so they point their canonical there:
+    # Google treats a set of near-identical city pages as doorway pages. Give a town its own
+    # canonical (own_canonical=True) once its page has enough text of its own.
+    if own_canonical:
+        p = swap(p, '<link rel="canonical" href="https://www.testmyelectrics.com/book-online">',
+                 f'<link rel="canonical" href="https://www.testmyelectrics.com/{slug}">')
     p = swap(p, f'<h1>EICR certificates from {PRICE}</h1>', f'<h1>{h1} from {PRICE}</h1>')
     p = re.sub(r'<p class="bo-line">.*?</p>', f'<p class="bo-line">{line}</p>', p, count=1, flags=re.S)
     if placeholder:
@@ -149,6 +153,7 @@ for slug, town, districts, example, nearby in TOWNS:
         areas=('We also cover', 'Chelmsford, Southend, Basildon, Colchester, Brentwood, Billericay, Harlow, Romford, '
                'Ilford and surrounding areas: postcodes <span data-coverage-areas>CM, SS, CO, RM, IG, E4, EN9, CB10 and CB11</span>.'),
         placeholder=example,
+        own_canonical=False,
     ))
 
 print('wrote', len(pages), 'pages:', ', '.join(pages))

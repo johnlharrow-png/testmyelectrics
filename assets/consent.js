@@ -52,10 +52,16 @@
   if (ids.length) {
     gtag('consent', 'default', { ...DENIED, wait_for_update: 500 });
     if (saved === 'granted') gtag('consent', 'update', GRANTED);
-    const tag = document.createElement('script');
-    tag.async = true;
-    tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ids[0]);
-    document.head.appendChild(tag);
+    // Fetch the tag once the page has loaded, so it doesn't hold up the first screen on a phone
+    // (Google's speed test counted it against the main photo). The calls below wait in dataLayer.
+    const loadTag = () => {
+      const tag = document.createElement('script');
+      tag.async = true;
+      tag.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(ids[0]);
+      document.head.appendChild(tag);
+    };
+    if (document.readyState === 'complete') setTimeout(loadTag, 0);
+    else window.addEventListener('load', () => setTimeout(loadTag, 0), { once: true });
     gtag('js', new Date());
     ids.forEach((id) => gtag('config', id));
   }
