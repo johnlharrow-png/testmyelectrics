@@ -1167,3 +1167,42 @@ a.bo-rating[href]:hover .bo-rating-name { text-decoration: underline; text-under
   .eg-code-art img.eg-round { height: 156px; }
   .eg-fig img { width: 96px; }
 }
+
+/* ==========================================================================
+   Guide pages (/eicr-cost, /landlord-electrical-safety, /smoke-co-alarm-rules, /eicr-selling-a-house,
+   built by tools/build-guides.py) and the "More guides" links on every guide
+   ========================================================================== */
+.eg-chip.eg-price { background: var(--paper); color: var(--text); font: 700 14px/1 var(--font-mono); padding: 7px 10px; }
+.eg-report .eg-result-ok { background: var(--paper); color: var(--text); font-weight: 600; }
+.eg-art { margin: 0; justify-self: center; width: 100%; max-width: 380px; }
+.eg-art img { width: 100%; height: auto; border-radius: 18px; box-shadow: 0 30px 70px rgba(0, 0, 0, .35); }
+.eg-note { max-width: 860px; margin: 16px 0 0; font-size: 15.5px; line-height: 1.55; color: var(--muted); }
+.eg-note a, .eg-check a, .eg-prices a, .eg-intro a { color: var(--brand); font-weight: 600; }
+.eg-note-big { margin-top: 0; font-size: 17px; color: var(--text); }
+.eg-prices { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.eg-prices li { padding: 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.eg-alt .eg-prices li { background: var(--paper); }
+.eg-prices h3 { font-size: 18px; margin-bottom: 6px; }
+.eg-prices p { margin: 0; font-size: 15.5px; line-height: 1.5; color: var(--muted); }
+.eg-prices .eg-p { margin: 2px 0 8px; color: var(--text); font-size: 15px; }
+.eg-prices .eg-p strong { font: 700 26px/1.1 var(--font-display); }
+.eg-res.eg-plain { background: var(--surface); border-color: var(--line); }
+.eg-alt .eg-res.eg-plain { background: var(--paper); }
+.eg-myth.eg-no { background: #FDECEC; border-color: #F6C9C9; }
+.eg-rules strong { color: var(--text); }
+.eg-guides { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.eg-guides a { display: flex; align-items: center; gap: 14px; padding: 14px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); font-weight: 700; text-decoration: none; color: var(--text); }
+.eg-guides a:hover { border-color: var(--brand); }
+.eg-guides .eg-ic { margin: 0; flex: none; }
+.eg-guides a > span:nth-child(2) { flex: 1; }
+.eg-guides a > .icon { width: 18px; height: 18px; color: var(--brand); }
+@media (max-width: 1000px) {
+  .eg-prices { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 760px) {
+  .eg-guides { grid-template-columns: minmax(0, 1fr); }
+  .eg-art { max-width: 320px; }
+}
+.bo-local .bo-local-h3 { margin: 22px 0 8px; font-size: 19px; }
+.bo-boroughs { margin: 12px 0 0; padding-left: 20px; max-width: 72ch; display: grid; gap: 8px; font-size: 16px; line-height: 1.5; }
+.bo-local .bo-boroughs + p { margin-top: 12px; }

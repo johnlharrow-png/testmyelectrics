@@ -6,25 +6,11 @@
 # and src/seed/library.js), which follows BS 7671 and Electrical Safety First's Best Practice Guide 4.
 # Pictures marked esf-* come from Best Practice Guide 4 (issue 6, 2022) and carry a credit line.
 import html
-import json
-import os
-import re
 
-ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SRC = open(os.path.join(ROOT, 'book-online.html'), encoding='utf-8').read()
+from site_common import build_page, check, cta, faq_section, icon, more_guides, EICR_FROM as PRICE
 
 ESF = 'https://www.electricalsafetyfirst.org.uk/resources-for-electricians/best-practice-guides/'
 CREDIT = f'<span class="eg-credit">Picture: <a href="{ESF}" rel="noopener">Electrical Safety First, Best Practice Guide 4</a></span>'
-PRICE = '<span data-price="EICR_DOM.studio">£79</span> + VAT'
-
-
-def swap(page, old, new):
-    assert page.count(old) == 1, f'not found once in book-online.html: {old[:70]}'
-    return page.replace(old, new)
-
-
-def icon(name):
-    return f'<svg class="icon" aria-hidden="true"><use href="#i-{name}"/></svg>'
 
 
 FAQ = [
@@ -49,30 +35,6 @@ FAQ = [
 ]
 
 
-def faq_html():
-    out = []
-    for q, a in FAQ:
-        out.append(
-            '          <details>\n'
-            f'            <summary>{html.escape(q)}<span class="plus">{icon("plus")}</span></summary>\n'
-            f'            <div class="faq-a"><p>{html.escape(a)}</p></div>\n'
-            '          </details>')
-    return '\n'.join(out)
-
-
-def faq_schema():
-    data = {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        'mainEntity': [{'@type': 'Question', 'name': q, 'acceptedAnswer': {'@type': 'Answer', 'text': a}} for q, a in FAQ],
-    }
-    return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + '</script>'
-
-
-def check(ic, title, text):
-    return (f'<li class="eg-check"><span class="eg-ic">{icon(ic)}</span><h3>{title}</h3><p>{text}</p></li>')
-
-
 def code_card(cls, code, name, art, art_alt, summary, examples, next_step, credit=''):
     items = ''.join(f'<li>{e}</li>' for e in examples)
     round_ = ' class="eg-round"' if art.endswith('.webp') else ''  # the guide's photo is a circle on white
@@ -86,6 +48,11 @@ def code_card(cls, code, name, art, art_alt, summary, examples, next_step, credi
           </div>
         </article>'''
 
+
+CTA = cta('Book your EICR online',
+          f'From {PRICE}. NAPIT-registered electricians across Essex and East London. Your certificate is emailed '
+          'and saved in your online account.',
+          f'Codes follow BS 7671 and Electrical Safety First\'s free <a href="{ESF}" rel="noopener">Best Practice Guide 4</a>.')
 
 MAIN = f'''  <main id="main">
     <section class="eg-hero" aria-labelledby="eg-title">
@@ -137,7 +104,7 @@ MAIN = f'''  <main id="main">
         <h2 id="eg-result">Satisfactory or Unsatisfactory?</h2>
         <div class="eg-results">
           <div class="eg-res pass"><h3><span class="tick">{icon('check')}</span>Satisfactory</h3><p>No C1 or C2 codes. You can still have C3 recommendations and pass.</p></div>
-          <div class="eg-res fail"><h3><span class="eg-x">{icon('alert')}</span>Unsatisfactory</h3><p>At least one C1 or C2. Landlords must put these right, and investigate any FI, within 28 days or sooner if the report says so.</p></div>
+          <div class="eg-res fail"><h3><span class="eg-x">{icon('alert')}</span>Unsatisfactory</h3><p>At least one C1 or C2. Landlords must put these right within 28 days, or sooner if the report says so.</p></div>
         </div>
       </div>
     </section>
@@ -172,7 +139,7 @@ MAIN = f'''  <main id="main">
            ['A circuit that can\'t be traced to where it ends',
             'An RCD that keeps tripping with no obvious cause',
             'Signs of damage to wiring hidden in walls or under floors'],
-           'Landlords must have it investigated within 28 days. For a home you own, it is a strong recommendation.')}
+           'It is a strong recommendation to get it looked into. For landlords it was a legal duty within 28 days for inspections before 30 November 2026; the rules dropped it for inspections from that date.')}
         </div>
         <p class="eg-lim"><b>LIM (limitation) is not a fault.</b> It lists anything the electrician couldn't get to or test, such as a boarded-over loft or a freezer that had to stay on, so the next electrician knows.</p>
       </div>
@@ -199,7 +166,7 @@ MAIN = f'''  <main id="main">
           <li>Have an EICR done at least every 5 years, or sooner if the last report says so.</li>
           <li>Give your tenants a copy within 28 days of the inspection, and new tenants a copy before they move in.</li>
           <li>Send the council a copy within 7 days if they ask for one.</li>
-          <li>Put right any C1 or C2, and investigate any FI, within 28 days or sooner if the report says so.</li>
+          <li>Put right any C1 or C2 within 28 days, or sooner if the report says so. (For inspections before 30 November 2026, FI items also had to be investigated.)</li>
           <li>Give your tenants and the council written confirmation within 28 days of the work being finished.</li>
         </ol>
         <p class="eg-more"><a href="/landlord-eicr">Landlord EICRs from {PRICE}</a> {icon('arrow')}</p>
@@ -216,43 +183,14 @@ MAIN = f'''  <main id="main">
       </div>
     </section>
 
-    <section class="bo-section bo-faq" id="faq" aria-labelledby="eg-faq">
-      <div class="container">
-        <h2 id="eg-faq">EICR questions</h2>
-        <div class="faq">
-{faq_html()}
-          <p class="faq-more">Can't find your answer? Email <a href="mailto:bookings@testmyelectrics.com" data-email-link><span data-email>bookings@testmyelectrics.com</span></a></p>
-        </div>
-      </div>
-    </section>
-
-    <section class="bo-section eg-cta" aria-labelledby="eg-book">
-      <div class="container">
-        <h2 id="eg-book">Book your EICR online</h2>
-        <p>From {PRICE}. NAPIT-registered electricians across Essex and East London. Your certificate is emailed and saved in your online account.</p>
-        <a class="btn btn-volt" href="/book-online">Check dates &amp; prices</a>
-        <p class="eg-src">Codes follow BS 7671 and Electrical Safety First's free <a href="{ESF}" rel="noopener">Best Practice Guide 4</a>.</p>
-      </div>
-    </section>
-  </main>
+{faq_section(FAQ, 'EICR questions')}
+{more_guides('eicr-explained')}
+{CTA}  </main>
 '''
 
-p = SRC
-p = swap(p, '<title>Book an EICR from £79 + VAT | Essex &amp; East London | testmyelectrics.com</title>',
-         '<title>What is an EICR? C1, C2, C3 and FI codes explained | testmyelectrics.com</title>')
-p = re.sub(r'<meta name="description" content="[^"]*">',
-           '<meta name="description" content="What an EICR checks, what the codes C1, C2, C3 and FI mean, what makes a '
-           'report Satisfactory or Unsatisfactory, and the rules for landlords. Written by NAPIT-registered electricians.">',
-           p, count=1)
-p = swap(p, '  <!-- Ad landing page, open to search engines. The town pages generated from it point their canonical here. -->\n',
-         '  <!-- EICR guide, built by tools/build-eicr-guide.py from book-online.html. Edit the script, not this file. -->\n')
-p = swap(p, '<link rel="canonical" href="https://www.testmyelectrics.com/book-online">',
-         '<link rel="canonical" href="https://www.testmyelectrics.com/eicr-explained">')
-# no hero photo on this page
-p = re.sub(r'  <link rel="preload" as="image"[^\n]*\n', '', p, count=1)
-p = swap(p, '</head>', f'  {faq_schema()}\n</head>')
-start, end = p.index('  <main id="main">'), p.index('  </main>') + len('  </main>\n')
-p = p[:start] + MAIN + p[end:]
-with open(os.path.join(ROOT, 'eicr-explained.html'), 'w', encoding='utf-8', newline='\n') as f:
-    f.write(p)
+build_page('eicr-explained',
+           'What is an EICR? C1, C2, C3 and FI codes explained | testmyelectrics.com',
+           'What an EICR checks, what the codes C1, C2, C3 and FI mean, what makes a report Satisfactory or '
+           'Unsatisfactory, and the rules for landlords. Written by NAPIT-registered electricians.',
+           MAIN, FAQ, 'EICR guide, built by tools/build-eicr-guide.py from book-online.html.')
 print('wrote eicr-explained.html')

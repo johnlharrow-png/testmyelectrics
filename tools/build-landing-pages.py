@@ -127,6 +127,144 @@ TOWNS = [
 ]
 
 
+# Each town's own text: what the local council asks of landlords. Every licensing point was checked on the
+# council's own website on 23 Nov 2026 (URLs beside each entry). Schemes start and end, so recheck these
+# before the dates given, and when a council announces a new scheme. Leave a point out rather than guess.
+HMO = ('A house shared by 5 or more people from 2 or more households needs a mandatory HMO licence')
+LANDLORD_RULES = ('Every rented home also needs an EICR at least every 5 years, with a copy for your tenants within '
+                  '28 days. <a href="/landlord-electrical-safety">The rules for landlords</a>.')
+LOCAL = {
+    # https://www.chelmsford.gov.uk/business/licensing/licensing-a-house-in-multiple-occupation/
+    'chelmsford': [
+        'Chelmsford City Council says it has no additional or selective licensing schemes, so most rented homes in the '
+        f'city don\'t need a council licence. {HMO}. With the application, the council asks for a current EICR, a gas '
+        'safety certificate, a fire risk assessment, a floor plan and a copy of the tenancy agreement.',
+        LANDLORD_RULES,
+        'Live in your home? A test every 10 years is recommended, and when you move in. Buying in Chelmsford? Our '
+        '<a href="/eicr-selling-a-house">homebuyer\'s report</a> prices any repairs before you exchange.',
+    ],
+    # https://www.new.colchester.gov.uk/licensing/other-licences/house-multiple-occupation-licensing
+    # https://www.new.colchester.gov.uk/housing/private-sector-housing/gas-safety-electrical-safety-fire-safety-and-carbon-monoxide-2
+    # https://www.new.colchester.gov.uk/news/2026/council-takes-action-help-keep-rented-homes-safe
+    'colchester': [
+        'Colchester City Council doesn\'t run additional or selective licensing, so most rented homes don\'t need a '
+        f'council licence. {HMO}. The council asks for the EICR as part of a valid application, and every mandatory '
+        'HMO licence has a condition to send it in when asked.',
+        'The council says it will ask landlords for a copy of their latest EICR within 7 days. In September 2026 it '
+        'reported fining a housing association £13,600 for not providing one when asked. Your report from us is saved '
+        'in your online account, ready to send.',
+        LANDLORD_RULES,
+    ],
+    # https://www.southend.gov.uk/private-housing/selective-licensing-scheme (and /3, /7)
+    # https://www.southend.gov.uk/news/article/3608/have-your-say-on-plans-to-renew-and-expand-landlord-licensing-in-southend
+    # https://www.southend.gov.uk/HMOlicence
+    # Recheck after 30 Nov 2026 (scheme ends) and when the consultation on a new scheme closes.
+    'southend': [
+        'Southend-on-Sea City Council\'s selective licensing scheme covers parts of Milton, Kursaal, Victoria and '
+        'Chalkwell wards. Its licences expire on 30 November 2026. The council is consulting on a new scheme that '
+        'could start from 1 April 2027, and says there will be a gap between the two. Current licences don\'t need '
+        'renewing: if a new scheme is approved, the council will contact the landlords affected. Its licence '
+        'application asks for a valid EICR.',
+        f'{HMO}, and the council asks for up-to-date electrical certificates with the application.',
+        LANDLORD_RULES,
+    ],
+    # National rules only: basildon.gov.uk couldn't be read to check local licensing, so none is stated here.
+    'basildon': [
+        'Basildon Borough Council deals with private renting in Basildon, Pitsea, Laindon and Billericay. '
+        f'{HMO} from the council. Check its website for anything else that applies before you let a home.',
+        LANDLORD_RULES,
+        'Live in your home? A test every 10 years is recommended, and when you move in. If you notice scorch marks, '
+        'a fuse board that keeps tripping or lights that flicker, don\'t wait: book a test. If we find a danger, we make '
+        'it safe before we leave, with your agreement.',
+    ],
+    # https://castlepoint.gov.uk/about-the-council
+    # https://www.castlepoint.gov.uk/documents/d/guest/houses-in-multiple-occupation-hmo-policy-15-july-2026
+    # https://www.castlepoint.gov.uk/w/housing-disrepair
+    'benfleet': [
+        'Benfleet is in Castle Point, with Thundersley, Hadleigh and Canvey Island, so Castle Point Borough Council '
+        f'deals with private renting here. {HMO}. The council\'s HMO policy, adopted in July 2026, asks for a current '
+        'satisfactory EICR and a PAT certificate when you apply.',
+        'The council\'s housing disrepair page also explains the national electrical safety rules for landlords. If you '
+        'live in your home rather than let it, a test every 10 years is recommended, and when you move in.',
+        LANDLORD_RULES,
+    ],
+    # National rules only, as for Basildon.
+    'billericay': [
+        'Billericay is in Basildon borough, so Basildon Borough Council deals with private renting here. '
+        f'{HMO} from the council. Check its website for anything else that applies before you let a home.',
+        LANDLORD_RULES,
+        'Selling a home in Billericay? An EICR isn\'t a legal requirement, but buyers often ask, and a recent report '
+        'answers their questions early. Buying? Our homebuyer\'s report adds a price for each repair. '
+        '<a href="/eicr-selling-a-house">EICRs when you buy or sell</a>.',
+    ],
+    # https://brentwood.gov.uk/houses-in-multiple-occupation-hmos
+    # https://www.brentwood.gov.uk/renters-rights-act-2025
+    'brentwood': [
+        'Brentwood Borough Council deals with private renting in Brentwood, Shenfield, Hutton and the villages around. '
+        f'{HMO} from the council, and the council\'s HMO page lists its licence fees.',
+        'The council\'s guide to the Renters\' Rights Act 2025 lists the EICR among the documents to have ready for '
+        'the new Private Rented Sector database. Ours is saved in your online account, so it\'s easy to find when you '
+        'need it, along with the date the next one is due.',
+        LANDLORD_RULES,
+    ],
+    # https://www.harlow.gov.uk/business/licensing/apply-hmo-licence
+    # https://www.harlow.gov.uk/policies/corporate-policy-building-harlows-future
+    # https://www.harlow.gov.uk/sites/default/files/documents/Harlow%20Local%20Development%20Plan.pdf (new town, 1947)
+    'harlow': [
+        f'Harlow Council deals with private renting in the town. {HMO}, and the council asks for an EICR that is not '
+        'more than 5 years old with the application.',
+        'The council\'s corporate plan for 2026 to 2027 includes introducing a selective licensing scheme for private '
+        'rented homes across Harlow. It isn\'t in place yet, so check the council\'s website for news.',
+        'Harlow was designated a new town in 1947 and built as a series of neighbourhoods. Whatever the age of your '
+        'home, if the wiring hasn\'t been checked for 10 years, it\'s worth a test.',
+        LANDLORD_RULES,
+    ],
+    # https://www.southend.gov.uk/private-housing/selective-licensing-scheme (wards), Leigh is a parish of Southend
+    'leigh-on-sea': [
+        'Leigh-on-Sea is part of Southend-on-Sea, so Southend-on-Sea City Council deals with private renting here. '
+        'Its selective licensing scheme covers parts of Milton, Kursaal, Victoria and Chalkwell wards, not the Leigh '
+        'wards. Its licences expire on 30 November 2026, and the council is consulting on a new scheme: check its '
+        'map if your property is near Chalkwell.',
+        f'{HMO}, and the council asks for up-to-date electrical certificates with the application.',
+        LANDLORD_RULES + ' Selling in Leigh? <a href="/eicr-selling-a-house">Do you need an EICR to sell?</a>',
+    ],
+    # https://www.havering.gov.uk/information-landlords/private-rented-property-licensing (and /2)
+    # https://www.havering.gov.uk/downloads/file/1675/landlord-private-rented-property-licence-guide
+    'romford': [
+        'Romford is in the London Borough of Havering. From 18 March 2026 to 17 March 2031, Havering runs selective '
+        'licensing in 7 wards: Beam Park, Harold Wood, Rainham and Wennington, Rush Green and Crowlands, Squirrels '
+        'Heath, St Albans and St Edwards. Additional licensing covers smaller HMOs across the whole borough, and '
+        'larger HMOs need a mandatory licence.',
+        'Havering asks licence applicants for an electrical safety certificate within 28 days of asking for it, and '
+        'its licence conditions require you to follow the national rules. Parts of RM6 and RM7 are in Redbridge or '
+        'Barking and Dagenham, which run their own schemes.',
+        LANDLORD_RULES,
+    ],
+    # https://www.redbridge.gov.uk/housing/landlords/selective-licensing/
+    # https://www.lbbd.gov.uk/private-sector-housing/property-licensing/do-i-need-licence (and /application-process)
+    # https://www.walthamforest.gov.uk/housing/private-sector-housing/private-rented-property-licensing-prpl/property-licensing-schemes
+    # https://www.havering.gov.uk/information-landlords/private-rented-property-licensing
+    'east-london': [
+        'Each London borough runs its own landlord licensing. All four we cover license some ordinary rented homes, '
+        'not just HMOs:',
+        '<ul class="bo-boroughs">'
+        '<li><strong>Redbridge</strong> (Ilford, Woodford): selective licensing in 17 of its 22 wards (not Bridge, '
+        'Clayhall, Fullwell, Monkhams or Wanstead Park). The application asks for an EICR.</li>'
+        '<li><strong>Barking and Dagenham</strong>: selective licensing covering most privately rented homes. An EICR '
+        'is one of the documents to upload.</li>'
+        '<li><strong>Waltham Forest</strong> (Chingford): selective licensing in 20 of its 22 wards until 30 April '
+        '2030. Endlebury, and Hatch Lane and Highams Park North, are left out.</li>'
+        '<li><strong>Havering</strong> (Hornchurch, Upminster, Rainham): selective licensing in 7 wards, including '
+        'Rainham and Wennington, until 17 March 2031.</li>'
+        '</ul>',
+        'Redbridge, Waltham Forest and Havering also license smaller HMOs across the whole borough, and Barking and '
+        'Dagenham has additional HMO licensing too.',
+        'Chigwell (IG7) is in Epping Forest District, which licenses larger HMOs and asks for an EICR with the '
+        'application. Check your council\'s map before you let. ' + LANDLORD_RULES,
+    ],
+}
+
+
 def join(items):
     return ', '.join(items[:-1]) + ' and ' + items[-1] if len(items) > 1 else items[0]
 
@@ -135,6 +273,7 @@ for slug, town, districts, example, nearby in TOWNS:
     pcs = join(districts)
     extra = (' For homes in East London we cover E4 and the IG and RM postcodes listed; other E postcodes '
              'are outside our area.' if slug == 'east-london' else '')
+    local = ''.join(para if para.startswith('<ul') else f'<p>{para}</p>' for para in LOCAL[slug])
     pages.append(build(
         f'eicr-{slug}',
         f'EICR in {town} from £79 + VAT | testmyelectrics.com',
@@ -147,13 +286,13 @@ for slug, town, districts, example, nearby in TOWNS:
         f'Postcodes covered: <span class="bo-postcodes">{pcs}</span>.{extra}</p>'
         + ticks([
             f'The same fixed prices across {town}: you see the full price before you pay.',
-            'Choose a morning or afternoon slot that suits you, with free rescheduling up to 24 hours before.',
-            'Your EICR certificate is emailed and saved in your online account.',
-        ]),
+            'Choose a morning or afternoon slot, with free rescheduling up to 24 hours before.',
+        ])
+        + f'<h3 class="bo-local-h3">Renting out a home in {town}?</h3>' + local,
         areas=('We also cover', 'Chelmsford, Southend, Basildon, Colchester, Brentwood, Billericay, Harlow, Romford, '
                'Ilford and surrounding areas: postcodes <span data-coverage-areas>CM, SS, CO, RM, IG, E4, EN9, CB10 and CB11</span>.'),
         placeholder=example,
-        own_canonical=False,
+        own_canonical=True,
     ))
 
 print('wrote', len(pages), 'pages:', ', '.join(pages))

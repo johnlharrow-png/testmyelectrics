@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 330" role="img" aria-label="Cross-section of a two-storey house with a smoke alarm on the ceiling of each storey and a carbon monoxide alarm next to the boiler and the wood burner">
+  <rect width="360" height="330" rx="18" fill="#EEF2FA"/>
+  <path d="M40 120 180 34l140 86" fill="none" stroke="#0C1840" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"/>
+  <rect x="58" y="112" width="244" height="160" fill="#fff" stroke="#0C1840" stroke-width="4"/>
+  <path d="M58 192h244" stroke="#0C1840" stroke-width="4"/>
+  <path d="M180 112v160" stroke="#C9CED8" stroke-width="3" stroke-dasharray="6 6"/>
+  <!-- stairs -->
+  <path d="M188 272v-12h14v-12h14v-12h14v-12h14v-12h14v-10" fill="none" stroke="#8891A5" stroke-width="3" stroke-linejoin="round"/>
+  <!-- smoke alarms: one on each storey -->
+  <g>
+    <rect x="102" y="114" width="34" height="8" rx="4" fill="#F47B20"/>
+    <circle cx="119" cy="126" r="4" fill="#F47B20"/>
+    <path d="M108 136c7 5 15 5 22 0M104 144c10 7 20 7 30 0" fill="none" stroke="#F47B20" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <g>
+    <rect x="196" y="194" width="34" height="8" rx="4" fill="#F47B20"/>
+    <circle cx="213" cy="206" r="4" fill="#F47B20"/>
+    <path d="M202 216c7 5 15 5 22 0M198 224c10 7 20 7 30 0" fill="none" stroke="#F47B20" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <!-- boiler upstairs right with CO alarm -->
+  <rect x="246" y="128" width="34" height="46" rx="5" fill="#E3E6ED" stroke="#535E75" stroke-width="2.5"/>
+  <circle cx="263" cy="164" r="4" fill="#3B6BFF"/>
+  <path d="M256 182v8M270 182v8" stroke="#535E75" stroke-width="2.5"/>
+  <rect x="206" y="138" width="26" height="26" rx="6" fill="#22398C"/>
+  <text x="219" y="155.5" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">CO</text>
+  <!-- wood burner downstairs left with CO alarm -->
+  <path d="M84 272v-40h40v40" fill="#2B3445"/>
+  <rect x="96" y="214" width="16" height="18" fill="#2B3445"/>
+  <rect x="90" y="244" width="28" height="18" rx="3" fill="#F47B20" opacity=".85"/>
+  <rect x="140" y="218" width="26" height="26" rx="6" fill="#22398C"/>
+  <text x="153" y="235.5" font-family="Arial, sans-serif" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">CO</text>
+  <!-- labels -->
+  <rect x="12" y="288" width="160" height="28" rx="14" fill="#fff" stroke="#D0D5DF"/>
+  <circle cx="28" cy="302" r="6" fill="#F47B20"/>
+  <text x="40" y="306.5" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#0C1840">Smoke: every storey</text>
+  <rect x="184" y="288" width="164" height="28" rx="14" fill="#fff" stroke="#D0D5DF"/>
+  <circle cx="200" cy="302" r="6" fill="#22398C"/>
+  <text x="212" y="306.5" font-family="Arial, sans-serif" font-size="12" font-weight="700" fill="#0C1840">CO: by the appliance</text>
+</svg>
