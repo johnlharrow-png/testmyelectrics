@@ -74,7 +74,6 @@ pages.append(build(
     ])
     + f'<p>Several properties? Email {EMAIL} for a portfolio price. Letting agent? '
       '<a href="/letting-agents">Open an agent account</a>.</p>',
-    drop_homebuyer=True,
 ))
 
 pages.append(build(
