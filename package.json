@@ -1,0 +1,12 @@
+{
+  "name": "testmyelectrics-site-tools",
+  "private": true,
+  "description": "Build tools for the static site. Not deployed: the Dockerfile copies only the site files.",
+  "type": "module",
+  "scripts": {
+    "inline-css": "node tools/inline-css.mjs"
+  },
+  "devDependencies": {
+    "beasties": "0.5.5"
+  }
+}

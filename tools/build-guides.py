@@ -10,7 +10,7 @@
 #     https://www.legislation.gov.uk/uksi/2015/1693 and the gov.uk guidance booklet.
 #   Alarm grades and categories: the field app's engineer guide (eicr-field-pro src/guide.js, BS 5839-6).
 #   Prices: assets/config.js, which matches the booking app (GET /api/public/config).
-from site_common import (EMAIL, EICR_FROM, build_page, cfg, check, cta, faq_section, icon, more_guides, price,
+from site_common import (inline_css, EMAIL, EICR_FROM, build_page, cfg, check, cta, faq_section, icon, more_guides, price,
                          pspan, rules)
 
 ESS = 'https://www.legislation.gov.uk/uksi/2020/312/contents'
@@ -399,3 +399,4 @@ pages.append(build_page(
     SELL_FAQ, NOTE))
 
 print('wrote', len(pages), 'pages:', ', '.join(pages))
+inline_css()

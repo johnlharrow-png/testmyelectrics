@@ -4,7 +4,7 @@
 # and (for towns) the postcodes covered. Everything else (booking box, logos, prices, FAQ, tracking)
 # comes straight from book-online.html, so after changing that page run:
 #     python tools/build-landing-pages.py
-# and commit the pages it writes. Don't edit the generated pages by hand: the next run overwrites them.
+# and commit the pages it writes. It also rebuilds each page's critical CSS (tools/inline-css.mjs; `npm install` once). Don't edit the generated pages by hand: the next run overwrites them.
 # Before adding a town, check its postcodes on the booking app (POST /api/public/postcode).
 import html, os, re
 
@@ -296,3 +296,8 @@ for slug, town, districts, example, nearby in TOWNS:
     ))
 
 print('wrote', len(pages), 'pages:', ', '.join(pages))
+
+import sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from site_common import inline_css  # noqa: E402
+inline_css()

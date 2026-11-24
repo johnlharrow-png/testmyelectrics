@@ -155,3 +155,14 @@ def build_page(slug, title, description, main, faq, note):
     with open(os.path.join(ROOT, slug + '.html'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(p)
     return slug
+
+
+def inline_css():
+    """Put each page's own styles inside it (tools/inline-css.mjs), so the first screen draws without
+    waiting for styles.css. Needs `npm install` once in the repo."""
+    import subprocess
+    if not os.path.isdir(os.path.join(ROOT, 'node_modules', 'beasties')):
+        print('NOTE: critical CSS not rebuilt. Run `npm install`, then `npm run inline-css`.')
+        return
+    subprocess.run(['node', os.path.join(ROOT, 'tools', 'inline-css.mjs')], check=True, stdout=subprocess.DEVNULL)
+    print('critical CSS rebuilt on every page')

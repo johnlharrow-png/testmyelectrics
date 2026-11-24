@@ -7,7 +7,7 @@
 # Pictures marked esf-* come from Best Practice Guide 4 (issue 6, 2022) and carry a credit line.
 import html
 
-from site_common import build_page, check, cta, faq_section, icon, more_guides, EICR_FROM as PRICE
+from site_common import inline_css, build_page, check, cta, faq_section, icon, more_guides, EICR_FROM as PRICE
 
 ESF = 'https://www.electricalsafetyfirst.org.uk/resources-for-electricians/best-practice-guides/'
 CREDIT = f'<span class="eg-credit">Picture: <a href="{ESF}" rel="noopener">Electrical Safety First, Best Practice Guide 4</a></span>'
@@ -194,3 +194,4 @@ build_page('eicr-explained',
            'Unsatisfactory, and the rules for landlords. Written by NAPIT-registered electricians.',
            MAIN, FAQ, 'EICR guide, built by tools/build-eicr-guide.py from book-online.html.')
 print('wrote eicr-explained.html')
+inline_css()

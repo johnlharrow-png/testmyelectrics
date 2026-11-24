@@ -3,3 +3,4 @@ INTEGRATION.md
 handover-*.pdf
 assets/img/src/
 .DS_Store
+node_modules/
