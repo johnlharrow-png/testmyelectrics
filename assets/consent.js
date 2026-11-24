@@ -131,8 +131,9 @@
     document.body.appendChild(banner);
     // The phone booking bar sits just above the strip (styles.css reads --consent-h)
     const setH = () => { if (banner) document.documentElement.style.setProperty('--consent-h', banner.offsetHeight + 'px'); };
-    setH();
+    // ResizeObserver reports the first size itself, after layout, so reading offsetHeight doesn't force a reflow
     if ('ResizeObserver' in window) new ResizeObserver(setH).observe(banner);
+    else requestAnimationFrame(setH);
   }
 
   if (!saved) showBanner();

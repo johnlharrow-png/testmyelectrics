@@ -143,7 +143,7 @@
   const header = $('[data-header]');
   const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 8);
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  requestAnimationFrame(onScroll);
 
   const toggle = $('[data-nav-toggle]');
   const mnav = $('[data-mobile-nav]');
