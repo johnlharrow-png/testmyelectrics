@@ -26,6 +26,19 @@
 		}
 	}
 
+	# Cookie-free site statistics (assets/site.js, privacy policy section 7): counters only, forwarded to the booking
+	# app's /api/public/ev. Passing the visitor's X-Forwarded-For lets the app rate-limit per visitor, not per Caddy.
+	handle /api/ev {
+		request_body {
+			max_size 4KB
+		}
+		rewrite * /api/public/ev
+		reverse_proxy https://book.testmyelectrics.com {
+			header_up Host {upstream_hostport}
+			header_up X-Forwarded-For {http.request.header.X-Forwarded-For}
+		}
+	}
+
 	handle {
 		# /terms, /privacy, /complaints -> terms.html etc.
 		try_files {path} {path}.html {path}/index.html

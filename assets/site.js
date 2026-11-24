@@ -467,3 +467,146 @@
     new IntersectionObserver(([en]) => { bookOn = en.isIntersecting; update(); }, { threshold: 0.02 }).observe(book);
   }
 })();
+
+/* ==========================================================================
+   Site statistics without cookies (privacy policy section 7, "Counting visits")
+   PECR's statistical-purposes exception (Data (Use and Access) Act 2025, ICO guidance 29 Apr 2026): aggregate counts of
+   how the site is used, to improve it, with a free and simple way to object. This script stores NOTHING on the device
+   (no cookies, no local or session storage, no visitor id). When the visitor leaves a page it sends one list of
+   counters, e.g. ["view", "scroll:50", "see:pricing", "tap:book:pricing"], with the page, the screen-size class
+   (phone/tablet/desktop) and how they arrived (ad/search/...). The booking app (src/sitestats.js) only adds 1 to daily
+   totals, so nothing ties one person's actions together or to a booking.
+   Not sent if they pressed Reject on the cookie banner, turned statistics off on /privacy, or send Global Privacy Control.
+   ========================================================================== */
+(() => {
+  'use strict';
+  const readCookie = (name) => { const m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)')); return m ? m[1] : null; };
+  const readLocal = (k) => { try { return localStorage.getItem(k); } catch (_) { return null; } };
+  const off = () => readLocal('tme_consent_v1') === 'denied' || readCookie('cookie_consent') === 'denied'
+    || readLocal('tme_stats_off') === '1' || readCookie('site_stats') === 'off' || navigator.globalPrivacyControl === true;
+
+  /* ---------- the privacy page's "Turn off / on" button (remembering an objection needs no consent) ---------- */
+  const setOff = (v) => {
+    try { if (v) localStorage.setItem('tme_stats_off', '1'); else localStorage.removeItem('tme_stats_off'); } catch (_) { /* storage blocked */ }
+    const parts = location.hostname.split('.');
+    const dom = parts.length >= 2 && !/^[\d.]+$/.test(location.hostname) ? '; domain=' + parts.slice(-2).join('.') : '';
+    const sec = location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = v ? `site_stats=off; path=/; max-age=${365 * 24 * 3600}; SameSite=Lax${sec}${dom}` : `site_stats=; path=/; max-age=0; SameSite=Lax${sec}${dom}`;
+    if (v && readCookie('site_stats') !== 'off') document.cookie = `site_stats=off; path=/; max-age=${365 * 24 * 3600}; SameSite=Lax${sec}`;   // preview hosts
+    if (!v && readCookie('site_stats')) document.cookie = 'site_stats=; path=/; max-age=0';
+  };
+  // Off because of the cookie banner's Reject or the browser's Global Privacy Control: the button can't override those
+  const offElsewhere = () => (navigator.globalPrivacyControl === true ? 'your browser sends Global Privacy Control'
+    : readLocal('tme_consent_v1') === 'denied' || readCookie('cookie_consent') === 'denied' ? 'you pressed Reject on the cookie banner' : '');
+  const showState = () => {
+    const why = offElsewhere();
+    document.querySelectorAll('[data-stats-state]').forEach((el) => { el.textContent = why ? `off (${why})` : off() ? 'off on this browser' : 'on'; });
+    document.querySelectorAll('[data-stats-toggle]').forEach((b) => { b.hidden = !!why; b.textContent = off() ? 'Turn site statistics on' : 'Turn site statistics off'; });
+  };
+  document.querySelectorAll('[data-stats-toggle]').forEach((b) => b.addEventListener('click', () => { setOff(!off()); showState(); }));
+  showState();
+
+  if (!navigator.sendBeacon || /^\/(privacy|terms|complaints)/.test(location.pathname)) return;
+
+  const sent = new Set();
+  const pending = new Set();
+  const add = (m) => { if (!sent.has(m)) pending.add(m); };
+  const key = (s) => String(s || '').toLowerCase().replace(/[^a-z0-9-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 30);
+
+  let host = '';
+  try { host = document.referrer ? new URL(document.referrer).hostname : ''; } catch (_) { /* none */ }
+  const q = new URLSearchParams(location.search);
+  const source = ['gclid', 'gbraid', 'wbraid'].some((k) => q.get(k)) || /^(cpc|ppc|paid)/i.test(q.get('utm_medium') || '') ? 'ad'
+    : !host ? 'direct'
+      : /(^|\.)testmyelectrics\.com$/.test(host) || host === location.hostname ? 'site'
+        : /(^|\.)(google|bing|duckduckgo|yahoo|ecosia)\./.test(host) ? 'search'
+          : /(^|\.)(facebook|instagram|linkedin|t\.co|twitter|x\.com|tiktok|nextdoor)/.test(host) ? 'social'
+            : /mail|outlook/.test(host) ? 'email' : 'other';
+  const device = () => (innerWidth < 768 ? 'phone' : innerWidth < 1100 ? 'tablet' : 'desktop');
+  const page = location.pathname.replace(/\.html$/, '') || '/';
+
+  function flush() {
+    if (off() || !pending.size) return;
+    const m = [...pending];
+    pending.clear();
+    m.forEach((x) => sent.add(x));
+    try { navigator.sendBeacon('/api/ev', JSON.stringify({ s: 'www', p: page, src: source, d: device(), m })); } catch (_) { /* never break the page */ }
+  }
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') flush(); });
+  window.addEventListener('pagehide', flush);
+
+  add('view');
+  if (/^#[a-z0-9-]{1,30}$/i.test(location.hash)) add('entry:' + location.hash.toLowerCase());
+  if (document.querySelector('.consent')) add('consent:shown');
+
+  /* ---------- how far down the page ---------- */
+  let ticking = false;
+  const depth = () => {
+    ticking = false;
+    const h = document.documentElement.scrollHeight;
+    const seen = h ? (scrollY + innerHeight) / h : 1;
+    [25, 50, 75, 100].forEach((p) => { if (seen >= (p === 100 ? 0.98 : p / 100)) add('scroll:' + p); });
+    if (seen >= 0.5 && scrollY > 0) add('engaged');
+  };
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(depth); } }, { passive: true });
+  if (document.readyState === 'complete') depth(); else window.addEventListener('load', depth, { once: true });
+
+  /* ---------- which sections were on screen ---------- */
+  const sectionKey = (el) => key(el.id || (el.getAttribute('aria-labelledby') || '').replace(/^bo-/, ''));
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((list) => list.forEach((en) => {
+      if (!en.isIntersecting) return;
+      const need = Math.min(en.boundingClientRect.height * 0.5, innerHeight * 0.4);
+      if (en.intersectionRect.height >= need) { add('see:' + sectionKey(en.target)); io.unobserve(en.target); }
+    }), { threshold: [0, 0.1, 0.25, 0.5, 0.75, 1] });
+    document.querySelectorAll('section').forEach((s) => { if (sectionKey(s) && !s.hidden) io.observe(s); });
+  }
+
+  /* ---------- time on the page (while it's on screen) ---------- */
+  let secs = 0;
+  setInterval(() => {
+    if (document.visibilityState !== 'visible') return;
+    secs++;
+    [10, 30, 60, 180].forEach((t) => { if (secs === t) add('time:' + t); });
+    if (secs === 10) add('engaged');
+  }, 1000);
+
+  /* ---------- what they tapped (kinds of thing, never what they typed) ---------- */
+  const area = (el) => {
+    if (el.closest('[data-mobile-bar]')) return 'mobile-bar';
+    if (el.closest('header, [data-header]')) return 'header';
+    if (el.closest('footer')) return 'footer';
+    if (el.closest('nav, [data-mobile-nav]')) return 'nav';
+    const s = el.closest('section');
+    return (s && sectionKey(s)) || 'page';
+  };
+  document.addEventListener('click', (e) => {
+    const el = e.target.closest('a, button, summary');
+    if (!el) return;
+    if (el.closest('.consent')) { if (el.dataset.choice === 'granted') add('consent:accept'); return; }
+    add('engaged');
+    if (el.matches('summary')) return add('tap:faq');
+    if (el.matches('[data-nav-toggle]')) return add('tap:menu');
+    if (el.matches('[data-book], [data-check-prices]')) return add('tap:book:' + area(el));
+    if (el.matches('[data-portal]')) return add('tap:portal');
+    const href = el.getAttribute('href') || '';
+    if (/^mailto:/i.test(href)) return add('tap:email');
+    if (el.tagName !== 'A' || !href || href[0] === '#') return;
+    let u;
+    try { u = new URL(href, location.href); } catch (_) { return; }
+    if (/\/book\//.test(u.pathname) && u.hostname !== location.hostname) return add('tap:book:' + area(el));
+    if (u.hostname === location.hostname) {
+      const p = u.pathname.replace(/\.html$/, '').toLowerCase();
+      if (p !== page && /^\/[a-z0-9/-]{0,50}$/.test(p)) add('tap:link:' + p);
+    } else add('tap:out:' + key(u.hostname.replace(/^www\./, '')));
+  }, true);
+  document.addEventListener('focusin', (e) => { if (e.target.matches && e.target.matches('input[name="postcode"]')) add('tap:postcode'); });
+  document.addEventListener('submit', (e) => {
+    const f = e.target;
+    if (f.matches('[data-quick-book]')) add('tap:check-prices');
+    else if (f.matches('[data-callback-form]')) add('tap:callback');
+    else if (f.matches('[data-agent-form]')) add('tap:agent-form');
+    else if (f.matches('[data-coverage-check]')) add('tap:coverage-check');
+    flush();
+  }, true);
+})();
