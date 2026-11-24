@@ -32,8 +32,8 @@
   --radius-lg: 22px;
   --shadow: 0 1px 2px rgba(12, 24, 64, .05), 0 10px 30px rgba(12, 24, 64, .07);
 
-  --font-display: "Inter Tight", "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-display: "Inter Tight", "Inter Tight Fallback", "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-body: "Inter", "Inter Fallback", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
@@ -597,9 +597,10 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
   position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 60; display: none; gap: 8px; padding: 8px;
   background: rgba(12, 24, 64, .94); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
   border-radius: 18px; box-shadow: 0 16px 40px rgba(0, 0, 0, .3);
-  transform: translateY(140%); transition: transform .3s ease;
+  transform: translateY(140%); transition: transform .3s ease, visibility 0s linear .3s;
+  visibility: hidden;   /* off-screen until shown: no layout shift, and its buttons aren't reachable by keyboard */
 }
-.mobile-bar.is-visible { transform: none; }
+.mobile-bar.is-visible { transform: none; visibility: visible; transition: transform .3s ease, visibility 0s; }
 .mobile-bar .btn { flex: 1; height: 50px; }
 .mobile-bar .btn-ghost-light { flex: 0 0 auto; padding: 0 16px; }
 
