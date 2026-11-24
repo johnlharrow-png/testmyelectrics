@@ -295,6 +295,119 @@ for slug, town, districts, example, nearby in TOWNS:
         own_canonical=True,
     ))
 
+# Keyword pages (24 Nov 2026): one per search that used to land on /book-online, so the page Google checks for
+# that keyword's landing page experience matches the search word for word (title, headline, intro, a section that
+# answers it). Ads-only: canonical to /book-online and not in the sitemap, so they don't compete in Google search
+# with /book-online and the guides. Facts come from the FAQ on /book-online and /eicr-explained.
+EXTRA = ('Most homes have <span data-cfg="pricing.EICR_DOM.included">8</span> circuits or fewer. If yours has more, '
+         'it\'s <span data-price="EICR_DOM.extra">£15</span> + VAT per extra circuit. Parking or congestion charges '
+         'are only added if we have to pay them.')
+CODES = ('<b>C1</b> danger present, <b>C2</b> potentially dangerous, <b>C3</b> improvement recommended and '
+         '<b>FI</b> further investigation')
+HOW_OFTEN = ('Landlords need a new EICR at least every 5 years. For a home you live in, every 10 years is '
+             'recommended, and whenever you buy or move in.')
+AREAS = ('Areas we cover', 'Chelmsford, Southend, Basildon, Colchester, Brentwood, Billericay, Harlow, Romford, '
+         'Ilford and surrounding areas: postcodes <span data-coverage-areas>CM, SS, CO, RM, IG, E4, EN9, CB10 and CB11</span>.')
+
+pages.append(build(
+    'eicr-test',
+    'EICR test from £79 + VAT | Essex & East London | testmyelectrics.com',
+    'Book an EICR test online from £79 + VAT. NAPIT-registered electricians inspect and test your wiring, fuse board, '
+    'sockets and fittings across Essex and East London.',
+    'EICR tests',
+    'A full electrical inspection and test by NAPIT-registered electricians across Essex &amp; East London. '
+    'Pick a slot and pay online.',
+    'bo-test', 'What happens on the day',
+    '<p>Our electrician inspects and tests your wiring, fuse board, sockets and fittings against the UK wiring '
+    'regulations (BS 7671).</p>'
+    + ticks([
+        'How long it takes: a flat is usually a morning or an afternoon; a larger house can take most of the day.',
+        'The power goes off for short spells while circuits are tested, so save any work and expect to reset clocks afterwards.',
+        'We need to reach the fuse board, and the sockets and fittings in each room.',
+        'Someone aged 18 or over needs to let us in, or you can arrange access with your tenant, your letting agent or a key safe.',
+        'If we find a danger, we make it safe before we leave, with your agreement.',
+        'Your report is emailed within 48 hours and saved in your online account.',
+    ])
+    + '<p>What the results mean: <a href="/eicr-explained">C1, C2, C3 and FI explained</a>.</p>',
+    own_canonical=False,
+))
+
+TOWN_LINKS = ', '.join(f'<a href="/eicr-{slug}">{town}</a>' for slug, town, *_ in TOWNS[:-1])
+TOWN_LINKS += f' and <a href="/eicr-{TOWNS[-1][0]}">{TOWNS[-1][1]}</a>'
+pages.append(build(
+    'eicr-near-me',
+    'EICR near me from £79 + VAT | Local electricians in Essex & East London',
+    'Local EICRs from £79 + VAT. NAPIT-registered electricians across Chelmsford, Southend, Colchester, Basildon, '
+    'Romford, Ilford and the rest of Essex and East London. Book online.',
+    'EICRs near you',
+    'Local NAPIT-registered electricians across Essex &amp; East London. Enter your postcode to see the next free dates.',
+    'bo-near', 'Local electricians across Essex &amp; East London',
+    '<p>We cover <span data-coverage-areas>CM, SS, CO, RM, IG, E4, EN9, CB10 and CB11</span> postcodes, including '
+    f'{TOWN_LINKS}.</p>'
+    + ticks([
+        'The same fixed prices wherever you are: you see the full price before you pay.',
+        'Choose a morning or afternoon slot, with free rescheduling up to 24 hours before.',
+        'Your report is emailed within 48 hours and saved in your online account.',
+    ]),
+    areas=AREAS,
+    own_canonical=False,
+))
+
+pages.append(build(
+    'eicr-prices',
+    'EICR cost from £79 + VAT | Fixed prices by property size | Essex & East London',
+    'EICR prices from £79 + VAT, fixed by property size and shown in full before you pay. NAPIT-registered '
+    'electricians across Essex and East London. Book online.',
+    'EICR cost:',
+    'Fixed prices by property size, shown in full before you pay. NAPIT-registered electricians across '
+    'Essex &amp; East London.',
+    'bo-cost', 'What\'s included in the price',
+    ticks([
+        'A full inspection and test of one fuse board with up to <span data-cfg="pricing.EICR_DOM.included">8</span> circuits.',
+        'Your EICR certificate, emailed within 48 hours and saved in your online account.',
+        'Free rescheduling up to 24 hours before your appointment.',
+    ])
+    + '<h3 class="bo-local-h3">What can add to the cost</h3>'
+    + f'<p>{EXTRA} Any repairs are quoted separately, and nothing is done without your approval.</p>'
+    + '<p>Prices for your home are below. More detail: <a href="/eicr-cost">how much an EICR costs</a>.</p>',
+    own_canonical=False,
+))
+
+pages.append(build(
+    'electrical-installation-condition-report',
+    'Electrical installation condition report (EICR) from £79 + VAT | Essex & East London',
+    'Book an electrical installation condition report (EICR) online from £79 + VAT. NAPIT-registered electricians '
+    'across Essex and East London. Your report is emailed and saved in your online account.',
+    'Electrical installation condition reports',
+    'An EICR by NAPIT-registered electricians across Essex &amp; East London. Pick a slot and pay online.',
+    'bo-eicr', 'What\'s in an electrical installation condition report?',
+    '<p>An electrical installation condition report (EICR) comes from a full inspection and test of your wiring, '
+    'fuse board, sockets and fittings against the UK wiring regulations (BS 7671).</p>'
+    f'<p>It lists anything that needs attention, with a code for each: {CODES}. Any C1 or C2 makes the report '
+    'Unsatisfactory; C3 and FI don\'t.</p>'
+    f'<p>{HOW_OFTEN} <a href="/eicr-explained">The codes explained</a>.</p>',
+    own_canonical=False,
+))
+
+pages.append(build(
+    'eicr-certificate',
+    'EICR certificate from £79 + VAT | Essex & East London | testmyelectrics.com',
+    'Get your EICR certificate from £79 + VAT. NAPIT-registered electricians across Essex and East London. Emailed '
+    'and saved in your online account, with the date your next one is due.',
+    'EICR certificates',
+    'Your EICR certificate from NAPIT-registered electricians across Essex &amp; East London, emailed and saved in '
+    'your online account. Pick a slot and pay online.',
+    'bo-cert', 'What you get',
+    ticks([
+        'Your EICR certificate (electrical installation condition report), emailed within 48 hours and saved in your online account.',
+        'A clear result: Satisfactory, or Unsatisfactory, with each item coded C1, C2, C3 or FI.',
+        'The date your next one is due, kept in your account.',
+        'Landlords: a copy ready for your tenants (within 28 days) and for the council (within 7 days if they ask).',
+    ])
+    + f'<p>{HOW_OFTEN} <a href="/eicr-explained">What the codes mean</a>.</p>',
+    own_canonical=False,
+))
+
 print('wrote', len(pages), 'pages:', ', '.join(pages))
 
 import sys
