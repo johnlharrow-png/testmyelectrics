@@ -207,13 +207,13 @@
 
   <script src="/assets/config.js?v=45"></script>
   <script src="/assets/consent.js?v=50"></script>
-  <script src="/assets/site.js?v=48"></script>
+  <script src="/assets/site.js?v=49"></script>
 
   <!-- Booking-app tracking (integration brief, section 03). Pasted as supplied.
        Keep it last, after site.js has built the booking links. -->
   <script>
   (function () {
-    var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid'];
+    var KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content', 'gclid', 'gbraid', 'wbraid', 'msclkid'];
     var q = new URLSearchParams(location.search), keep = {};
     try { keep = JSON.parse(sessionStorage.getItem('eeg_attr') || '{}'); } catch (e) {}
     KEYS.forEach(function (k) { if (q.get(k)) keep[k] = q.get(k); });

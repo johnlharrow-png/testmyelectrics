@@ -310,7 +310,7 @@
       // Which email or ad brought them here (saved by the tracking script at the bottom of the page)
       const attr = savedAttribution();
       const source = ['utm_source', 'utm_medium', 'utm_campaign'].map((k) => attr[k]).filter(Boolean).join(' / ')
-        || (attr.gclid || attr.gbraid || attr.wbraid ? 'Google Ads' : '');
+        || (attr.gclid || attr.gbraid || attr.wbraid ? 'Google Ads' : attr.msclkid ? 'Microsoft Ads' : '');
       const message = [
         'Agent account request from testmyelectrics.com/letting-agents',
         `Agency: ${agency}`,
@@ -515,7 +515,7 @@
   let host = '';
   try { host = document.referrer ? new URL(document.referrer).hostname : ''; } catch (_) { /* none */ }
   const q = new URLSearchParams(location.search);
-  const source = ['gclid', 'gbraid', 'wbraid'].some((k) => q.get(k)) || /^(cpc|ppc|paid)/i.test(q.get('utm_medium') || '') ? 'ad'
+  const source = ['gclid', 'gbraid', 'wbraid', 'msclkid'].some((k) => q.get(k)) || /^(cpc|ppc|paid)/i.test(q.get('utm_medium') || '') ? 'ad'
     : !host ? 'direct'
       : /(^|\.)testmyelectrics\.com$/.test(host) || host === location.hostname ? 'site'
         : /(^|\.)(google|bing|duckduckgo|yahoo|ecosia)\./.test(host) ? 'search'
