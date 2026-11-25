@@ -26,8 +26,10 @@ def ticks(items):
 
 
 def build(slug, title, description, h1, line, local_id, local_h2, local_body, areas=None, placeholder=None,
-          drop_homebuyer=False, own_canonical=True):
+          drop_homebuyer=False, own_canonical=True, extra=None):
     p = SRC
+    # /book-online's own "on the day" section is only for that page; each built page gets its own content instead
+    p = re.sub(r'\s*<!-- book-online only: start.*?<!-- book-online only: end -->', '', p, count=1, flags=re.S)
     p = swap(p, '<title>Book an EICR from £79 + VAT | Essex &amp; East London | testmyelectrics.com</title>',
              f'<title>{html.escape(title, quote=False)}</title>')
     p = re.sub(r'<meta name="description" content="[^"]*">',
@@ -46,6 +48,9 @@ def build(slug, title, description, h1, line, local_id, local_h2, local_body, ar
              f'      <div class="container">\n        <h2 id="{local_id}">{local_h2}</h2>\n'
              f'        {local_body}\n      </div>\n    </section>\n\n')
     p = swap(p, '    <!-- 3. Prices', local + '    <!-- 3. Prices')
+    # A longer section of the page's own (25 Nov 2026), after How it works, so the prices stay high on the page
+    if extra:
+        p = swap(p, '    <!-- 5. Reviews', extra + '\n\n    <!-- 5. Reviews')
     if drop_homebuyer:
         p = re.sub(r'\s*<article class="price-card bo-homebuyer".*?</article>', '', p, count=1, flags=re.S)
     if areas:
@@ -56,6 +61,96 @@ def build(slug, title, description, h1, line, local_id, local_h2, local_body, ar
         f.write(p)
     return slug
 
+
+# ---------------------------------------------------------------------------------------------------------------
+# Each ad page's own longer section (25 Nov 2026, Wayne: landing page experience "Average" isn't good enough).
+# Google's landing page guidance rewards original, useful content; these pages were 90% /book-online.
+# Facts match terms.html and the landlord guide (landlord-electrical-safety.html); keep them in step.
+# ---------------------------------------------------------------------------------------------------------------
+def section(sid, h2, body, cls=''):
+    return (f'    <section class="bo-section bo-more {cls}" aria-labelledby="{sid}">\n      <div class="container">\n'
+            f'        <h2 id="{sid}">{h2}</h2>\n        {body}\n      </div>\n    </section>')
+
+
+def shot(name, alt, w, h, caption):
+    return (f'<figure class="bo-sample"><img src="/assets/img/sample/{name}-1000.webp" '
+            f'srcset="/assets/img/sample/{name}-600.webp 600w, /assets/img/sample/{name}-1000.webp 1000w" '
+            f'sizes="(max-width: 760px) 100vw, 860px" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async">'
+            f'<figcaption>{caption}</figcaption></figure>')
+
+
+CODES = ('<dl class="bo-codes">'
+         '<div><dt><span class="code c1">C1</span> Danger present</dt><dd>A risk of injury now. With your permission we make '
+         'it safe on the day, for example by isolating the circuit.</dd></div>'
+         '<div><dt><span class="code c2">C2</span> Potentially dangerous</dt><dd>Needs putting right urgently. For landlords, '
+         'within 28 days.</dd></div>'
+         '<div><dt><span class="code c3">C3</span> Improvement recommended</dt><dd>Worth planning for, but it doesn\'t fail '
+         'the report.</dd></div>'
+         '<div><dt><span class="code fi">FI</span> Further investigation</dt><dd>Something the electrician couldn\'t fully '
+         'check on the day, with a note of what\'s advised.</dd></div>'
+         '</dl>'
+         '<p>Only a C1 or C2 makes a report <strong>Unsatisfactory</strong>. A report with only C3 items, or none at all, '
+         'is <strong>Satisfactory</strong>.</p>')
+
+CERT_EXTRA = section('bo-sample', 'What an EICR certificate looks like', (
+    '<p>This is a sample of the report you get, filled in with made-up details. Yours uses the same layout: the IET '
+    'model form for the current wiring regulations, BS 7671:2018+A4:2026, produced by our booking system and signed '
+    'off by the electrician who did your inspection.</p>'
+    + shot('eicr-summary', 'Page 1 of a sample EICR: the person ordering it, the property, what was inspected and the '
+           'overall result, Unsatisfactory', 1000, 844,
+           'Page 1: who it\'s for, the property, what was and wasn\'t inspected, and the overall result.')
+    + shot('eicr-observations', 'The observations section of a sample EICR: one C2 item (no bonding to the gas pipe) '
+           'and one C3 item (lighting circuit without RCD protection)', 1000, 426,
+           'The observations: each one coded, with where it is and what to do about it.')
+    + '<p class="bo-sample-link"><a href="/assets/sample-eicr.pdf" target="_blank" rel="noopener">See the full 8-page '
+      'sample (PDF)</a></p>'
+    '<h3>What the report covers</h3>'
+    + ticks([
+        'Who ordered it, the property, and what the inspection covered, including anything that couldn\'t be checked, '
+        'such as cables buried in walls.',
+        'The overall result, Satisfactory or Unsatisfactory, and the date your next inspection is due.',
+        'The supply and earthing: the type of supply, earthing and bonding conductors, and the main switch.',
+        'A schedule of inspection: every item on the IET checklist marked as acceptable, coded, or not applicable.',
+        'Test results for every circuit: continuity, insulation resistance, polarity, earth fault loop impedance and '
+        'RCD trip times.',
+        'Guidance notes explaining the report, as the IET form requires.',
+    ])
+    + '<h3>What the codes mean</h3>' + CODES
+    + '<h3>How long is an EICR valid?</h3>'
+    '<p>The report gives the date of the next inspection. For a rented home it\'s at least every 5 years, or sooner if '
+    'the report says so. For a home you live in, every 10 years is recommended, and whenever you buy or move into a '
+    'property. We email you before the next one is due.</p>'
+    '<h3>If the report is Unsatisfactory</h3>'
+    '<p>We send you a quote for the work, with photos of each item, and nothing is done without your approval. Once the '
+    'work is done you get a certificate for it, which landlords should keep with the report and send to their tenants. '
+    '<a href="/eicr-explained">More about the codes</a>.</p>'
+), 'bo-sample-wrap')
+
+LANDLORD_EXTRA = section('bo-ll-steps', 'Your landlord duties, and how we take care of them', (
+    '<ol class="bo-steps">'
+    '<li><strong>An EICR at least every 5 years.</strong> Your online account shows each property\'s status and due '
+    'date, and we email you before the next one is due.</li>'
+    '<li><strong>A copy for your tenants within 28 days, and for new tenants before they move in.</strong> The report '
+    'is emailed to you as a PDF within 48 hours of the visit, ready to forward.</li>'
+    '<li><strong>A copy for the council within 7 days, if it asks in writing.</strong> Every report stays in your '
+    'account, so you can download it at any time.</li>'
+    '<li><strong>C1 and C2 items put right within 28 days, or sooner if the report says so.</strong> We send a quote '
+    'with photos of each item. You approve it online and we book the work in. Nothing is done without your say-so.</li>'
+    '<li><strong>Written confirmation for your tenants and the council within 28 days of the work.</strong> When the '
+    'work is done you get a completion certificate to send them with the report.</li>'
+    '</ol>'
+    '<h3>Access and your tenants</h3>'
+    '<p>Add your tenant\'s or letting agent\'s details when you book and we arrange access with them. Someone aged 18 or '
+    'over needs to be there, or a key safe. If a tenant keeps refusing access, keep a record of what you tried: '
+    'the rules say you\'re not in breach if you took all reasonable steps.</p>'
+    '<h3>If the rules aren\'t followed</h3>'
+    '<p>The council can serve a remedial notice giving you 28 days to do the work, and can fine you up to £40,000. '
+    'The rules apply to houses in multiple occupation too, and most HMO licence applications ask for a current EICR. '
+    'Lodgers who share your home aren\'t covered.</p>'
+    '<h3>What the codes mean</h3>' + CODES
+    + '<p><a href="/landlord-electrical-safety">The full landlord guide</a> covers the rules in more detail, '
+      'including Wales and Scotland.</p>'
+))
 
 pages = []
 
@@ -73,11 +168,12 @@ pages.append(build(
     + ticks([
         'A new EICR at least every 5 years, or sooner if the last report says so.',
         'A copy to existing tenants within 28 days, to new tenants before they move in, and to the council within 7 days if they ask.',
-        'Any C1, C2 or FI items put right within 28 days, or sooner if the report says so. We quote for the work and do nothing without your approval.',
+        'Any C1 or C2 items put right within 28 days, or sooner if the report says so. We quote for the work and do nothing without your approval.',
         'Tenant at home? Add their details when you book and we arrange access with them, or with your letting agent.',
     ])
     + f'<p>Several properties? Email {EMAIL} for a portfolio price. Letting agent? '
       '<a href="/letting-agents">Open an agent account</a>.</p>',
+    extra=LANDLORD_EXTRA,
 ))
 
 pages.append(build(
@@ -405,7 +501,7 @@ pages.append(build(
         'Landlords: a copy ready for your tenants (within 28 days) and for the council (within 7 days if they ask).',
     ])
     + f'<p>{HOW_OFTEN} <a href="/eicr-explained">What the codes mean</a>.</p>',
-    own_canonical=False,
+    extra=CERT_EXTRA,
 ))
 
 print('wrote', len(pages), 'pages:', ', '.join(pages))

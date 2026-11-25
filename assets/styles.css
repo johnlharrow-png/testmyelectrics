@@ -1236,3 +1236,25 @@ a.bo-rating[href]:hover .bo-rating-name { text-decoration: underline; text-under
   .bo-checks { flex-direction: column; align-items: flex-start; gap: 8px; font-size: 13.5px; margin-top: 16px; }
   .bo-accred em { font-size: 10.5px; }
 }
+
+/* 25 Nov 2026: each ad page's own longer section (sample certificate, landlord duties, the day itself) */
+.bo-more .container { max-width: 860px; }
+.bo-more h3 { margin: 28px 0 10px; font-size: 20px; }
+.bo-more p { font-size: 16.5px; line-height: 1.6; color: var(--text); margin-top: 10px; }
+.bo-more a { color: var(--brand); font-weight: 600; }
+.bo-steps { margin: 0; padding-left: 22px; display: grid; gap: 12px; font-size: 16.5px; line-height: 1.55; }
+.bo-steps li::marker { font-weight: 700; color: var(--brand); }
+.bo-sample { margin: 18px 0 0; }
+.bo-sample img { display: block; width: 100%; height: auto; border: 1px solid var(--line-2); border-radius: 10px; box-shadow: 0 8px 24px rgba(12, 24, 64, .08); background: #fff; }
+.bo-sample figcaption { margin-top: 8px; font-size: 14px; color: var(--muted); }
+.bo-sample-link { font-size: 16px; }
+.bo-codes { margin: 8px 0 0; display: grid; gap: 10px; }
+.bo-codes div { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 4px 16px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.bo-codes dt { font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.bo-codes dd { margin: 0; color: var(--muted); font-size: 15.5px; line-height: 1.5; }
+.bo-codes .code { display: inline-grid; place-items: center; min-width: 36px; height: 26px; padding: 0 6px; border-radius: 6px; color: #fff; font-size: 13px; font-weight: 700; }
+.bo-codes .c1 { background: #C8281C; } .bo-codes .c2 { background: #E06A12; } .bo-codes .c3 { background: #2E62D9; } .bo-codes .fi { background: #7A3FD1; }
+@media (max-width: 760px) {
+  .bo-codes div { grid-template-columns: minmax(0, 1fr); }
+  .bo-more p, .bo-steps { font-size: 16px; }
+}
