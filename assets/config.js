@@ -7,6 +7,7 @@ window.TME_CONFIG = {
   business: {
     name: 'TestMyElectrics',
     email: 'bookings@testmyelectrics.com',
+    phone: '0330 229 7314',   // 25 Nov 2026; rings via the virtual number provider
   },
 
   /* BASE: the booking app's permanent address (brief section 01).

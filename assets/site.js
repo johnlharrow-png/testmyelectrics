@@ -85,6 +85,10 @@
   /* ---------- Contact details + prices from config ---------- */
   $$('[data-email]').forEach((el) => { el.textContent = CFG.business.email; });
   $$('[data-email-link]').forEach((a) => { a.href = 'mailto:' + CFG.business.email; });
+  if (CFG.business.phone) {
+    $$('[data-phone]').forEach((el) => { el.textContent = CFG.business.phone; });
+    $$('[data-phone-link]').forEach((a) => { a.href = 'tel:+44' + CFG.business.phone.replace(/\s/g, '').replace(/^0/, ''); });
+  }
   $$('[data-year]').forEach((el) => { el.textContent = new Date().getFullYear(); });
   // Postcode areas we cover for homes, from config.coverage.domestic ("CM, SS, … and CB11")
   $$('[data-coverage-areas]').forEach((el) => {
@@ -590,6 +594,7 @@
     if (el.matches('[data-portal]')) return add('tap:portal');
     const href = el.getAttribute('href') || '';
     if (/^mailto:/i.test(href)) return add('tap:email');
+    if (/^tel:/i.test(href)) return add('tap:call');
     if (el.tagName !== 'A' || !href || href[0] === '#') return;
     let u;
     try { u = new URL(href, location.href); } catch (_) { return; }

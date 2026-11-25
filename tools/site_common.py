@@ -151,7 +151,11 @@ def build_page(slug, title, description, main, faq, note):
     p = re.sub(r'  <link rel="preload" as="image"[^\n]*\n', '', p, count=1)
     p = swap(p, '</head>', f'  {faq_schema(faq)}\n</head>')
     start, end = p.index('  <main id="main">'), p.index('  </main>') + len('  </main>\n')
-    p = p[:start] + main + p[end:]
+    # the header menu jumps to sections of /book-online; a guide page doesn't have them, so link to that page
+    top = p[:start]
+    for anchor in ('#pricing', '#how', '#faq', '#areas'):
+        top = top.replace(f'href="{anchor}"', f'href="/book-online{anchor}"')
+    p = top + main + p[end:]
     with open(os.path.join(ROOT, slug + '.html'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(p)
     return slug
