@@ -1207,3 +1207,16 @@ a.bo-rating[href]:hover .bo-rating-name { text-decoration: underline; text-under
 .bo-local .bo-local-h3 { margin: 22px 0 8px; font-size: 19px; }
 .bo-boroughs { margin: 12px 0 0; padding-left: 20px; max-width: 72ch; display: grid; gap: 8px; font-size: 16px; line-height: 1.5; }
 .bo-local .bo-boroughs + p { margin-top: 12px; }
+
+/* Homepage How it works with the real screens instead of icons (25 Nov 2026, Wayne). Three cards side by side;
+   phones: one swipeable row, like /book-online. */
+.how-grid.how-shots { grid-template-columns: repeat(3, 1fr); }
+.how-shots .how-step { display: flex; flex-direction: column; }
+.how-shots .bo-shot { margin: 0 auto 22px; }
+.how-shots .how-num { margin-bottom: 8px; }
+@media (max-width: 760px) {
+  .how-grid.how-shots { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: 80%; overflow-x: auto;
+    scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .how-shots .how-step { scroll-snap-align: start; padding: 20px; }
+  .how-shots .bo-shot { max-width: 220px; }
+}

@@ -476,14 +476,14 @@
    counters, e.g. ["view", "scroll:50", "see:pricing", "tap:book:pricing"], with the page, the screen-size class
    (phone/tablet/desktop) and how they arrived (ad/search/...). The booking app (src/sitestats.js) only adds 1 to daily
    totals, so nothing ties one person's actions together or to a booking.
-   Not sent if they pressed Reject on the cookie banner, turned statistics off on /privacy, or send Global Privacy Control.
+   Counted whatever they chose on the cookie banner (that is about cookies). Not sent if they turned statistics off on
+   /privacy or send Global Privacy Control.
    ========================================================================== */
 (() => {
   'use strict';
   const readCookie = (name) => { const m = document.cookie.match(new RegExp('(?:^|;\\s*)' + name + '=([^;]*)')); return m ? m[1] : null; };
   const readLocal = (k) => { try { return localStorage.getItem(k); } catch (_) { return null; } };
-  const off = () => readLocal('tme_consent_v1') === 'denied' || readCookie('cookie_consent') === 'denied'
-    || readLocal('tme_stats_off') === '1' || readCookie('site_stats') === 'off' || navigator.globalPrivacyControl === true;
+  const off = () => readLocal('tme_stats_off') === '1' || readCookie('site_stats') === 'off' || navigator.globalPrivacyControl === true;
 
   /* ---------- the privacy page's "Turn off / on" button (remembering an objection needs no consent) ---------- */
   const setOff = (v) => {
@@ -495,9 +495,8 @@
     if (v && readCookie('site_stats') !== 'off') document.cookie = `site_stats=off; path=/; max-age=${365 * 24 * 3600}; SameSite=Lax${sec}`;   // preview hosts
     if (!v && readCookie('site_stats')) document.cookie = 'site_stats=; path=/; max-age=0';
   };
-  // Off because of the cookie banner's Reject or the browser's Global Privacy Control: the button can't override those
-  const offElsewhere = () => (navigator.globalPrivacyControl === true ? 'your browser sends Global Privacy Control'
-    : readLocal('tme_consent_v1') === 'denied' || readCookie('cookie_consent') === 'denied' ? 'you pressed Reject on the cookie banner' : '');
+  // Off because the browser sends Global Privacy Control: the button can't override that
+  const offElsewhere = () => (navigator.globalPrivacyControl === true ? 'your browser sends Global Privacy Control' : '');
   const showState = () => {
     const why = offElsewhere();
     document.querySelectorAll('[data-stats-state]').forEach((el) => { el.textContent = why ? `off (${why})` : off() ? 'off on this browser' : 'on'; });
@@ -583,7 +582,7 @@
   document.addEventListener('click', (e) => {
     const el = e.target.closest('a, button, summary');
     if (!el) return;
-    if (el.closest('.consent')) { if (el.dataset.choice === 'granted') add('consent:accept'); return; }
+    if (el.closest('.consent')) { if (el.dataset.choice === 'granted') add('consent:accept'); else if (el.dataset.choice === 'denied') add('consent:reject'); return; }
     add('engaged');
     if (el.matches('summary')) return add('tap:faq');
     if (el.matches('[data-nav-toggle]')) return add('tap:menu');
