@@ -79,7 +79,7 @@ def shot(name, alt, w, h, caption):
             f'<figcaption>{caption}</figcaption></figure>')
 
 
-CODES = ('<dl class="bo-codes">'
+CODES_DL = ('<dl class="bo-codes">'
          '<div><dt><span class="code c1">C1</span> Danger present</dt><dd>A risk of injury now. With your permission we make '
          'it safe on the day, for example by isolating the circuit.</dd></div>'
          '<div><dt><span class="code c2">C2</span> Potentially dangerous</dt><dd>Needs putting right urgently. For landlords, '
@@ -115,7 +115,7 @@ CERT_EXTRA = section('bo-sample', 'What an EICR certificate looks like', (
         'RCD trip times.',
         'Guidance notes explaining the report, as the IET form requires.',
     ])
-    + '<h3>What the codes mean</h3>' + CODES
+    + '<h3>What the codes mean</h3>' + CODES_DL
     + '<h3>How long is an EICR valid?</h3>'
     '<p>The report gives the date of the next inspection. For a rented home it\'s at least every 5 years, or sooner if '
     'the report says so. For a home you live in, every 10 years is recommended, and whenever you buy or move into a '
@@ -147,9 +147,36 @@ LANDLORD_EXTRA = section('bo-ll-steps', 'Your landlord duties, and how we take c
     '<p>The council can serve a remedial notice giving you 28 days to do the work, and can fine you up to £40,000. '
     'The rules apply to houses in multiple occupation too, and most HMO licence applications ask for a current EICR. '
     'Lodgers who share your home aren\'t covered.</p>'
-    '<h3>What the codes mean</h3>' + CODES
+    '<h3>What the codes mean</h3>' + CODES_DL
     + '<p><a href="/landlord-electrical-safety">The full landlord guide</a> covers the rules in more detail, '
       'including Wales and Scotland.</p>'
+))
+
+ESC_EXTRA = section('bo-which-cert', 'Which electrical certificate do you need?', (
+    '<p>"Electrical safety certificate" can mean a few different documents. Here\'s which one fits what you\'re '
+    'doing.</p>'
+    '<dl class="bo-defs">'
+    '<div><dt>Renting out a home</dt><dd><strong>An EICR</strong> (electrical installation condition report), at least '
+    'every 5 years. This is the one landlords mean by an electrical safety certificate.</dd></div>'
+    '<div><dt>Buying or selling a home</dt><dd><strong>An EICR</strong>, or our <strong>homebuyer\'s report</strong>, '
+    'which adds a price for each repair so you can negotiate.</dd></div>'
+    '<div><dt>New wiring, a new circuit or a new fuse board</dt><dd><strong>An Electrical Installation Certificate '
+    '(EIC)</strong> from the electrician who did the work. Some work, such as a new fuse board or a new circuit, also '
+    'has to be notified to building control, and you then get a building regulations compliance certificate.</dd></div>'
+    '<div><dt>A small job, like an extra socket or light</dt><dd><strong>A Minor Electrical Installation Works '
+    'Certificate</strong> from the electrician who did it.</dd></div>'
+    '<div><dt>Plug-in appliances you supply to tenants or staff</dt><dd><strong>PAT testing</strong> (portable '
+    'appliance testing). It isn\'t part of an EICR, which covers the fixed wiring.</dd></div>'
+    '<div><dt>Smoke and carbon monoxide alarms</dt><dd>Landlords must have them, test them on the day a tenancy '
+    'starts, and repair or replace them if a tenant reports a fault. <a href="/smoke-co-alarm-rules">The alarm rules '
+    'explained</a>.</dd></div>'
+    '<div><dt>Gas appliances</dt><dd>A gas safety record (often called a CP12) from a Gas Safe registered engineer. '
+    'That\'s not an electrical certificate, and it isn\'t something we do.</dd></div>'
+    '</dl>'
+    '<h3>What an EICR checks</h3>'
+    '<p>An EICR is a full inspection and test of the fixed electrical installation: the fuse board, wiring, sockets, '
+    'switches, light fittings and the earthing and bonding. It doesn\'t cover plug-in appliances or gas. '
+    '<a href="/eicr-certificate#bo-sample">See a sample EICR</a>.</p>'
 ))
 
 pages = []
@@ -193,6 +220,7 @@ pages.append(build(
         'Buy or sell a home: our homebuyer\'s report adds repair prices to help you negotiate.',
         'Haven\'t had the wiring checked for 10 years, or notice scorch marks, tripping or flickering lights.',
     ]),
+    extra=ESC_EXTRA,
 ))
 
 # Town pages. Postcodes checked on the booking app on 23 Nov 2026.
@@ -405,6 +433,113 @@ HOW_OFTEN = ('Landlords need a new EICR at least every 5 years. For a home you l
 AREAS = ('Areas we cover', 'Chelmsford, Southend, Basildon, Colchester, Brentwood, Billericay, Harlow, Romford, '
          'Ilford and surrounding areas: postcodes <span data-coverage-areas>CM, SS, CO, RM, IG, E4, EN9, CB10 and CB11</span>.')
 
+TEST_EXTRA = section('bo-tests', 'The tests in an EICR, one by one', (
+    '<p>An EICR is a visual inspection followed by a set of tests that BS 7671 sets out. Some are done with the power '
+    'off ("dead" tests), and some with it on ("live" tests). Here\'s what each one checks, in plain English.</p>'
+    '<dl class="bo-defs">'
+    '<div><dt>Visual inspection</dt><dd>The fuse board, cables, sockets, switches and fittings are checked for damage, '
+    'overheating, missing covers and anything not up to standard. A sample of accessories is opened up to check the '
+    'connections inside.</dd></div>'
+    '<div><dt>Continuity of protective conductors</dt><dd>Checks the earth wire runs unbroken from the fuse board to '
+    'every point, so a fault would trip the circuit instead of making metalwork live. Recorded as R1 + R2.</dd></div>'
+    '<div><dt>Ring final circuits</dt><dd>Most socket circuits are wired as a ring. Each leg of the ring is measured to '
+    'make sure it\'s complete, with no breaks or wrong connections.</dd></div>'
+    '<div><dt>Insulation resistance</dt><dd>A test voltage, usually 500 V, checks the insulation between the wires is '
+    'sound, so current can\'t leak where it shouldn\'t.</dd></div>'
+    '<div><dt>Polarity</dt><dd>Checks switches and fuses are on the live wire, not the neutral, so switching something '
+    'off really makes it safe.</dd></div>'
+    '<div><dt>Earth fault loop impedance</dt><dd>With the power on, measures how easily fault current can flow, to '
+    'confirm each circuit breaker or fuse would disconnect a fault fast enough. Recorded as Zs, against the maximum '
+    'allowed for that device.</dd></div>'
+    '<div><dt>Prospective fault current</dt><dd>The largest current a fault could draw at the fuse board, to check the '
+    'devices fitted can safely handle it.</dd></div>'
+    '<div><dt>RCD tests</dt><dd>Each RCD is tripped on purpose to check it switches off fast enough to protect you '
+    'from an electric shock, and its test button is checked too.</dd></div>'
+    '</dl>'
+    '<p>Every result goes into the schedule of test results in your report, circuit by circuit. '
+    '<a href="/eicr-certificate#bo-sample">See a sample report</a>.</p>'
+    '<h3>What can limit the inspection</h3>'
+    '<p>Cables buried in walls, floors and ceilings can\'t be seen, and some areas, like a boarded-out loft or a '
+    'fuse board behind fitted units, may be hard to reach. Anything that couldn\'t be checked is listed in the report '
+    'as a limitation, so you know exactly what was covered.</p>'
+))
+
+TOWN_ROWS = ''.join(f'<li><a href="/eicr-{slug}">{town}</a><span>{", ".join(pcs)}</span></li>'
+                    for slug, town, pcs, *_ in TOWNS)
+NEAR_EXTRA = section('bo-local-how', 'How booking a local EICR works', (
+    '<ol class="bo-steps">'
+    '<li><strong>Enter your postcode.</strong> The booking page checks we cover it and shows the dates our '
+    'electricians are free in your area.</li>'
+    '<li><strong>Pick a morning or afternoon.</strong> Appointments are Monday to Friday, with an arrival window in '
+    'the morning or the afternoon. You can reschedule free of charge up to 24 hours before.</li>'
+    '<li><strong>Pay online.</strong> You see the full price, including VAT, before you pay. Parking or congestion '
+    'charges are only added if we have to pay them.</li>'
+    '<li><strong>We email when we\'re on the way.</strong> Your electrician\'s arrival time comes by email on the '
+    'day.</li>'
+    '</ol>'
+    '<h3>Towns we cover</h3>'
+    f'<ul class="bo-towns">{TOWN_ROWS}</ul>'
+    '<p>Plus the rest of the CM, SS, CO, RM and IG postcodes, E4, EN9, CB10 and CB11. In East London we cover E4 and '
+    'the IG and RM postcodes; other E postcodes aren\'t covered yet. Not sure? The booking page checks your '
+    'postcode before you pay anything.</p>'
+))
+
+PRICE_ROWS = ''.join(f'<tr><th scope="row">{label}</th><td><span data-price="EICR_DOM.{key}">£{n}</span> + VAT</td>'
+                     f'<td><span data-price="HOMEBUYER.{key}">£{h}</span> + VAT</td></tr>'
+                     for key, label, n, h in [('studio', 'Studio flat', 79, 149), ('bed1', '1 bedroom', 90, 159),
+                                              ('bed2', '2 bedrooms', 100, 169), ('bed3', '3 bedrooms', 110, 189),
+                                              ('bed4', '4 bedrooms', 120, 209), ('bed5', '5 bedrooms', 130, 229),
+                                              ('bed6', '6 bedrooms', 140, 249)])
+PRICES_EXTRA = section('bo-price-how', 'How the price is worked out', (
+    '<p>The price depends on two things: the size of the home and how many circuits its fuse board has. Each price '
+    'covers one fuse board with up to <span data-cfg="pricing.EICR_DOM.included">8</span> circuits.</p>'
+    '<div class="bo-table-wrap"><table class="bo-table"><caption>Prices by size of home</caption>'
+    '<thead><tr><th scope="col">Home</th><th scope="col">EICR</th><th scope="col">Homebuyer\'s report</th></tr></thead>'
+    f'<tbody>{PRICE_ROWS}</tbody></table></div>'
+    '<p>Every circuit over <span data-cfg="pricing.EICR_DOM.included">8</span> is '
+    '<span data-price="EICR_DOM.extra">£15</span> + VAT. For example, a 3-bedroom house with 10 circuits pays the '
+    '3-bedroom price plus 2 extra circuits.</p>'
+    '<h3>How to count your circuits</h3>'
+    '<p>Open your fuse board and count the switches in the row (circuit breakers or fuses), leaving out the big main '
+    'switch and any RCD switches marked with a "T" test button. Each one is usually a circuit: cooker, shower, '
+    'sockets, lights and so on. Not sure? Book for your size of home: our electrician counts the circuits on the day, '
+    'tells you about any extra, and it\'s added to your final bill, to be paid before your report is released.</p>'
+    '<h3>What isn\'t in the price</h3>'
+    + ticks([
+        'Repairs. If anything needs putting right, we send a quote with photos, and nothing is done without your '
+        'approval.',
+        'Parking or congestion charges, only if we have to pay them.',
+        'A second fuse board, such as one in a garage or outbuilding. If we find one, we tell you before we test it '
+        'whether there\'s any extra charge.',
+    ])
+    + '<h3>Paying</h3>'
+    '<p>You pay online when you book, and see the full price including VAT first. Your VAT invoice is saved in your '
+    'online account with your report. <a href="/eicr-cost">More on what an EICR costs</a>.</p>'
+))
+
+REPORT_EXTRA = section('bo-when', 'When do you need an EICR?', (
+    '<dl class="bo-defs">'
+    '<div><dt>You rent out a home</dt><dd>The law in England says at least every 5 years, with copies for your tenants. '
+    '<a href="/landlord-eicr">Landlord EICRs</a>.</dd></div>'
+    '<div><dt>You\'re buying or selling</dt><dd>It shows the condition of the wiring before you commit, and gives you '
+    'something to negotiate with. Our homebuyer\'s report adds a price for each repair.</dd></div>'
+    '<div><dt>It\'s your own home</dt><dd>Every 10 years is recommended, and whenever you move in.</dd></div>'
+    '<div><dt>Something\'s not right</dt><dd>Breakers tripping, flickering lights, scorch marks, a burning smell, or '
+    'sockets that feel warm. Don\'t wait for the 10 years.</dd></div>'
+    '<div><dt>After a flood or fire</dt><dd>Water and heat damage wiring you can\'t see.</dd></div>'
+    '<div><dt>Someone asks for one</dt><dd>Mortgage lenders, insurers, letting agents and councils (for an HMO '
+    'licence) often ask for a current EICR.</dd></div>'
+    '</dl>'
+    '<h3>Who can carry out an EICR?</h3>'
+    '<p>It should be done by an electrician who is competent in inspection and testing, ideally one registered with a '
+    'government-approved scheme such as NAPIT, so the work is checked and you have somewhere to go if anything is '
+    'wrong. Our NAPIT and TrustMark registrations are linked above, so you can check them yourself.</p>'
+    '<h3>EICR and other names for it</h3>'
+    '<p>An EICR is also called an electrical safety certificate, a landlord electrical certificate, a periodic '
+    'inspection report, or the older PIR. They all mean the same report. <a href="/eicr-certificate#bo-sample">See a '
+    'sample</a>.</p>'
+))
+
 pages.append(build(
     'eicr-test',
     'EICR test from £79 + VAT | Essex & East London | testmyelectrics.com',
@@ -425,6 +560,7 @@ pages.append(build(
         'Your report is emailed within 48 hours and saved in your online account.',
     ])
     + '<p>What the results mean: <a href="/eicr-explained">C1, C2, C3 and FI explained</a>.</p>',
+    extra=TEST_EXTRA,
     own_canonical=False,
 ))
 
@@ -446,6 +582,7 @@ pages.append(build(
         'Your report is emailed within 48 hours and saved in your online account.',
     ]),
     areas=AREAS,
+    extra=NEAR_EXTRA,
     own_canonical=False,
 ))
 
@@ -466,6 +603,7 @@ pages.append(build(
     + '<h3 class="bo-local-h3">What can add to the cost</h3>'
     + f'<p>{EXTRA} Any repairs are quoted separately, and nothing is done without your approval.</p>'
     + '<p>Prices for your home are below. More detail: <a href="/eicr-cost">how much an EICR costs</a>.</p>',
+    extra=PRICES_EXTRA,
     own_canonical=False,
 ))
 
@@ -482,6 +620,7 @@ pages.append(build(
     f'<p>It lists anything that needs attention, with a code for each: {CODES}. Any C1 or C2 makes the report '
     'Unsatisfactory; C3 and FI don\'t.</p>'
     f'<p>{HOW_OFTEN} <a href="/eicr-explained">The codes explained</a>.</p>',
+    extra=REPORT_EXTRA,
     own_canonical=False,
 ))
 

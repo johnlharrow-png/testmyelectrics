@@ -1258,3 +1258,24 @@ a.bo-rating[href]:hover .bo-rating-name { text-decoration: underline; text-under
   .bo-codes div { grid-template-columns: minmax(0, 1fr); }
   .bo-more p, .bo-steps { font-size: 16px; }
 }
+/* 25 Nov 2026: keyword pages' own sections (tests, prices, towns, which certificate) */
+.bo-defs { margin: 8px 0 0; display: grid; gap: 10px; }
+.bo-defs div { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 4px 16px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+.bo-defs dt { font-weight: 700; }
+.bo-defs dd { margin: 0; color: var(--muted); font-size: 15.5px; line-height: 1.5; }
+.bo-defs dd strong { color: var(--text); }
+.bo-table-wrap { overflow-x: auto; margin-top: 14px; }
+.bo-table { width: 100%; border-collapse: collapse; font-size: 15.5px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+.bo-table caption { text-align: left; font-weight: 700; padding: 0 0 8px; }
+.bo-table th, .bo-table td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--line); }
+.bo-table thead th { background: var(--paper); font-size: 13.5px; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+.bo-table tbody tr:last-child th, .bo-table tbody tr:last-child td { border-bottom: 0; }
+.bo-table td { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+.bo-towns { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 24px; }
+.bo-towns li { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); font-size: 15.5px; }
+.bo-towns span { color: var(--muted); text-align: right; }
+@media (max-width: 760px) {
+  .bo-defs div { grid-template-columns: minmax(0, 1fr); }
+  .bo-towns { grid-template-columns: minmax(0, 1fr); }
+  .bo-table th, .bo-table td { padding: 9px 10px; font-size: 14.5px; }
+}
