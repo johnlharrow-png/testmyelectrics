@@ -131,7 +131,7 @@ def cta(h2, text, src=''):
       <div class="container">
         <h2 id="eg-book">{h2}</h2>
         <p>{text}</p>
-        <a class="btn btn-volt" href="/book-online">Check dates &amp; prices</a>{src}
+        <a class="btn btn-volt" href="/#book" data-book="EICR_DOM">Check dates &amp; prices</a>{src}
       </div>
     </section>
 '''

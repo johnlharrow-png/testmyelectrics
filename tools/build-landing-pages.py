@@ -26,7 +26,7 @@ def ticks(items):
 
 
 def build(slug, title, description, h1, line, local_id, local_h2, local_body, areas=None, placeholder=None,
-          drop_homebuyer=False, own_canonical=True, extra=None):
+          drop_homebuyer=False, own_canonical=True, extra=None, price=PRICE, post=None):
     p = SRC
     # /book-online's own "on the day" section is only for that page; each built page gets its own content instead
     p = re.sub(r'\s*<!-- book-online only: start.*?<!-- book-online only: end -->', '', p, count=1, flags=re.S)
@@ -40,7 +40,7 @@ def build(slug, title, description, h1, line, local_id, local_h2, local_body, ar
     if own_canonical:
         p = swap(p, '<link rel="canonical" href="https://www.testmyelectrics.com/book-online">',
                  f'<link rel="canonical" href="https://www.testmyelectrics.com/{slug}">')
-    p = swap(p, f'<h1>EICR certificates from {PRICE}</h1>', f'<h1>{h1} from {PRICE}</h1>')
+    p = swap(p, f'<h1>EICR certificates from {PRICE}</h1>', f'<h1>{h1} from {price}</h1>')
     p = re.sub(r'<p class="bo-line">.*?</p>', f'<p class="bo-line">{line}</p>', p, count=1, flags=re.S)
     if placeholder:
         p = swap(p, 'placeholder="e.g. CM1 1AB"', f'placeholder="e.g. {placeholder}"')
@@ -57,6 +57,8 @@ def build(slug, title, description, h1, line, local_id, local_h2, local_body, ar
         p = re.sub(r'(<h2 id="bo-areas">)[^<]*(</h2>\s*)<p>.*?</p>', r'\g<1>' + areas[0] + r'\g<2>' + f'<p>{areas[1]}</p>',
                    p, count=1, flags=re.S)
     p = p.replace('<!-- Ad landing page:', f'<!-- Generated from book-online.html by tools/build-landing-pages.py. Ad landing page:', 1)
+    if post:
+        p = post(p)
     with open(os.path.join(ROOT, slug + '.html'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(p)
     return slug
@@ -641,6 +643,100 @@ pages.append(build(
     ])
     + f'<p>{HOW_OFTEN} <a href="/eicr-explained">What the codes mean</a>.</p>',
     extra=CERT_EXTRA,
+))
+
+# ---------------------------------------------------------------------------------------------------------------
+# /homebuyer-electrical-report (25 Nov 2026, Wayne: every page an ad sends people to must let them book straight
+# away). The Homebuyer's Report sitelink and price item land here. Same page as the others, but the booking box,
+# headline price, price cards and buttons are for the homebuyer's report (service HOMEBUYER in the booking app).
+# ---------------------------------------------------------------------------------------------------------------
+HB_PRICE = '<span class="hl"><span data-price="HOMEBUYER.studio">£149</span>&nbsp;+&nbsp;VAT</span>'
+HB_BANDS = [('studio', 'Studio', 149), ('bed1', '1 bedroom', 159), ('bed2', '2 bedrooms', 169), ('bed3', '3 bedrooms', 189),
+            ('bed4', '4 bedrooms', 209), ('bed5', '5 bedrooms', 229), ('bed6', '6 bedrooms', 249)]
+HB_PRICES = (
+    '<h2 id="bo-prices">Homebuyer\'s report cost: from <span data-price="HOMEBUYER.studio">£149</span> + VAT</h2>\n'
+    '        <div class="bo-price-grid">\n'
+    '          <article class="price-card featured bo-eicr">\n'
+    '            <span class="price-flag">Before you exchange</span>\n'
+    '            <h3>Homebuyer\'s electrical report</h3>\n'
+    '            <p class="price-for">A full EICR plus every repair priced. One fuse board, up to '
+    '<span data-cfg="pricing.HOMEBUYER.included">8</span> circuits. All prices + VAT.</p>\n'
+    '            <div class="tiers">\n'
+    + ''.join(f'              <div><span>{label}</span><span class="mono" data-price="HOMEBUYER.{key}">£{n}</span></div>\n'
+              for key, label, n in HB_BANDS)
+    + '            </div>\n'
+    '            <p class="bo-offer"><svg class="icon"><use href="#i-alarm"/></svg><span><strong>Free smoke, heat &amp; CO '
+    'alarm check</strong> with every homebuyer\'s report: up to 6 mains-interlinked or battery alarms. Tick it when you '
+    'book.</span></p>\n'
+    '            <a class="btn btn-volt" href="/#book" data-book="HOMEBUYER" data-check-prices="HOMEBUYER">Check dates &amp; prices</a>\n'
+    '          </article>\n'
+    '          <article class="price-card bo-homebuyer" id="eicr-only">\n'
+    '            <h3>Just need an EICR?</h3>\n'
+    '            <p class="price-for">The same inspection and certificate, without the repair prices. A good choice if '
+    'you\'re selling.</p>\n'
+    '            <p class="price"><small>from</small><strong data-price="EICR_DOM.studio">£79</strong><small>+VAT</small></p>\n'
+    '            <a class="btn btn-ghost" href="/#book" data-book="EICR_DOM" data-check-prices="EICR_DOM">Book an EICR</a>\n'
+    '          </article>\n'
+    '        </div>')
+
+
+def homebuyer_page(p):
+    # booking box: the homebuyer's report
+    p = swap(p, '<form class="quick-book bo-book" data-quick-book data-require-postcode aria-label="Check dates and prices for an EICR">\n'
+                '            <input type="hidden" name="service" value="EICR_DOM">',
+             '<form class="quick-book bo-book" data-quick-book data-require-postcode aria-label="Check dates and prices for a homebuyer\'s report">\n'
+             '            <input type="hidden" name="service" value="HOMEBUYER">')
+    p = swap(p, 'Free smoke &amp; CO alarm check with every EICR</p>', 'Free smoke &amp; CO alarm check with every homebuyer\'s report</p>')
+    # header button, phone menu and phone bar: without JavaScript they open the booking app at the homebuyer's report
+    p = p.replace('data-book="EICR_DOM" data-check-prices=""', 'data-book="HOMEBUYER" data-check-prices=""')
+    p = p.replace('<a class="btn btn-volt" href="/#book" data-book="EICR_DOM">Check dates &amp; prices</a>',
+                  '<a class="btn btn-volt" href="/#book" data-book="HOMEBUYER">Check dates &amp; prices</a>')
+    # price cards: the homebuyer's report first, the plain EICR second
+    p = re.sub(r'<h2 id="bo-prices">.*?</h2>\s*<div class="bo-price-grid">.*?</article>\s*</div>', lambda m: HB_PRICES, p,
+               count=1, flags=re.S)
+    p = swap(p, 'A smoke, heat and CO alarm check is free with every EICR:', 'A smoke, heat and CO alarm check is free with every EICR or homebuyer\'s report:')
+    return p
+
+
+HB_EXTRA = section('bo-hb-how', 'Buying a home: how it works', (
+    '<ol class="bo-steps">'
+    '<li><strong>Book before you exchange contracts.</strong> You\'ll need the seller\'s agreement for the visit, usually '
+    'arranged through the estate agent. Someone aged 18 or over needs to be there to let us in.</li>'
+    '<li><strong>The inspection.</strong> A full EICR: our electrician inspects the fuse board, wiring, sockets, switches '
+    'and fittings, and tests every circuit, the same as for a landlord or homeowner.</li>'
+    '<li><strong>Your report.</strong> The EICR, with each item coded C1, C2, C3 or FI, plus a written report with a '
+    'fixed price for each repair. It\'s emailed to you and saved in your online account.</li>'
+    '<li><strong>Negotiate.</strong> Use the prices to agree a lower price with the seller, or to ask them to have the '
+    'work done before completion.</li>'
+    '<li><strong>Once it\'s yours.</strong> If you\'d like us to do the repairs, we book them in. Nothing is done '
+    'without your approval, and you get a certificate for the work.</li>'
+    '</ol>'
+    '<h3>Why a survey isn\'t enough</h3>'
+    '<p>A home survey looks at what can be seen, but it doesn\'t test the electrics. Under the RICS home survey '
+    'standard, if there\'s no recent test, the surveyor should recommend one. A homebuyer\'s report gives you that '
+    'test, and what any repairs will cost, before you commit.</p>'
+    '<h3>What the codes mean</h3>' + CODES_DL
+    + '<h3>Selling instead?</h3>'
+    '<p>A recent EICR answers buyers\' and solicitors\' questions early, with no surprises later in the sale. '
+    '<a href="/eicr-selling-a-house">Do you need an EICR to sell a house?</a></p>'
+))
+
+pages.append(build(
+    'homebuyer-electrical-report',
+    "Homebuyer's electrical report from £149 + VAT | Essex & East London",
+    "A full EICR plus every repair priced, so you can negotiate before you exchange. From £149 + VAT across Essex "
+    "and East London. NAPIT-registered electricians, book online.",
+    "Homebuyer's electrical reports",
+    'A full EICR with every repair priced, so you can negotiate before you exchange. NAPIT-registered electricians '
+    'across Essex &amp; East London.',
+    'bo-hb', 'What you get',
+    ticks([
+        'A full EICR: every circuit tested, with the same codes and report as a standard EICR.',
+        'A written report with a fixed price for each repair, to show the seller or your solicitor.',
+        'A free smoke, heat and CO alarm check: up to 6 mains-interlinked or battery alarms.',
+        'Everything emailed to you and saved in your online account.',
+    ]),
+    extra=HB_EXTRA, price=HB_PRICE, post=homebuyer_page,
 ))
 
 print('wrote', len(pages), 'pages:', ', '.join(pages))

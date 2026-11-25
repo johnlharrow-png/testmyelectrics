@@ -469,6 +469,10 @@
     const update = () => bar.classList.toggle('is-visible', !heroOn && !bookOn);
     new IntersectionObserver(([en]) => { heroOn = en.isIntersecting; update(); }).observe(hero);
     new IntersectionObserver(([en]) => { bookOn = en.isIntersecting; update(); }, { threshold: 0.02 }).observe(book);
+  } else if (bar) {
+    // No booking box on the page (the guides): keep the bar on screen, so booking is always one tap away
+    // (Wayne, 25 Nov 2026: every page has to let people book). It used to wait for a .hero the guides don't have.
+    bar.classList.add('is-visible');
   }
 })();
 

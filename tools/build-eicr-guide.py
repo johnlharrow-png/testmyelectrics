@@ -62,7 +62,7 @@ MAIN = f'''  <main id="main">
           <h1 id="eg-title">What is an EICR? The codes C1, C2, C3 and FI explained</h1>
           <p class="eg-lead">An EICR (Electrical Installation Condition Report) is a full inspection and test of a property's wiring, fuse board, sockets and fittings. The electrician checks everything against the UK wiring regulations (BS 7671) and gives anything that isn't right a code that shows how serious it is.</p>
           <div class="eg-actions">
-            <a class="btn btn-volt" href="/book-online">Book an EICR from {PRICE}</a>
+            <a class="btn btn-volt" href="/#book" data-book="EICR_DOM">Book an EICR from {PRICE}</a>
             <a class="btn btn-ghost-light" href="#codes">See what the codes mean</a>
           </div>
           <p class="eg-by">Written by the NAPIT-registered electricians at testmyelectrics.com.</p>

@@ -859,6 +859,8 @@ a.rv-badge[href]:hover .rv-name { text-decoration: underline; }
   .logo-wall.accred-strip { grid-template-columns: 1fr; max-width: 320px; }
   .lp-section { padding: 56px 0; }
   .lp .header-actions > .btn { display: inline-flex; }
+  /* terms, privacy, complaints: no booking bar, so keep "Book a test" in the header on phones (25 Nov 2026) */
+  .legal-page .header-actions > .btn { display: inline-flex; }
   .lp .header-link.lp-callback-link { display: none; }
   .logo-wall li { height: 76px; padding: 14px 16px; }
   .logo-wall img { height: 40px; }

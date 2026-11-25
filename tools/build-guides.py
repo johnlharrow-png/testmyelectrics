@@ -21,7 +21,8 @@ EXTRA = f'{pspan("EICR_DOM.extra")} + VAT'
 
 
 def hero(eyebrow, h1, lead, card, actions=None):
-    actions = actions or f'<a class="btn btn-volt" href="/book-online"><span>Book an EICR from {EICR_FROM}</span></a>'
+    # Straight into the booking app (data-book), not to another page first (Wayne, 25 Nov 2026)
+    actions = actions or f'<a class="btn btn-volt" href="/#book" data-book="EICR_DOM"><span>Book an EICR from {EICR_FROM}</span></a>'
     return f'''    <section class="eg-hero" aria-labelledby="eg-title">
       <div class="container eg-hero-inner">
         <div>
@@ -202,7 +203,7 @@ pages.append(build_page(
                  ('Repairs done within', '28 days', 'eg-c2'),
                  ('Maximum fine', '£40,000', 'eg-c1'),
              ]),
-             f'<a class="btn btn-volt" href="/landlord-eicr"><span>Book a landlord EICR from {EICR_FROM}</span></a>'),
+             f'<a class="btn btn-volt" href="/#book" data-book="EICR_DOM"><span>Book a landlord EICR from {EICR_FROM}</span></a>'),
         section('eg-duties', 'Your duties as a landlord', rules([
             'Keep the electrical installation up to the standards in the wiring regulations (BS 7671) for as long as the home is let.',
             'Have it inspected and tested by a qualified person at least every 5 years, or sooner if the last report says so.',
@@ -278,7 +279,7 @@ pages.append(build_page(
           <p class="eyebrow">Landlord guide</p>
           <h1 id="eg-title">Smoke and carbon monoxide alarm rules for landlords</h1>
           <p class="eg-lead">Since 1 October 2022, landlords in England must have a smoke alarm on every storey of a rented home, and a carbon monoxide (CO) alarm in any room with a fixed combustion appliance. Here is what that means in practice.</p>
-          <div class="eg-actions"><a class="btn btn-volt" href="/book-online">Add an alarm check to your EICR</a></div>
+          <div class="eg-actions"><a class="btn btn-volt" href="/#book" data-book="EICR_DOM,FIRE">Book an EICR with a free alarm check</a></div>
           <p class="eg-by">Written by the NAPIT-registered electricians at testmyelectrics.com.</p>
         </div>
         <figure class="eg-art"><img src="/assets/img/guide/alarms-house.svg" alt="A two-storey house with a smoke alarm on each storey and a CO alarm next to the boiler and the wood burner" width="360" height="330" decoding="async"></figure>
@@ -363,8 +364,8 @@ pages.append(build_page(
                  ('Buyers and surveyors', 'Often ask', 'eg-c3'),
                  ('Homebuyer\'s report', f'from {pspan("HOMEBUYER.studio")}', 'eg-c3'),
              ]),
-             f'<a class="btn btn-volt" href="/book-online"><span>Book an EICR from {EICR_FROM}</span></a>'
-             f'<a class="btn btn-ghost-light" href="#buying">Buying a home?</a>'),
+             f'<a class="btn btn-volt" href="/#book" data-book="EICR_DOM"><span>Selling? Book an EICR from {EICR_FROM}</span></a>'
+             f'<a class="btn btn-ghost-light" href="/#book" data-book="HOMEBUYER">Buying? Book a homebuyer\'s report</a>'),
         section('eg-sell', 'Selling: why have one done first', checks(
             ('file', 'Answer questions early', 'Buyers\' solicitors ask what you know about the electrics and any work done. A recent report answers that.'),
             ('alert', 'No late surprises', 'Find any problems on your own terms, with a fixed quote, before a buyer\'s survey does.'),
@@ -380,7 +381,8 @@ pages.append(build_page(
           <li><span class="eg-ic">{icon('file')}</span><h3>Repairs priced</h3><p>A written report with a price for each repair, so you can negotiate with the seller.</p></li>
           <li><span class="eg-ic">{icon('key')}</span><h3>From {pspan('HOMEBUYER.studio')} + VAT</h3><p>Priced by the size of the home, including up to {cfg('HOMEBUYER.included')} circuits and one fuse board.</p></li>
         </ul>
-        <p class="eg-note">You'll need the seller's agreement for the visit, usually arranged through the estate agent.</p>''',
+        <p class="eg-note">You'll need the seller's agreement for the visit, usually arranged through the estate agent.</p>
+        <div class="eg-actions"><a class="btn btn-volt" href="/#book" data-book="HOMEBUYER">Book a homebuyer's report</a><a class="btn btn-ghost" href="/homebuyer-electrical-report">How the homebuyer's report works</a></div>''',
                 'Before you exchange contracts, find out what the electrics need and what it will cost.'),
         section('eg-unsat', 'If the report is Unsatisfactory', rules([
             'It means at least one C1 (danger present) or C2 (potentially dangerous). C3s are recommendations and don\'t fail the report.',
