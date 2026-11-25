@@ -1253,7 +1253,7 @@ a.bo-rating[href]:hover .bo-rating-name { text-decoration: underline; text-under
 .bo-codes dt { font-weight: 700; display: flex; align-items: center; gap: 10px; }
 .bo-codes dd { margin: 0; color: var(--muted); font-size: 15.5px; line-height: 1.5; }
 .bo-codes .code { display: inline-grid; place-items: center; min-width: 36px; height: 26px; padding: 0 6px; border-radius: 6px; color: #fff; font-size: 13px; font-weight: 700; }
-.bo-codes .c1 { background: #C8281C; } .bo-codes .c2 { background: #E06A12; } .bo-codes .c3 { background: #2E62D9; } .bo-codes .fi { background: #7A3FD1; }
+.bo-codes .c1 { background: #C8281C; } .bo-codes .c2 { background: #B4530A; } .bo-codes .c3 { background: #2E62D9; } .bo-codes .fi { background: #7A3FD1; }
 @media (max-width: 760px) {
   .bo-codes div { grid-template-columns: minmax(0, 1fr); }
   .bo-more p, .bo-steps { font-size: 16px; }
