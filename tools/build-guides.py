@@ -144,9 +144,9 @@ pages.append(build_page(
              f'Several properties or more than one board? Email {EMAIL} for a price.</p>', alt=True),
         section('eg-extras', 'Extras you can add', f'''<ul class="eg-prices">
           <li><span class="eg-ic">{icon('plug')}</span><h3>PAT testing</h3><p class="eg-p"><strong>{pspan('PAT.upTo10')}</strong> + VAT</p><p>Up to 10 portable appliances, then {pspan('PAT.extra')} + VAT per extra item.</p></li>
-          <li><span class="eg-ic">{icon('alarm')}</span><h3>Smoke, heat &amp; CO alarm check</h3><p class="eg-p"><strong>{pspan('FIRE.price')}</strong> + VAT</p><p>Up to {cfg('FIRE.included')} alarms, then {pspan('FIRE.extra')} + VAT per extra alarm. <a href="/smoke-co-alarm-rules">The alarm rules</a>.</p></li>
+          <li><span class="eg-ic">{icon('alarm')}</span><h3>Smoke, heat &amp; CO alarm check</h3><p class="eg-p"><strong>Free</strong> with an EICR</p><p>Up to {cfg('FIRE.included')} mains-interlinked or battery alarms, then {pspan('FIRE.extra')} + VAT per extra alarm. <a href="/smoke-co-alarm-rules">The alarm rules</a>.</p></li>
           <li><span class="eg-ic">{icon('key')}</span><h3>Homebuyer's electrical report</h3><p class="eg-p"><small>from</small> <strong>{pspan('HOMEBUYER.studio')}</strong> + VAT</p><p>A full EICR plus a written report with repairs priced, instead of a standard EICR. <a href="/eicr-selling-a-house">For buyers and sellers</a>.</p></li>
-        </ul>''', 'PAT testing and the alarm check are add-ons: book them with an EICR or a homebuyer\'s report.'),
+        </ul>''', 'PAT testing and the alarm check are add-ons: book them with an EICR or a homebuyer\'s report. The alarm check is free with either.'),
         section('eg-after', 'If your report is Unsatisfactory', rules([
             'A report is Unsatisfactory if it has at least one C1 (danger present) or C2 (potentially dangerous). C3s are recommendations and don\'t fail it.',
             'For a C1, we make it safe before we leave, with your agreement, usually by switching off that circuit. You get a written danger notice the same day.',
@@ -310,8 +310,8 @@ pages.append(build_page(
             'We check the replace-by date on each alarm.',
             'We check mains-powered alarms are switched on and showing their power light.',
             'We check each alarm is in a sensible place, for example not too close to a wall or light, and no smoke alarms in kitchens or bathrooms.',
-        ]) + f'<p class="eg-note">{pspan("FIRE.price")} + VAT for up to {cfg("FIRE.included")} alarms, then {pspan("FIRE.extra")} + VAT per extra alarm. '
-             'Booked as an add-on to an EICR, so it is done on the same visit. Anything that fails is on your report with a quote to fix it.</p>', alt=True),
+        ]) + f'<p class="eg-note">Free with every EICR or homebuyer\'s report for up to {cfg("FIRE.included")} mains-interlinked or battery alarms, then {pspan("FIRE.extra")} + VAT per extra alarm. '
+             'It doesn\'t cover fire alarm systems with a control panel. Booked with your EICR, so it is done on the same visit. Anything that fails is on your report with a quote to fix it.</p>', alt=True),
         section('eg-fine', 'If the rules aren\'t followed', rules([
             'The council can serve a remedial notice, giving you 28 days to fit, repair or replace the alarms.',
             'If you don\'t, it can charge a penalty of up to £5,000.',
@@ -319,7 +319,7 @@ pages.append(build_page(
         ])),
         faq_section(SMOKE_FAQ, 'Alarm questions'),
         more_guides('smoke-co-alarm-rules'),
-        cta('Book an EICR with an alarm check', f'EICR from {EICR_FROM}, and an alarm check for {pspan("FIRE.price")} + VAT on the same visit. '
+        cta('Book an EICR with an alarm check', f'EICR from {EICR_FROM}, with a free smoke, heat and CO alarm check on the same visit. '
             'NAPIT-registered electricians across Essex and East London.',
             f'Source: <a href="{SMOKE}" rel="noopener">The Smoke and Carbon Monoxide Alarm (England) Regulations 2015 on legislation.gov.uk</a>.'),
     ),
