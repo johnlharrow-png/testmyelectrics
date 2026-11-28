@@ -423,8 +423,9 @@ for slug, town, districts, example, nearby in TOWNS:
 
 # Keyword pages (24 Nov 2026): one per search that used to land on /book-online, so the page Google checks for
 # that keyword's landing page experience matches the search word for word (title, headline, intro, a section that
-# answers it). Ads-only: canonical to /book-online and not in the sitemap, so they don't compete in Google search
-# with /book-online and the guides. Facts come from the FAQ on /book-online and /eicr-explained.
+# answers it). 28 Nov 2026: these were ads-only (canonical to /book-online, not in the sitemap) and Google rated
+# their landing page experience "Below average" while /eicr-certificate, the one with its own canonical, got
+# "Average". So each now has its own canonical and is in the sitemap, like /eicr-certificate. Facts come from the FAQ on /book-online and /eicr-explained.
 EXTRA = ('Most homes have <span data-cfg="pricing.EICR_DOM.included">8</span> circuits or fewer. If yours has more, '
          'it\'s <span data-price="EICR_DOM.extra">£15</span> + VAT per extra circuit. Parking or congestion charges '
          'are only added if we have to pay them.')
@@ -542,6 +543,48 @@ REPORT_EXTRA = section('bo-when', 'When do you need an EICR?', (
     'sample</a>.</p>'
 ))
 
+# 28 Nov 2026: more of each page's own, so /eicr-prices and the EICR report page stand on their own like /eicr-certificate.
+PRICES_EXTRA += section('bo-price-faq', 'EICR cost questions', (
+    '<dl class="bo-defs">'
+    '<div><dt>Why do EICR prices vary so much?</dt><dd>An EICR takes longer the more circuits and rooms there are. A '
+    'single price for every home means small flats pay for time they don\'t use, or big houses get rushed. We price by '
+    'size and count the circuits on the day, so you pay for your home and nothing else.</dd></div>'
+    '<div><dt>Is a cheaper EICR a worse one?</dt><dd>It can be. A proper EICR tests every circuit and records the '
+    'readings, circuit by circuit. A "certificate" with no schedule of test results isn\'t a full EICR, and a letting '
+    'agent or council may not accept it. Ours always includes the full test results.</dd></div>'
+    '<div><dt>Is VAT included?</dt><dd>Prices on this page are + VAT. The booking page shows the full price including '
+    'VAT before you pay, and your VAT invoice is saved in your online account.</dd></div>'
+    '<div><dt>Do I pay anything on the day?</dt><dd>No. You pay when you book. The only extras are circuits over '
+    '<span data-cfg="pricing.EICR_DOM.included">8</span>, which our electrician tells you about on the day, and any '
+    'parking or congestion charges we have to pay.</dd></div>'
+    '<div><dt>What if the report finds problems?</dt><dd>The EICR price stays the same whatever it finds. Repairs are '
+    'quoted separately with photos, and you\'re free to use any qualified electrician for them.</dd></div>'
+    '<div><dt>Do landlords pay the same?</dt><dd>Yes, the same prices by size of home. We can send the report to you, '
+    'your letting agent and your tenants, and remind you before the next one is due.</dd></div>'
+    '</dl>'
+))
+
+REPORT_EXTRA += section('bo-report-day', 'How long an EICR takes, and getting ready', (
+    '<p>Most flats take a morning or an afternoon. A 3 or 4-bedroom house can take most of the day, depending on '
+    'the number of circuits and how easy the fuse board and sockets are to reach.</p>'
+    '<h3>Before we arrive</h3>'
+    + ticks([
+        'Clear the area around the fuse board, and make sure we can get into every room.',
+        'Save any work on computers: the power goes off for short spells while circuits are tested.',
+        'Tell us about anything that mustn\'t be switched off, such as medical equipment, a fish tank or a freezer '
+        'full of food, so we can plan around it.',
+        'If you\'re a landlord, let your tenants know, or arrange a key with your letting agent.',
+    ])
+    + '<h3>After the inspection</h3>'
+    '<p>If we find anything dangerous, our electrician tells you before leaving and makes it safe with your agreement. '
+    'The full report, on the IET model form, is emailed within 48 hours and saved in your online account.</p>'
+    + shot('eicr-summary', 'Page 1 of a sample electrical installation condition report, showing the property, what '
+           'was inspected and the overall result', 1000, 844,
+           'Page 1 of a sample report: the property, what was inspected, and the overall result.')
+    + '<p class="bo-sample-link"><a href="/assets/sample-eicr.pdf" target="_blank" rel="noopener">See the full 8-page '
+      'sample (PDF)</a></p>'
+), 'bo-sample-wrap')
+
 pages.append(build(
     'eicr-test',
     'EICR test from £79 + VAT | Essex & East London | testmyelectrics.com',
@@ -563,7 +606,7 @@ pages.append(build(
     ])
     + '<p>What the results mean: <a href="/eicr-explained">C1, C2, C3 and FI explained</a>.</p>',
     extra=TEST_EXTRA,
-    own_canonical=False,
+    own_canonical=True,
 ))
 
 TOWN_LINKS = ', '.join(f'<a href="/eicr-{slug}">{town}</a>' for slug, town, *_ in TOWNS[:-1])
@@ -585,7 +628,7 @@ pages.append(build(
     ]),
     areas=AREAS,
     extra=NEAR_EXTRA,
-    own_canonical=False,
+    own_canonical=True,
 ))
 
 pages.append(build(
@@ -606,7 +649,7 @@ pages.append(build(
     + f'<p>{EXTRA} Any repairs are quoted separately, and nothing is done without your approval.</p>'
     + '<p>Prices for your home are below. More detail: <a href="/eicr-cost">how much an EICR costs</a>.</p>',
     extra=PRICES_EXTRA,
-    own_canonical=False,
+    own_canonical=True,
 ))
 
 pages.append(build(
@@ -623,7 +666,7 @@ pages.append(build(
     'Unsatisfactory; C3 and FI don\'t.</p>'
     f'<p>{HOW_OFTEN} <a href="/eicr-explained">The codes explained</a>.</p>',
     extra=REPORT_EXTRA,
-    own_canonical=False,
+    own_canonical=True,
 ))
 
 pages.append(build(
