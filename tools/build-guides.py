@@ -131,7 +131,7 @@ pages.append(build_page(
             ('check', 'A full inspection and test', 'Your wiring, fuse board, sockets, switches and lights, checked against the UK wiring regulations (BS 7671).'),
             ('bolt', f'Up to {CIRCUITS} circuits', 'Most homes have 8 or fewer. Our electrician counts them on the day.'),
             ('home', 'One consumer unit', 'The fuse board, with its circuit breakers and RCDs. Online prices are for one board in one property.'),
-            ('file', 'Your report', 'Emailed within 48 hours once your booking is paid in full, and saved in your online account.'),
+            ('file', 'Your report', 'Emailed by the next working day once your booking is paid in full, and saved in your online account.'),
             ('shield', 'Plain-English results', 'Any problem is coded C1, C2, C3 or FI, and we explain what each one means for you.'),
             ('calendar', 'A slot that suits you', 'Choose a morning or afternoon. Rescheduling is free up to 24 hours before.'),
         ), 'One fixed price for the size of your home, shown before you pay.'),

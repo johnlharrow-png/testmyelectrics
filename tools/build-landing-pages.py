@@ -133,7 +133,7 @@ LANDLORD_EXTRA = section('bo-ll-steps', 'Your landlord duties, and how we take c
     '<li><strong>An EICR at least every 5 years.</strong> Your online account shows each property\'s status and due '
     'date, and we email you before the next one is due.</li>'
     '<li><strong>A copy for your tenants within 28 days, and for new tenants before they move in.</strong> The report '
-    'is emailed to you as a PDF within 48 hours of the visit, ready to forward.</li>'
+    'is emailed to you as a PDF by the next working day after the visit, ready to forward.</li>'
     '<li><strong>A copy for the council within 7 days, if it asks in writing.</strong> Every report stays in your '
     'account, so you can download it at any time.</li>'
     '<li><strong>C1 and C2 items put right within 28 days, or sooner if the report says so.</strong> We send a quote '
@@ -577,7 +577,7 @@ REPORT_EXTRA += section('bo-report-day', 'How long an EICR takes, and getting re
     ])
     + '<h3>After the inspection</h3>'
     '<p>If we find anything dangerous, our electrician tells you before leaving and makes it safe with your agreement. '
-    'The full report, on the IET model form, is emailed within 48 hours and saved in your online account.</p>'
+    'The full report, on the IET model form, is emailed by the next working day and saved in your online account.</p>'
     + shot('eicr-summary', 'Page 1 of a sample electrical installation condition report, showing the property, what '
            'was inspected and the overall result', 1000, 844,
            'Page 1 of a sample report: the property, what was inspected, and the overall result.')
@@ -602,7 +602,7 @@ pages.append(build(
         'We need to reach the fuse board, and the sockets and fittings in each room.',
         'Someone aged 18 or over needs to let us in, or you can arrange access with your tenant, your letting agent or a key safe.',
         'If we find a danger, we make it safe before we leave, with your agreement.',
-        'Your report is emailed within 48 hours and saved in your online account.',
+        'Your report is emailed by the next working day and saved in your online account.',
     ])
     + '<p>What the results mean: <a href="/eicr-explained">C1, C2, C3 and FI explained</a>.</p>',
     extra=TEST_EXTRA,
@@ -624,7 +624,7 @@ pages.append(build(
     + ticks([
         'The same fixed prices wherever you are: you see the full price before you pay.',
         'Choose a morning or afternoon slot, with free rescheduling up to 24 hours before.',
-        'Your report is emailed within 48 hours and saved in your online account.',
+        'Your report is emailed by the next working day and saved in your online account.',
     ]),
     areas=AREAS,
     extra=NEAR_EXTRA,
@@ -642,7 +642,7 @@ pages.append(build(
     'bo-cost', 'What\'s included in the price',
     ticks([
         'A full inspection and test of one fuse board with up to <span data-cfg="pricing.EICR_DOM.included">8</span> circuits.',
-        'Your EICR certificate, emailed within 48 hours and saved in your online account.',
+        'Your EICR certificate, emailed by the next working day and saved in your online account.',
         'Free rescheduling up to 24 hours before your appointment.',
     ])
     + '<h3 class="bo-local-h3">What can add to the cost</h3>'
@@ -679,7 +679,7 @@ pages.append(build(
     'your online account. Pick a slot and pay online.',
     'bo-cert', 'What you get',
     ticks([
-        'Your EICR certificate (electrical installation condition report), emailed within 48 hours and saved in your online account.',
+        'Your EICR certificate (electrical installation condition report), emailed by the next working day and saved in your online account.',
         'A clear result: Satisfactory, or Unsatisfactory, with each item coded C1, C2, C3 or FI.',
         'The date your next one is due, kept in your account.',
         'Landlords: a copy ready for your tenants (within 28 days) and for the council (within 7 days if they ask).',
